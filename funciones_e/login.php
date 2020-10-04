@@ -1,5 +1,5 @@
 <?php
-    require "../iade_campus/etc/database.php";
+    require "../etc/database.php";
 
     session_start();
 
