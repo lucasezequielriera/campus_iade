@@ -25,23 +25,42 @@
     }
 ?>  
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de login</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
-    <h1>IADE login</h1>
-    <form action="" method="POST">
-        <input type="text" name="dni" placeholder="Ingrese documento" required>
-        <input type="password" name="password" placeholder="Ingrese contraseña" required>
-        <input type="submit" value="Entrar">
+    <title>Campus IADE</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+
+  </head>
+
+  <body action="user.php" class="text-center">
+    <form class="form-signin" method="POST">
+      <img class="mb-4" src="../img//logo.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
+      <label for="inputEmail" class="sr-only">DNI</label>
+      <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="DNI" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
+     <!-- <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Mantener sesión
+        </label>
+      </div> -->
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+      <p class="mt-5 mb-3 text-muted">&copy; Nicosrka</p>
     </form>
-
-    <h1><a href="#">Recuperar contraseña</a></h1>
-    <a href="logout.php">logout temporal, tsting</a>
-</body>
+  </body>
 </html>
+
