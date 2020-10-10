@@ -27,6 +27,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -37,18 +38,18 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
     <?php
-        $db->query("SELECT curso.nombre 
+        $db->query("SELECT * 
                   FROM curso 
                   LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
                   WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
         $resp = $db->fetchAll(); 
-    
       //Armado de los links con nombre de materia y value de la misma (curso_id)
-    foreach ($resp as $temp) {  
-          ?> <button class="dropdown-item">
-                <?=$temp['nombre'];?></button>
+    foreach ($resp as $temp) { ?>
+            <button class="dropdown-item" onclick="class_render(<?=$temp['id_curso'];?>)">
+                <?=$temp['nombre'];?>
+            </button>  
           <?php } ?>
-          
+
             </div>
           </li>
           <li class="nav-item">
@@ -61,6 +62,3 @@
         </form>
       </div>
     </nav>
-
-
-

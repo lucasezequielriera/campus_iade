@@ -1,8 +1,8 @@
 <?php
 
-function listarArchivos( ){
+function listarArchivos($var){
 
-$path = "../cursos/Matematica/";
+$path = $var;
 // Abrimos la carpeta que nos pasan como parámetro
 $dir = opendir($path);
 // Leo todos los ficheros de la carpeta

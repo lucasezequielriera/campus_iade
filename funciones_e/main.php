@@ -2,12 +2,9 @@
 require "header.php";
 ?>
 
-<div class="container-fluid">
-
-esto es el main
-</div>
-
-
+  <div class="contenido">
+      Noticias / publicidad
+  </div>
 
 <?php
 require "footer.php";

@@ -19,7 +19,7 @@
         if ($db->numRows() == 1) {
             $_SESSION['logged'] = true;
             $_SESSION['user'] = $db->fetch();
-            header("Location: user.php");
+            header("Location: main.php");
             exit;
         }
     }
