@@ -20,29 +20,19 @@
 <body>
   
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Bienvenido <?=$_SESSION['user']['nombre'];?> </a>
+  <a class="navbar-brand" href="index.php">Bienvenido <?=$_SESSION['user']['nombre'];?> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mis cursos
+        <a class="nav-link dropdown-toggle" href="cursos.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mis examenes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-        <?php 
-        $db->query("SELECT * 
-                    FROM curso 
-                    LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                    WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-        $resp = $db->fetchAll(); 
-        //CADA CURSO SE CREA CON VALUE = id_curso
-        foreach ($resp as $temp) { ?>
-          <button class="dropdown-item" value="<?=$temp['id_curso'];?>">
-            <?=$temp['nombre'];?>
-          </button> <?php } ?>
+            <a href="" class="dropdown-item">Examenes</a>
+            <a href="" class="dropdown-item">Certificados</a>
         </div>
       </li>
       <li class="nav-item active">
