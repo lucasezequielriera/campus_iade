@@ -1,5 +1,5 @@
 <?php
-    require "../etc/database.php";
+    require "globals/database.php";
 
     session_start();
 
@@ -19,7 +19,7 @@
         if ($db->numRows() == 1) {
             $_SESSION['logged'] = true;
             $_SESSION['user'] = $db->fetch();
-            header("Location: main.php");
+            header("Location: index.php");
             exit;
         }
     }
@@ -36,13 +36,6 @@
 
     <title>Campus IADE</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/sign-in/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="../css/signin.css" rel="stylesheet">
-
   </head>
 
   <body action="user.php" class="text-center">
@@ -53,11 +46,6 @@
       <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="DNI" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
-     <!-- <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Mantener sesión
-        </label>
-      </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       <p class="mt-5 mb-3 text-muted">&copy; Nicosrka</p>
     </form>
