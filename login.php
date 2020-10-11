@@ -33,14 +33,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/signin.css">
     <title>Campus IADE</title>
 
   </head>
 
   <body action="user.php" class="text-center">
     <form class="form-signin" method="POST">
-      <img class="mb-4" src="../img//logo.png" alt="" width="72" height="72">
+      <img class="mb-4" src="img//logo.png" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
       <label for="inputEmail" class="sr-only">DNI</label>
       <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="DNI" required autofocus>
