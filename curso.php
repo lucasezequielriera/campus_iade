@@ -48,27 +48,26 @@ require "templates/header.php";
                       $nivelUsuario = $db->fetch();
                       $nivelUsuario = ($nivelUsuario['nivel']);
 
-                      $archivos = scandir("cursos/" . $curso['nombre']);
+                      $archivos = scandir($curso['url_doc']);
                       for ($i=2; $i<$nivelUsuario+2; $i++) { ?>
                             <tr>
                                 <td><?php echo $archivos[$i]; ?></td>
-                                <td><a title="Descargar Archivo" href="cursos/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <td><a title="Descargar Archivo" href="<?=$curso['url_doc']; echo $archivos[$i];?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                       <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                                       <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                                     </svg></a></td>
-                                <td><a  id="borrar_hidd" title="Eliminar Archivo" href="delete.php?name=uploads/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
                             </tr>
                       <?php } ?> 
                   </tbody>
                 </table>
            </div>
           </div>
-          <a href="#"
-              name="btnAccion" 
-              value="<?=$curso['id_curso']?>;" 
-              class="card-text btn btn-info">    <!-- Hay que hacer la validacion por modulo -->
-              Rendir examen  
-          </a>
+          <form action="quiz.php">
+            <button type="submit"
+                class="card-text btn btn-info">    
+                Rendir examen  
+            </button>
+          </form>
         </div>
       </div>
     </div>
