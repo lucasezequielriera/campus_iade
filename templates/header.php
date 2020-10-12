@@ -29,42 +29,54 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="curso.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mis cursos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-        <?php 
-        $db->query("SELECT * 
-                    FROM curso 
-                    LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                    WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-        $resp = $db->fetchAll(); 
-        //CADA CURSO SE CREA CON VALUE = id_curso
-        foreach ($resp as $temp) { ?>
-          <form action="curso.php" method="POST">
-            <button 
-              type="submit" 
-              class="dropdown-item"
-              >
-              <?=$temp['nombre'];?>
-            </button> 
-            <input type="hidden" value="<?=$temp['id_curso'];?>" name=curso>
-          </form> 
+      <?php if ($_SESSION['user']['acceso'] == 0) { ?>  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="curso.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Mis cursos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <?php 
+              $db->query("SELECT * 
+                          FROM curso 
+                          LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
+                          WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
+              $resp = $db->fetchAll(); 
+              //CADA CURSO SE CREA CON VALUE = id_curso
+              foreach ($resp as $temp) { ?>
+                <form action="curso.php" method="POST">
+                  <button type="submit" class="dropdown-item">
+                    <?=$temp['nombre'];?>
+                  </button> 
+                  <input type="hidden" value="<?=$temp['id_curso'];?>" name="curso">
+                  <div class="dropdown-divider"></div>
+                </form> <?php } ?>  <!-- Cierre del foreach -->
+          </div>
+        </li> 
+      <?php } ?> <!-- Cierre del if -->
+                
+          <?php if ($_SESSION['user']['acceso']<=1) { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="chat.php">Consultas</a>
+              </li>
           <?php } ?>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="chat.php">Consultas</a>
-      </li>
 
-      <?php 
-        if ($_SESSION['user']['acceso']==2) { ?>
-          <li class="nav-item">
-               <a class="nav-link" href="panel.php">Administracion de alumnos</a>
-          </li>
-        <?php } ?>
+          <?php 
+            if ($_SESSION['user']['acceso']==2) { ?>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu administrador
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="user.php">Alta/edicion de usuario</a>
+                      <a class="dropdown-item" href="assign.php">Asignacion de curso</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="courses.php">Alta de curso</a>
+                      <a class="dropdown-item" href="content.php">Modificacion de contenidos</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="exams.php">Alta/modificacion de examen</a>
+                  </div>
+               </li>  <?php } ?>
     </ul>
   </div>
   <a href="logout.php" class="btn btn-sm btn-outline-secondary" type="button">Logout</a>

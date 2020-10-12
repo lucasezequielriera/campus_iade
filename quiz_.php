@@ -47,7 +47,7 @@ if ($question==0){
 <HTML><HEAD><TITLE>Multiple Choice Questions:  <?php print $title; ?></TITLE>
 
 <SCRIPT LANGUAGE='JavaScript'>
-<!-- 
+
 function Goahead (number){
         if (document.percentaje.response.value==0){
                 if (number==<?php print $a[$randval2][6] ; ?>){
@@ -65,7 +65,7 @@ function Goahead (number){
                 document.question.response.value="Incorrect"
         }
 }
-// -->
+
 </SCRIPT>
 
 </HEAD>
