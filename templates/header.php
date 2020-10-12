@@ -1,8 +1,8 @@
 <?php
-    require "globals/database.php";
-
-    $db = Database::getInstance();
     session_start();
+    require "globals\database.php";
+    
+    $db = Database::getInstance();
     if (!isset($_SESSION['logged'])) {
         header("Location: login.php");
         exit;
@@ -15,7 +15,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IADE Campus</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </head>
 <body>
   
@@ -27,16 +30,33 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="cursos.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mis examenes
+        <a class="nav-link dropdown-toggle" href="curso.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mis cursos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a href="" class="dropdown-item">Examenes</a>
-            <a href="" class="dropdown-item">Certificados</a>
+
+        <?php 
+        $db->query("SELECT * 
+                    FROM curso 
+                    LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
+                    WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
+        $resp = $db->fetchAll(); 
+        //CADA CURSO SE CREA CON VALUE = id_curso
+        foreach ($resp as $temp) { ?>
+          <form action="curso.php" method="POST">
+            <button 
+              type="submit" 
+              class="dropdown-item"
+              >
+              <?=$temp['nombre'];?>
+            </button> 
+            <input type="hidden" value="<?=$temp['id_curso'];?>" name=curso>
+          </form> 
+          <?php } ?>
         </div>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="chat.php">Consultas</a>
+        <a class="nav-link" href="templates/chat.php">Consultas</a>
       </li>
     </ul>
   </div>

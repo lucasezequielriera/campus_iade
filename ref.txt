@@ -1,0 +1,12 @@
+mostrar por adm
+
+uploads/index:
+	borrar_hidd (<a> borrar)
+
+
+
+SELECT * 
+                FROM curso 
+                LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
+                WHERE curso_p.id_persona = $param 
+                LIMIT 1");
