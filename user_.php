@@ -1,19 +1,17 @@
 <?php 
 require "templates/header.php";
+require "admin.php";
 ?>
 
-<?php if ()
-?>
-
-<form class="container" action="" method="POST"> <br> <br>
+<form class="container" action="" method="post"> <br> <br>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Nombre</label>
-      <input type="text" class="form-control" id="validationDefault01" required>
+      <input type="text" class="form-control" id="validationDefault01" name="nombre" required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationDefault02">Apellido</label>
-      <input type="text" class="form-control" id="validationDefault02" required>
+      <input type="text" name="apellido" class="form-control" id="validationDefault02" required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationDefaultUsername">Documento</label>
@@ -28,11 +26,20 @@ require "templates/header.php";
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationDefault03">Email</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="micorreo@dominio.com">
+      <input type="email" name="mail" class="form-control" id="validationDefault03" placeholder="micorreo@dominio.com">
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationDefault04">Telefono</label>
-      <input type="number" class="form-control" id="validationDefault04" placeholder="Solo numeros">
+      <input type="number" name="tel" class="form-control" id="validationDefault04" placeholder="Solo numeros">
+    </div>
+    <div class="col-md-3 mb-3">
+    <label for="validationDefault04">Tipo de usuario</label>
+      <select name="userAccess" class="form-control" required>
+        <option hidden disabled selected value="">-- Seleccione --</option>
+        <option value="0">Alumno</option> 
+        <option value="1">Profesor</option> 
+        <option value="2">Administrador</option> 
+      </select>
     </div>
   </div>
   <div class="form-group">

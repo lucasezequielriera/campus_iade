@@ -30,7 +30,7 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
 
-      <?php if ($_SESSION['user']['acceso'] == 0) { ?>  
+      <?php if ($_SESSION['user']['acceso'] <=1) { ?>  
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="curso.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Mis cursos
@@ -53,13 +53,10 @@
                 </form> <?php } ?>  <!-- Cierre del foreach -->
           </div>
         </li> 
-      <?php } ?> <!-- Cierre del if -->
-                
-          <?php if ($_SESSION['user']['acceso']<=1) { ?>
-              <li class="nav-item">
-                <a class="nav-link" href="chat.php">Consultas</a>
-              </li>
-          <?php } ?>
+          <li class="nav-item">
+            <a class="nav-link" href="chat.php">Consultas</a>
+          </li>
+      <?php } ?>
 
           <?php 
             if ($_SESSION['user']['acceso']==2) { ?>
