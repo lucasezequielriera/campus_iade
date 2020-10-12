@@ -1,0 +1,1 @@
+al ir de curso a index se rompe. curso.php no recibe parametro por post (?)

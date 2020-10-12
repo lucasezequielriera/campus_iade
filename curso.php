@@ -1,10 +1,10 @@
 <?php 
 require "templates/header.php";
 
-    $param = $_POST['curso'];
+    $cursoId = $_POST['curso'];
     $db->query("SELECT * 
                 FROM curso 
-                WHERE id_curso = $param 
+                WHERE id_curso = $cursoId 
                 LIMIT 1");
     $curso = $db->fetch();
 ?>
@@ -37,18 +37,19 @@ require "templates/header.php";
                       <th hidden width="10%">Eliminar</th>
                     </tr>
                   </thead>
-
                   <tbody>
                     <?php
-                      $param = $_SESSION['id'];
+                      $userId = $_SESSION['user']['id'];
                       $db->query("SELECT nivel 
                                   FROM curso_p 
-                                  LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                                  WHERE curso_p.id_persona = $param 
+                                  LEFT JOIN personas ON curso_p.id_persona = $userId
+                                  WHERE curso_p.id_curso = $cursoId
                                   LIMIT 1");
+                      $nivelUsuario = $db->fetch();
+                      $nivelUsuario = ($nivelUsuario['nivel']);
 
                       $archivos = scandir("cursos/" . $curso['nombre']);
-                      for ($i=2; $i<5; $i++) { ?>
+                      for ($i=2; $i<$nivelUsuario+2; $i++) { ?>
                             <tr>
                                 <td><?php echo $archivos[$i]; ?></td>
                                 <td><a title="Descargar Archivo" href="cursos/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
