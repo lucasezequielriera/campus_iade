@@ -22,7 +22,7 @@ require "templates/header.php";
           height="250px";
           >
         <div class="card-body">
-          <h2><?= $curso['nombre']?></h2>
+          <h1><?= $curso['nombre']?></h1>
     
           <div class="panel panel-primary">
             <div class="panel-heading">
@@ -63,19 +63,16 @@ require "templates/header.php";
                 </table>
            </div>
           </div>
-          <button type="submit" 
+          <a href="#"
               name="btnAccion" 
               value="<?=$curso['id_curso']?>;" 
               class="card-text btn btn-info">    <!-- Hay que hacer la validacion por modulo -->
               Rendir examen  
-          </button>
+          </a>
         </div>
       </div>
     </div>
 
-
-  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script> -->
-  
 <?php
 require "templates/footer.php";
 ?>
