@@ -55,9 +55,16 @@
           <?php } ?>
         </div>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="templates/chat.php">Consultas</a>
+      <li class="nav-item">
+        <a class="nav-link" href="chat.php">Consultas</a>
       </li>
+
+      <?php 
+        if ($_SESSION['user']['acceso']==2) { ?>
+          <li class="nav-item">
+               <a class="nav-link" href="panel.php">Administracion de alumnos</a>
+          </li>
+        <?php } ?>
     </ul>
   </div>
   <a href="logout.php" class="btn btn-sm btn-outline-secondary" type="button">Logout</a>
