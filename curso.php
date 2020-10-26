@@ -65,7 +65,7 @@ require "templates/header.php";
           <form action="quiz.php">
             <button type="submit"
                 class="card-text btn btn-info">    
-                Rendir examen  
+                Rendir nivel <?=$nivelUsuario?>
             </button>
           </form>
         </div>

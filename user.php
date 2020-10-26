@@ -1,9 +1,8 @@
 <?php 
 require "templates/header.php";
-require "admin.php";
 ?>
 
-<form class="container" action="" method="post"> <br> <br>
+<form class="container" action="admin.php" method="post"> <br> <br>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Nombre</label>
