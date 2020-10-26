@@ -23,7 +23,17 @@ if (isset($_POST['btnAccion'])){
                 $img = "borrar";
                 $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`) 
                             VALUES ('$nombre','$url_doc', '$img');");
-            break;
+
+            //creacion del directorio de la materia
+            $directoryName = 'cursos/' . $nombre;
+            if(!is_dir($directoryName)){
+                mkdir($directoryName, 0777);
+                for ($i=0; $i<6 ; $i++) {
+                    $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i+1);
+                    mkdir($directoryName, 0777);
+                }
+            }
+        break;
 
         case 'courseAssign' :
                 $nombre = $_POST['id_persona']; //id_persona
@@ -32,8 +42,7 @@ if (isset($_POST['btnAccion'])){
                 if (isset($_POST['cond_libre'])) $cond = 6;
                 $db->query("INSERT INTO `curso_p`(`id_curso`, `id_persona`, `nivel`) 
                             VALUES ('$course','$nombre', '$cond');");
-            break;
-                
+            break;           
     }
 }
 ?>
