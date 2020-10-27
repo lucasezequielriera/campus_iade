@@ -2,11 +2,12 @@
     session_start();
     require "globals\database.php";
     
-    $db = Database::getInstance();
+    $db=Database::getInstance();
     if (!isset($_SESSION['logged'])) {
         header("Location: login.php");
         exit;
     }
+    $mensaje ="";
 ?>
 
 <!DOCTYPE html>
@@ -78,5 +79,3 @@
   <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
 </nav>
 
-
-<?php require "./admin.php"; ?>

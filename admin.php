@@ -1,5 +1,6 @@
 <?php 
-$mensaje ="";
+require "templates/header.php";
+
 
 if (isset($_POST['btnAccion'])){
     switch ($_POST['btnAccion']) {
@@ -11,7 +12,7 @@ if (isset($_POST['btnAccion'])){
             $acceso = $_POST['userAccess'];
             $telefono1 = $_POST['tel'];
             $email1 = $_POST['mail'];
-            $db->query("INSERT INTO `personas`(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
+            $db->query("INSERT INTO 'personas'('dni', 'password', 'nombre', 'apellido', 'acceso', 'telefono', 'email') 
                         VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
             break;
 
@@ -46,10 +47,10 @@ if (isset($_POST['btnAccion'])){
                 $uploadOk = 0;
             }
 
-            if ($uploadOk == 0) {  //Si hubo error se redirige a courses.php
+            if ($uploadOk == 0) {                                            //Si hubo error se redirige a courses.php
                 header("Location: courses.php");
             } else {
-                    //creacion del directorio del curso
+                                                                        //creacion del directorio del curso
                 if(!is_dir($directoryName)){
                     mkdir($directoryName, 0777);
                     for ($i=0; $i<6 ; $i++) {
@@ -57,12 +58,11 @@ if (isset($_POST['btnAccion'])){
                         mkdir($directoryName, 0777);
                     }
                 }
-                                                                                         //carga de la imagen en directorio del curso
-                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {        //volcado de la informacion a la base de datos                                          
+                                                            //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {                                                
                     $nombre = $_POST['nombre'];
-                    $url_doc = "cursos/" . $nombre;
-                    $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`) 
-                                VALUES ('$nombre','$url_doc', '$target_file');");
+                    $db->query ("INSERT INTO 'curso'('nombre', 'url_doc', 'imagen') 
+                                VALUES ('$nombre','$target_dir', '$target_file');");
                     $mensaje = "El archivo ". htmlspecialchars( basename( $_FILES["file"]["name"])). " se ha subido con exito.";
                     header("Location: courses.php");
                 } 
@@ -78,7 +78,7 @@ if (isset($_POST['btnAccion'])){
                 $course = $_POST['course']; //id curso
                 $cond = 0;
                 if (isset($_POST['cond_libre'])) $cond = 6;
-                $db->query("INSERT INTO `curso_p`(`id_curso`, `id_persona`, `nivel`) 
+                $db->query("INSERT INTO 'curso_p'('id_curso', 'id_persona', 'nivel') 
                             VALUES ('$course','$nombre', '$cond');");
             break;           
     }
