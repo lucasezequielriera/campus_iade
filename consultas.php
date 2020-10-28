@@ -16,7 +16,7 @@
             $resp = $db->fetchAll(); 
 
             foreach ($resp as $temp) { ?>
-                <button type="button" class="dropdown-item" onclick="preload(<?=$temp['id_curso'];?>,<?=$_SESSION['user']['id'];?>)">
+                <button type="button" class="dropdown-item" onclick="load(<?=$temp['id_curso'];?>,<?=$_SESSION['user']['id'];?>)">
                 <?=$temp['nombre'];?>
                 </button> 
                 <div class="dropdown-divider"></div>
@@ -36,27 +36,25 @@
 </div>
 
 <script>
-    var start = 0;
+    var start = 0,
+        course = 0,
+        from = 0;
 
         $("#form").submit(function (e) {
-            $.post(url, {
+            $.post('chat.php', {
                 message: $("#message").val(),
-                from: from,  //hidratar aca
-                course: course                       //FALTA ENVIAR EL ID DE LA MATERIA SELECCIONADA.
+                from: from,  // ID PEROSNA
+                course: course  //id curso
                 });
                 $("#message").val('');
             return false;
         })
 
-        function preload(curso, id) {            
-            var from = id,
-                course = curso,
-                url = "chat.php";
-            load(); 
-        }
-
-        function load() {
-            $.get(url + '?start=' + start, function (result) {
+        function load(n,m) {
+            let course = n;
+            let from = m;
+            alert (course + " " + from);
+            $.get('chat.php?start=' + start + '&course=' + course + '&from=' + from, function (result) {
                 if (result.items){
                     result.items.forEach(item => {
                         start = item.id;
@@ -64,7 +62,7 @@
                     });
                     $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight});
                 };
-                load();
+                setTimeout(() => {load(course,from)}, 5000);
             });
         }
 
