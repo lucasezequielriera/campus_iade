@@ -7,7 +7,6 @@
         header("Location: login.php");
         exit;
     }
-    $mensaje ="";
 ?>
 
 <!DOCTYPE html>
@@ -81,4 +80,3 @@
   </div>
   <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
 </nav>
-

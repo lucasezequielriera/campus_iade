@@ -1,7 +1,6 @@
 <?php 
 require "templates/header.php";
 
-
 if (isset($_POST['btnAccion'])){
     switch ($_POST['btnAccion']) {
         case 'newUser' : 
@@ -33,7 +32,7 @@ if (isset($_POST['btnAccion'])){
             }
             //hacer el check por si no es imagen.
             if (file_exists($target_file)) {
-                $err = "Ya existe un archivo con ese nombre";
+                $err = "Error, ya existe un archivo con ese nombre";
                 $uploadOk = 0;
                 }
 
@@ -43,11 +42,12 @@ if (isset($_POST['btnAccion'])){
             }
 
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                $err = "Solo archivos JPG, JPEG o PNG son aceptados."; 
+                $err = "Error, solo archivos JPG, JPEG o PNG son aceptados."; 
                 $uploadOk = 0;
             }
 
-            if ($uploadOk == 0) {                                            //Si hubo error se redirige a courses.php
+            if ($uploadOk == 0) {         
+                $_SESSION['mensaje'] = $err;                                   //Si hubo error se redirige a courses.php
                 header("Location: courses.php");
             } else {
                                                                         //creacion del directorio del curso
@@ -63,11 +63,11 @@ if (isset($_POST['btnAccion'])){
                     $nombre = $_POST['nombre'];
                     $db->query ("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`)
                                 VALUES ('$nombre','$target_dir', '$target_file')");
-                    $mensaje = "El archivo ". htmlspecialchars( basename( $_FILES["file"]["name"])). " se ha subido con exito.";
+                    $_SESSION['mensaje'] = "El archivo ". htmlspecialchars( basename( $_FILES["file"]["name"])). " se ha subido con exito.";
                     header("Location: courses.php");
                 } 
                 else {
-                    $mensaje = "Hubo un error al subir el archivo " . $err;
+                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $err);
                     header("Location: courses.php");
                     }
                 }

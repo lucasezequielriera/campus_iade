@@ -1,8 +1,13 @@
 <?php 
 require "templates/header.php";
 
-?>
-
+if ($_SESSION['mensaje'] !="") {?>
+      <div class="alert alert-warning text-center">
+          <?php echo $_SESSION['mensaje'];?>
+      </div>
+  <?php }
+  $_SESSION['mensaje']=""; ?>
+        
 <div class="container">
   <form action="admin.php" method="post" enctype="multipart/form-data"> <br> <br>
     <div class="form-row">
@@ -30,12 +35,6 @@ require "templates/header.php";
     </div>
   </form>
 </div>
-
-<?php if ($mensaje !="") {?>
-            <div class="alert alert-success">
-                <?php echo $mensaje;?>
-            </div>
-        <?php } ?>
 
 <?php 
 require "templates/footer.php";
