@@ -61,8 +61,8 @@ if (isset($_POST['btnAccion'])){
                                                             //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {                                                
                     $nombre = $_POST['nombre'];
-                    $db->query ("INSERT INTO 'curso'('nombre', 'url_doc', 'imagen') 
-                                VALUES ('$nombre','$target_dir', '$target_file');");
+                    $db->query ("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`)
+                                VALUES ('$nombre','$target_dir', '$target_file')");
                     $mensaje = "El archivo ". htmlspecialchars( basename( $_FILES["file"]["name"])). " se ha subido con exito.";
                     header("Location: courses.php");
                 } 
