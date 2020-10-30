@@ -11,10 +11,21 @@ if (isset($_POST['btnAccion'])){
             $acceso = $_POST['userAccess'];
             $telefono1 = $_POST['tel'];
             $email1 = $_POST['mail'];
-            $db->query("INSERT INTO 'personas'('dni', 'password', 'nombre', 'apellido', 'acceso', 'telefono', 'email') 
-                        VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
-            break;
+            $db->query("SELECT * FROM personas WHERE id = '$dni1'");
+            $temp = $db->fetch();
+            if ($temp==NULL) {
+                $_SESSION['mensaje'] = "El usuario ya existe.";
+                $_SESSION['msg_status'] = 0;
+                header("Location: user.php");
+            }
 
+            $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
+                        VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
+            $_SESSION['mensaje'] = "Usuario creado!";
+            $_SESSION['msg_status'] = 1;
+            header("Location: user.php");
+        break;
+            
         case 'newCourse' : 
             $nombre = $_POST['nombre'];
             $directoryName = 'cursos/' . $nombre;
@@ -47,7 +58,8 @@ if (isset($_POST['btnAccion'])){
             }
 
             if ($uploadOk == 0) {         
-                $_SESSION['mensaje'] = $err;                                   //Si hubo error se redirige a courses.php
+                $_SESSION['mensaje'] = $err;     
+                $_SESSION['msg_status'] = 0;                              //Si hubo error se redirige a courses.php
                 header("Location: courses.php");
             } else {
                                                                         //creacion del directorio del curso
@@ -64,10 +76,12 @@ if (isset($_POST['btnAccion'])){
                     $db->query ("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`)
                                 VALUES ('$nombre','$target_dir', '$target_file')");
                     $_SESSION['mensaje'] = "El archivo ". htmlspecialchars( basename( $_FILES["file"]["name"])). " se ha subido con exito.";
+                    $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
                 } 
                 else {
                     $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $err);
+                    $_SESSION['msg_status'] = 0;
                     header("Location: courses.php");
                     }
                 }
@@ -78,8 +92,11 @@ if (isset($_POST['btnAccion'])){
                 $course = $_POST['course']; //id curso
                 $cond = 0;
                 if (isset($_POST['cond_libre'])) $cond = 6;
-                $db->query("INSERT INTO 'curso_p'('id_curso', 'id_persona', 'nivel') 
+                $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`) 
                             VALUES ('$course','$nombre', '$cond');");
+                $_SESSION['mensaje'] = "Curso asignado!";
+                $_SESSION['msg_status'] = 1;
+                header("Location: assign.php");
             break;           
     }
 }

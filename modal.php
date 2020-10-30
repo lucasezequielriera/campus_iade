@@ -1,3 +1,7 @@
+<?php 
+require "templates/header.php";
+?>
+
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -12,7 +16,7 @@
           </thead>
           <tbody>
             <?php
-              $archivos = scandir($curso['url_doc']);
+              $archivos = scandir($curso['url_doc'] . "/" . $_POST['param_mod'] );
                                                 
               for ($i=2; $i<count($archivos); $i++) { ?>
                 <tr>
@@ -40,3 +44,8 @@
     </div>
   </div>
 </div>
+
+
+<?php 
+require "templates/footer.php";
+?>

@@ -1,6 +1,13 @@
 <?php 
 require "templates/header.php";
-?>
+
+if ($_SESSION['mensaje'] !="") {
+  if ($_SESSION['msg_status'] == 1) { ?>
+    <div class="alert alert-success text-center"> <?php }
+      else { ?> <div class="alert alert-danger text-center">  <?php } ?>
+      <?php echo $_SESSION['mensaje'];?>
+    </div>
+ <?php  } $_SESSION['mensaje']=""; ?>
 
 <form class="container" action="admin.php" method="post"> <br> <br>
   <div class="form-row">

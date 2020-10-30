@@ -2,3 +2,34 @@
     height: 80vh;
     overflow-y: scroll;
 }
+
+.usableOn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.usableOff {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.visibleOff {
+    visibility: hidden;
+}
+
+.visibleOn {
+    visibility: visible;
+}
+
+
+#mainPage {
+    height: 100%;
+    width: 100%;
+}
+
+#modalPage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+}
