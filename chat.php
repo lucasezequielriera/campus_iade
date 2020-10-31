@@ -8,7 +8,7 @@ $from = isset($_GET['from']) ? intval($_GET['from']) : 0;
 $start = isset ($_GET['start']) ? intval($_GET['start']) : 0;
 
 //Traigo los datos del chat, curso y persona.
-$db->query("SELECT c.id, c.fecha, c.mensaje, p.nombre
+$db->query("SELECT c.id, c.fecha, c.mensaje, p.nombre, c.id_persona
             FROM chat c
             LEFT JOIN personas p
             ON c.id_persona = p.id

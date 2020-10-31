@@ -23,6 +23,10 @@ if ($_SESSION['mensaje'] !="") {
                     <option value="<?=$temp['id'];?>"><?=$temp['dni'];?> <?=$temp['nombre'];?> <?=$temp['apellido'];?></option>
                 <?php } ?>    
         </select>
+        <div class="form-check mt-2">
+          <input type="checkbox" class="form-check-input" name="cond_libre">
+          <label class="form-check-label" for="exampleCheck1">Cursada libre</label>
+        </div>
       </div>
       <div class="col-md-4 mb-3">
       <label for="validationDefault04">Curso</label>
@@ -35,14 +39,17 @@ if ($_SESSION['mensaje'] !="") {
                     <option value="<?=$temp['id_curso'];?>"><?=$temp['nombre'];?></option>
                 <?php } ?>    
         </select>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" name="cond_libre">
-          <label class="form-check-label" for="exampleCheck1">Cursa libre?</label>
+        <div class="form-check mt-2">
+          <input class="form-check-input" name="pago" type="checkbox" value="1" id="invalidCheck2">
+          <label class="form-check-label" for="invalidCheck2">Curso pago</label>
         </div>
-
       </div>            
     </div>
-    <button class="btn btn-primary" name="btnAccion" value="courseAssign" type="submit">Asignar curso</button>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <button class="btn btn-primary mt-5" name="btnAccion" value="courseAssign" type="submit">Asignar curso</button>
+      </div>
+    </div>
   </div>
 </form>
 

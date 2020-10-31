@@ -1,4 +1,5 @@
 <?php require "templates/header.php"; ?>
+
 <head>
     <style>
         body {
@@ -9,10 +10,14 @@
         }
 
         #messages {
-            height: 88vh;
+            display: flex;
+            flex-direction: column;
+            height: 87vh;
             overflow-x: hidden;
+            overflow-y: auto;
+            align-items: flex-start;
             padding: 10px;
-            background-color: lightgoldenrodyellow;
+            background-color: lightgray;
         }
 
         form {
@@ -32,17 +37,25 @@
             flex: 2;
         }
 
+        .self {
+            background-color: #dcf8c6!important;
+            align-self: flex-end;
+        }
+
         .msg {
-            background-color: #dcf8c6;
+            background-color: #eeddf6;
             padding: 5px 10px;
             border-radius: 5px;
             margin-bottom: 8px;
             width: fit-content;
+            height: fit-content;
         }
+
         .msg p {
             margin: 0;
             font-weight: bold;
         }
+
         .msg span {
             font-size: 0.7rem;
             margin-left: 15px;
@@ -51,79 +64,88 @@
 </head>
 <div class="container-fluid">
     <div class="row">
-    <div class="col-3" style="border: solid black 1px;">
-        <div class="list-group">
-        <?php 
-            $db->query("SELECT * 
+        <div class="col-3">
+            <div class="list-group">
+                <?php
+                $db->query("SELECT * 
                         FROM curso 
                         LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
                         WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-            $resp = $db->fetchAll(); 
+                $resp = $db->fetchAll();
 
-            foreach ($resp as $temp) { ?>
-                <button type="button" class="list-group-item" onclick="set(<?=$temp['id_curso'];?>,<?=$_SESSION['user']['id'];?>)">
-                <?=$temp['nombre'];?>
-                </button> 
-            <?php } ?>  <!-- Cierre del foreach -->
-
+                foreach ($resp as $temp) { ?>
+                    <button type="button" class="list-group-item" onclick="set(<?= $temp['id_curso']; ?>,<?= $_SESSION['user']['id']; ?>)">
+                        <?= $temp['nombre']; ?>
+                    </button>
+                <?php } ?>
+                <!-- Cierre del foreach -->
+            </div>
         </div>
-    </div>
-    <div class="col-9" id="messages" style="border: solid black 1px;"></div>    <!--ACA VAN LOS MENSAJES -->
-        <div class="col-12" style="border: solid black 1px">
-            <div>                                                                   <!-- Boton para el envio del mensaje -->
+        <div class="col-9 p-0">
+            <div id="messages"></div>
+            <div class="row">
                 <input type="text" id="message" autocomplete="off" autofocus placeholder="Escriba su mensaje" />
-                <input id="btnSendMsg" type="button" value="Send" onclick="send()"/>
+                <input id="btnSendMsg" type="button" value="Send" onclick="send()" />
             </div>
         </div>
     </div>
 </div>
+</body>
 
+</html>
 <script>
     var start = 0;
 
-        function set(curso,id) {
-            sessionStorage.setItem("cc", curso);
-            sessionStorage.setItem("ii", id);
-            document.location.reload();
-        }
+    function set(curso, id) {
+        sessionStorage.setItem("cc", curso);
+        sessionStorage.setItem("ii", id);
+        document.location.reload();
+    }
 
-        $(document).ready(function load() {
-            let course = sessionStorage.getItem("cc");
-            let from = sessionStorage.getItem("ii");
-            $.get('chat.php?start=' + start + '&course=' + course + '&from=' + from, function (result) {
-                    result.forEach(item => {
-                        start = item.id;
-                        $('#messages').append(renderMessage(item));
-                    });
-                    $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight});
-                setTimeout(() => {load()}, 500);
+   function load() {
+        let course = sessionStorage.getItem("cc");
+        let from = sessionStorage.getItem("ii");
+        $.get('chat.php?start=' + start + '&course=' + course + '&from=' + from, function(result) {
+            result.forEach(item => {
+                start = item.id;
+                $('#messages').append(renderMessage(item));
             });
         });
+    }
 
-        function renderMessage(item){
-            let time = new Date(item.fecha);
-            time = `${time.getHours()}:${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`;
-            return `<div class="msg"><p>${item.nombre}</p>${item.mensaje}<span>${time}</span></div>`;
+    $(document).ready(function () {
+            setInterval(() => {
+                load()
+            }, 500);
+            $("#messages").animate({ scrollTop: $(document).height()+$(window).height()},1000);
+        });
+
+    function renderMessage(item) {
+        let time = new Date(item.fecha);
+        time = `${time.getHours()}:${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`;
+        if (item.id_persona == <?= $_SESSION['user']['id'];?>) {
+            return `<div class="msg self"><p>${item.nombre}</p>${item.mensaje}<span>${time}</span></div>`;    
         }
+        return `<div class="msg"><p>${item.nombre}</p>${item.mensaje}<span>${time}</span></div>`;
+    }
 
-        function send() {
-            let course = sessionStorage.getItem("cc");
-            $.post('chat_send.php', {
-                message: $("#message").val(),
-                from: <?=$_SESSION['user']['id'];?>,  
-                course: course  
-                });
-                $("#message").val('');
-            return false;
-        }
+    function send() {
+        let course = sessionStorage.getItem("cc");
+        $.post('chat_send.php', {
+            message: $("#message").val(),
+            from: <?= $_SESSION['user']['id']; ?>,
+            course: course
+        });
+        $("#message").val('');
+        $("#messages").animate({ scrollTop: $(document).height()+$(window).height()},10);
+        return false;
+    }
 
-        var input = document.getElementById("message");
-        input.addEventListener("keyup", function(event) {
+    var input = document.getElementById("message");
+    input.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("btnSendMsg").click();
         }
-        });
-    </script>
-
-<?php require "templates/footer.php"; ?>
+    });
+</script>
