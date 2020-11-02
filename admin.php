@@ -4,37 +4,42 @@ require "templates/header.php";
 if (isset($_POST['btnAccion'])) {
     switch ($_POST['btnAccion']) {
         case 'password_change':
-            if ($_SESSION['user']['acceso'] <= 1) {
-                $user_id = $_SESSION['user']['id'];
-            } else {
-                $user_id = $_POST['dni'];
-            }
-            $pwd_actual = sha1($_POST['pwd_actual']);
+            $user_id = $_SESSION['user']['id']; 
             $pwd_1 = $_POST['pwd_1'];
             $pwd_2 = $_POST['pwd_2'];
-            $db->query("SELECT `password` FROM personas WHERE dni = '$user_id'");
+            $db->query("SELECT `password` FROM personas WHERE id = '$user_id' LIMIT 1");
             $pwd_db = $db->fetch();
 
+            if ($_SESSION['user']['acceso'] == 2) {
+                $pwd_actual = $pwd_db['password'];
+                $temp_dni = $_POST['dni'];
+                $db->query("SELECT `id` FROM personas WHERE dni = '$temp_dni' LIMIT 1");
+                $temp_dni = $db->fetch();
+                $user_id = $temp_dni['id'];
+            }else {
+                $pwd_actual = sha1($_POST['pwd_actual']);
+            }
+            
             if (strlen($pwd_1) < 5) {
                 $_SESSION['mensaje'] = "La contraseña debe contener almenos 5 caracteres.";
                 $_SESSION['msg_status'] = 0;
                 header("Location: pwd.php");
             } else {
-                if ($pwd_actual === $pwd_db['password']) {
+                if ($pwd_actual == $pwd_db['password']) {
                     if ($pwd_1 !== $pwd_2) {
                         $_SESSION['mensaje'] = "Las contraseñas ingresadas no coinciden.";
                         $_SESSION['msg_status'] = 0;
                         header("Location: pwd.php");
                     } else {
                         $pwd_2 = sha1($pwd_1);
-                        $db->query("UPDATE personas SET password = '$pwd_2'
-                                WHERE dni = '$user_id';");
-                        $_SESSION['mensaje'] = "Contraseña cambiada con exito!  ";
+                        $db->query("UPDATE personas SET `password` = '$pwd_2'
+                                WHERE id = '$user_id';");
+                        $_SESSION['mensaje'] = "Contraseña cambiada con exito!";
                         $_SESSION['msg_status'] = 1;
                         header("Location: pwd.php");
                     }
                 } else {
-                    $_SESSION['mensaje'] = "La contraseña es incorrecta";
+                    $_SESSION['mensaje'] = "La contraseña es incorrecta.";
                     $_SESSION['msg_status'] = 0;
                     header("Location: pwd.php");
                 }
@@ -107,6 +112,9 @@ if (isset($_POST['btnAccion'])) {
                         $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
                         mkdir($directoryName, 0777);
                     }
+                    $dir_exam = $target_dir . "/exams";
+                    mkdir($dir_exam,0777);
+
                 }
                 //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {

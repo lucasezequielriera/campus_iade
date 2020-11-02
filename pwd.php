@@ -24,12 +24,14 @@ if ($_SESSION['mensaje'] != "") {
         <?php } ?>
 
         <div class="form-row mt-3">
-          <div class="col">
+          <?php if ($_SESSION['user']['acceso'] != 2) { ?>
+            <div class="col">
             <label for="validationDefault01">
               <h5>Contraseña actual</h5>
             </label>
             <input type="password" class="form-control" id="pwd_actual" name="pwd_actual" required>
           </div>
+          <?php } ?>
         </div>
         <div class="form-row mt-3">
           <div class="col">

@@ -34,7 +34,7 @@ if ($_SESSION['mensaje'] != "") {
         <div class="form-row">
           <div class="col-md-6 mb-3">
             <label for="validationDefault03">Email</label>
-            <input type="email" name="mail" class="form-control" id="email" placeholder="micorreo@dominio.com">
+            <input type="email" name="mail" class="form-control" id="email" placeholder="correo@ejemplo.com">
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationDefault04">Telefono</label>
@@ -59,7 +59,7 @@ if ($_SESSION['mensaje'] != "") {
       $("#btnSearch").click(function() {
         var datos = $('#dni_user').val();
         if (datos) {
-          $('#dni_user').prop("disabled",true);
+          $('#dni_user').prop("disabled", true);
           $.ajax({
             type: 'get',
             url: 'search.php',
@@ -68,6 +68,10 @@ if ($_SESSION['mensaje'] != "") {
             },
             success: function(response) {
               var data_alumno = JSON.parse(response);
+              if (data_alumno==null) {
+                alert ("No se encontro usuario.")
+                location.reload();
+              }
               $("#nombre").val(data_alumno.nombre);
               $("#apellido").val(data_alumno.apellido);
               $("#email").val(data_alumno.email);
@@ -83,27 +87,24 @@ if ($_SESSION['mensaje'] != "") {
 
 
       function cancel() {
-        $('#dni_user').prop("disabled",false);
+        $('#dni_user').prop("disabled", false);
         $('#form_user ').trigger("reset");
-        $("#btnCancel").hide();
-        $("#btnUpdate").hide();
-        $("#btn_alta").show();
+        location.reload();
       }
-
 
 
       function update() {
         if (!($('#nombre').val() && $('#apellido').val())) {
-                alert("Nombre y apellido son obligatorios");
-                return;
+          alert("Nombre y apellido son obligatorios");
+          return;
         }
         var info = {
-            "dni" : $('#dni_user').val(),
-            "nombre" : $("#nombre").val(),
-            "apellido" : $("#apellido").val(),
-            "mail" : $("#email").val(),
-            "tel" : $("#tel").val(),
-            "type" : $("#user_type").val()
+          "dni": $('#dni_user').val(),
+          "nombre": $("#nombre").val(),
+          "apellido": $("#apellido").val(),
+          "mail": $("#email").val(),
+          "tel": $("#tel").val(),
+          "type": $("#user_type").val()
         };
 
         if (info) {
@@ -112,8 +113,8 @@ if ($_SESSION['mensaje'] != "") {
             url: 'update.php',
             data: info,
             success: function(response) {
-              alert("Actualizado: " + $('#dni').val() + " , " + $('#apellido').val() + " " + $('#nombre').val());
-              cancel();
+              alert("Actualizado " + $('#dni_user').val());
+              location.reload();
             }
           });
         }

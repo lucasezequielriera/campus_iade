@@ -26,6 +26,13 @@ $_SESSION['mensaje']="";
   </a>
 </div>
 
+<script>
+   $('#myCarousel').carousel({
+        interval: 1000,
+        cycle: true
+      });
+</script>
+
 <?php
 require "templates/footer.php";
 ?>
