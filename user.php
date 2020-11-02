@@ -84,38 +84,42 @@ if ($_SESSION['mensaje'] != "") {
 
       function cancel() {
         $('#dni_user').prop("disabled",false);
-        $('#form_user').trigger("reset");
+        $('#form_user ').trigger("reset");
         $("#btnCancel").hide();
         $("#btnUpdate").hide();
         $("#btn_alta").show();
       }
 
-      function update(){
-        var datos = $('#dni_user').val();
-        if (datos) {
+
+
+      function update() {
+        if (!($('#nombre').val() && $('#apellido').val())) {
+                alert("Nombre y apellido son obligatorios");
+                return;
+        }
+        var info = {
+            "dni" : $('#dni_user').val(),
+            "nombre" : $("#nombre").val(),
+            "apellido" : $("#apellido").val(),
+            "mail" : $("#email").val(),
+            "tel" : $("#tel").val(),
+            "type" : $("#user_type").val()
+        };
+
+        if (info) {
           $.ajax({
-            type: 'post',
-            url: 'post.php',
-            data: {
-              dni: datos
-            },
+            type: 'POST',
+            url: 'update.php',
+            data: info,
             success: function(response) {
-              var data_alumno = JSON.parse(response);
-              $("#nombre").val(data_alumno.nombre);
-              $("#apellido").val(data_alumno.apellido);
-              $("#email").val(data_alumno.email);
-              $("#tel").val(data_alumno.telefono);
-              $("#user_type").val(data_alumno.acceso);
-              $("#btn_alta").hide();
-              $(".botones").append("<button class='btn btn-success' type='button' id='btnUpdate' onclick='update();'>Modificar datos</button>");
-              $(".botones").append("<button class='btn btn-danger ml-3' type='button' onclick='cancel();' id='btnCancel'>Cancelar</button>");
+              alert("Actualizado: " + $('#dni').val() + " , " + $('#apellido').val() + " " + $('#nombre').val());
+              cancel();
             }
           });
         }
       }
-      
     </script>
 
-    <?php
-    require "templates/footer.php";
-    ?>
+<?php
+require "templates/footer.php";
+?>
