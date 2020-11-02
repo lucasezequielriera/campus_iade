@@ -69,7 +69,7 @@
         <div class="col-3">
             <div class="list-group">
                 <!-- CURSOS PARA ALUMNO -->
-                <?php if ($_SESSION['user']['id'] == 0) {
+                <?php if ($_SESSION['user']['acceso'] == 0) {
                 $db->query("SELECT * 
                         FROM curso 
                         LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
@@ -83,12 +83,22 @@
                 <?php }} ?>
                 <!-- Cierre del foreach -->
                 <!-- CURSOS PARA PROFESOR -->
-                <?php if ($_SESSION['user']['id'] == 1) {
+                <?php if ($_SESSION['user']['acceso'] == 1) {
                 $db->query("SELECT * 
                             FROM chat 
                             LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso
                             WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-                $resp = $db->fetchAll();
+                $resp = $db->fetchAll();  //todos los ID de los cursos que pertenece el profesor
+
+
+
+                /////ACA QUEDAMOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+                $db->query("SELECT * 
+                            FROM chat 
+                            LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso
+                            WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
+                $resp2 = $db->fetchAll();
 
                 foreach ($resp as $temp) { ?>
                     <button type="button" class="list-group-item" onclick="set(<?= $temp['id_curso']; ?>,<?= $_SESSION['user']['id']; ?>)">

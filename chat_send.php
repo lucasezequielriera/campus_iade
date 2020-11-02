@@ -9,6 +9,5 @@ $course = isset($_POST['course']) ? $_POST['course'] : null;
 $db->query("INSERT INTO `chat` (`id_chat`, `id_curso`, `id_persona`, `mensaje`, `fecha`) 
             VALUES ('$from', '$course', '$from', '$message', current_timestamp());");
 
-
 echo "ok";
-?> 
+?>

@@ -61,10 +61,11 @@ require "templates/header.php";
                 </table>
            </div>
           </div>
-          <form action="quiz.php">
+          <form action="quiz_selector.php" method="post">
             <button type="submit"
                 class="card-text btn btn-info">    
                 Rendir nivel <?=$nivelUsuario?>
+                <input type="hidden" value="<?=$curso['url_doc'];?>" name="materia">
             </button>
           </form>
         </div>

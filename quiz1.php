@@ -95,20 +95,15 @@ if ($question == 0) {
                 document.percentaje.question.value++
             }
         }
-        
     }
 </SCRIPT>
-
 </HEAD>
 
 <BODY BGCOLOR=FFFFFF>
-
     <CENTER>
         <H1><?php print "$title"; ?></H1>
         <TABLE BORDER=0 CELLSPACING=5 WIDTH=500>
-
             <?php if ($question < $max) { ?>
-
                 <TR>
                     <TD ALIGN=RIGHT>
                         <FORM METHOD=POST NAME="percentaje" ACTION="<?php print $URL; ?>">
@@ -150,7 +145,9 @@ if ($question == 0) {
                         <?php if ($percentaje>60) {
                             $_SESSION[''];
                             echo "Ha pasado el examen."
-                        };?>
+                        } else { ?>
+                            echo "No ha alcanzado la nota suficiente.";
+                        <?php } ?>
                         <p><A HREF="<?php print $address; ?>">Volver</a>
                         <?php } ?>
                     </TD>
