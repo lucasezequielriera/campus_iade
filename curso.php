@@ -9,7 +9,7 @@ require "templates/header.php";
     $curso = $db->fetch();
 ?>
 
-    <div class="col-10 offset-1 offset-md-0 col-md-3 col-lg-4">
+    <div class="col-10 mt-3 offset-1 offset-md-0 col-md-3 col-lg-4">
       <div class="card">
           <img 
           class="card-img-top" 
@@ -34,7 +34,6 @@ require "templates/header.php";
                     <tr>
                       <th width="70%">Nombre del Archivo</th>
                       <th width="13%">Descargar</th>
-                      <th hidden width="10%">Eliminar</th>
                     </tr>
                   </thead>
                   <tbody>

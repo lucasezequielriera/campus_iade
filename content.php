@@ -17,7 +17,7 @@ require "templates/header.php";
           </select>
       </div>
     </div>       <!--Primer row -->     
-
+    </form>
         <?php if (isset($_POST['course'])) {
         $cursoId = $_POST['course'];
         $db->query("SELECT * 
@@ -57,8 +57,12 @@ require "templates/header.php";
                                 <?php $archivos = scandir($curso['url_doc']);
                                 for ($i=2; $i<8; $i++) { ?>
                                     <tr>
-                                        <td class="text-left" onclick="set_mod(<?=$archivos[$i];?>);">
-                                            <?=$archivos[$i];?>
+                                        <td class="text-left">
+                                            <form action="modal.php" method="post">
+                                                <button href="modal.php" type="submit" class="btn-info btn-sm"><?=$archivos[$i];?></button> 
+                                                <input type="hidden" value="<?=$archivos[$i];?>" name="directorio">
+                                                <input type="hidden" value="<?=$curso['url_doc'];?>" name="raiz">
+                                           </form>
                                         </td>
                                         <td class="text-center"><a title="Descargar Archivo" href="<?=$curso['url_doc']; echo $archivos[$i];?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -74,16 +78,11 @@ require "templates/header.php";
         </div> <!--Card -->
     </div> <!--segundo row -->
     <?php } ?>  <!-- If que muestra "Card" con info dle curso -->
-  </form>
+
 </div>  
 
+
 <script>
-function set_mod(a) {
-    $("#body_mods").empty();
-    $("#body_mods").append();
-}
-
-
 $(document).ready(function() {
   $('#course').on('change', function(e)  {
      e.preventDefault();

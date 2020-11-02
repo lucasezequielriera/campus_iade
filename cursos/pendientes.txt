@@ -1,0 +1,33 @@
+verificar si pago o no.
+	- traer la informacion propia de cada curso
+	
+alumno/profesor no puede borrar material	
+
+ 
+aviso de nuevo mensaje.
+mail al profesor.
+chat uno para cada lado. (css)
+
+
+user.php
+boton para guardar modificacion
+
+carousel index
+
+
+problema con los headers al cambiar la contraseña de un alumno.
+tiene algo que ver con el admin == 2, el resto no funca ese si
+
+
+pago cursos 
+user.php
+
+cambio de pass
+apb
+
+content.php
+al eliminar algo, no hay variables para refrescar la pagina. fixear
+
+
+try modulos = 3x semana
+

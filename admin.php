@@ -15,8 +15,8 @@ if (isset($_POST['btnAccion'])) {
             $db->query("SELECT `password` FROM personas WHERE dni = '$user_id'");
             $pwd_db = $db->fetch();
 
-            if (strlen($pwd_1) < 8) {
-                $_SESSION['mensaje'] = "La contraseña debe contener almenos 8 caracteres.";
+            if (strlen($pwd_1) < 5) {
+                $_SESSION['mensaje'] = "La contraseña debe contener almenos 5 caracteres.";
                 $_SESSION['msg_status'] = 0;
                 header("Location: pwd.php");
             } else {

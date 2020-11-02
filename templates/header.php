@@ -1,11 +1,11 @@
 <?php
-session_start();
 require "globals\database.php";
+session_start();
 
 $db = Database::getInstance();
 if (!isset($_SESSION['logged'])) {
-  header("Location: login.php");
-  exit;
+    header("Location: login.php");  
+    exit;
 }
 ?>
 
@@ -90,6 +90,8 @@ if (!isset($_SESSION['logged'])) {
               <a class="dropdown-item" href="exams.php">Alta/modificacion de examen</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="pwd.php">Cambiar contraseña</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="pagos.php">Pendientes de pago</a>
             </div>
           </li><?php } ?>
       </ul>
