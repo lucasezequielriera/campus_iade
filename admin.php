@@ -121,7 +121,7 @@ if (isset($_POST['btnAccion'])) {
                     $nombre = $_POST['nombre'];
                     $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`)
                                 VALUES ('$nombre','$target_dir', '$target_file')");
-                    $_SESSION['mensaje'] = "Se ha creado con exito el curso de " . $nombre;
+                    $_SESSION['mensaje'] = "Se ha creado con exito el curso " . $nombre;
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
                 } else {
