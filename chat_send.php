@@ -1,5 +1,5 @@
 <?php 
-require "globals/database.php";
+require "./globals/database.php";
 $db = Database::getInstance();
 
 $message = isset($_POST['message']) ? $db->escapeWildcards($db->escape($_POST['message'])) : null;

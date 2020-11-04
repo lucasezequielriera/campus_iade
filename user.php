@@ -1,5 +1,5 @@
 <?php
-require "templates/header.php";
+require "./templates/header.php";
 
 if ($_SESSION['mensaje'] != "") {
   if ($_SESSION['msg_status'] == 1) { ?>
@@ -122,5 +122,5 @@ if ($_SESSION['mensaje'] != "") {
     </script>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

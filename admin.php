@@ -1,5 +1,5 @@
 <?php
-require "templates/header.php";
+require "./templates/header.php";
 
 if (isset($_POST['btnAccion'])) {
     switch ($_POST['btnAccion']) {

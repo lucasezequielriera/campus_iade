@@ -1,5 +1,5 @@
 <?php 
-require "templates/header.php";
+require "./templates/header.php";
 ?>
 
 <div class="container my-3"> 
@@ -93,5 +93,5 @@ $(document).ready(function() {
 </script>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

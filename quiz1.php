@@ -1,5 +1,5 @@
 <?php
-require "templates/header.php";
+require "./templates/header.php";
 error_reporting(0);
 
 $title = "Modulo 1";
@@ -158,5 +158,5 @@ if ($question == 0) {
 </HTML>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

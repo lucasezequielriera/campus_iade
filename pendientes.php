@@ -1,4 +1,4 @@
-<?php require "templates/header.php";
+<?php require "./templates/header.php";
 
 $db->query("SELECT p.nombre, p.apellido, p.dni, c.id FROM personas p
             LEFT JOIN curso_p c
@@ -72,5 +72,5 @@ $("#btnSearch").click(function() {
 });
 </script>
 
-<?php require "templates/footer.php";
+<?php require "./templates/footer.php";
 ?>

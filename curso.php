@@ -1,5 +1,5 @@
 <?php 
-require "templates/header.php";
+require "./templates/header.php";
 
     $cursoId = $_POST['curso'];
     $db->query("SELECT * 
@@ -73,5 +73,5 @@ require "templates/header.php";
     </div>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

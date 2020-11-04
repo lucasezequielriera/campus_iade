@@ -1,5 +1,5 @@
 <?php 
-require "templates/header.php";
+require "./templates/header.php";
 $_SESSION['mensaje']="";
 ?>
 
@@ -34,5 +34,5 @@ $_SESSION['mensaje']="";
 </script>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

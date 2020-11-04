@@ -1,5 +1,5 @@
 <?php 
-require "templates/header.php";
+require "./templates/header.php";
 ?>
 
 <?php //if nivel= 6 exit;
@@ -11,5 +11,5 @@ require "templates/header.php";
 //      personas.id?>
 
 <?php
-require "templates/footer.php";
+require "./templates/footer.php";
 ?>

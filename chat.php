@@ -1,5 +1,5 @@
 <?php 
-require "globals/database.php";
+require "./globals/database.php";
 $db = Database::getInstance();
 
 //Imprimir mensajes
