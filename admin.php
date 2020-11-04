@@ -71,7 +71,7 @@ if (isset($_POST['btnAccion'])) {
 
         case 'newCourse':
             $nombre = $_POST['nombre'];
-            $directoryName = $_SERVER['DOCUMENT_ROOT']. 'cursos/' . $nombre;
+            $directoryName = './cursos/' . $nombre;
             $target_dir = $directoryName . '/';
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
             $uploadOk = 1;
@@ -109,15 +109,15 @@ if (isset($_POST['btnAccion'])) {
                 if (!is_dir($directoryName)) {
                     mkdir($directoryName, 0777);
                     for ($i = 0; $i < 6; $i++) {
-                        $directoryName = './cursos/' . $nombre . '/Modulo ' . ($i + 1);
+                        $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
                         mkdir($directoryName, 0777);
                     }
-                    $dir_exam = $target_dir . "exams";
+                    $dir_exam = $target_dir . "/exams";
                     mkdir($dir_exam,0777);
 
                 }
                 //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
-                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                if (move_uploaded_file($_FILES["file"]["tmp_name"],$target_file)) {
                     $nombre = $_POST['nombre'];
                     $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`)
                                 VALUES ('$nombre','$target_dir', '$target_file')");
@@ -125,7 +125,7 @@ if (isset($_POST['btnAccion'])) {
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
                 } else {
-                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $_FILES["file"]["tmp_name"]);
+                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $err);
                     $_SESSION['msg_status'] = 0;
                     header("Location: courses.php");
                 }
