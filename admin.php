@@ -125,7 +125,7 @@ if (isset($_POST['btnAccion'])) {
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
                 } else {
-                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $target_file);
+                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $_FILES["file"]["tmp_name"]);
                     $_SESSION['msg_status'] = 0;
                     header("Location: courses.php");
                 }
