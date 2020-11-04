@@ -109,7 +109,7 @@ if (isset($_POST['btnAccion'])) {
                 if (!is_dir($directoryName)) {
                     mkdir($directoryName, 0777);
                     for ($i = 0; $i < 6; $i++) {
-                        $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
+                        $directoryName = './cursos/' . $nombre . '/Modulo ' . ($i + 1);
                         mkdir($directoryName, 0777);
                     }
                     $dir_exam = $target_dir . "/exams";
