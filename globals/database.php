@@ -14,7 +14,7 @@ class Database {
     }
 
     private function connect() {
-        $this->cn = mysqli_connect("localhost", "root", "", "iade");
+        $this->cn = mysqli_connect("blmaerbfdrxvd6up5thl-mysql.services.clever-cloud.com", "unqr24tcthvlj45f", "4Dmk0fEqsY5LN37tamIi", "blmaerbfdrxvd6up5thl");
     }
 
     public function query($q) {
