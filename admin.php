@@ -135,8 +135,7 @@ if (isset($_POST['btnAccion'])) {
         case 'courseAssign':
             $nombre = $_POST['id_persona']; //id_persona
             $course = $_POST['course']; //id curso
-            $pago1 = 0;
-            $pago1 = $_POST['pago'];
+            $pago1 = (isset($_POST['pago']) ? $_POST['pago'] : 0);
             $cond = 1;
             if (isset($_POST['cond_libre'])) $cond = 6;
             $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) 
