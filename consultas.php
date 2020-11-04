@@ -84,25 +84,34 @@
                 <!-- Cierre del foreach -->
                 <!-- CURSOS PARA PROFESOR -->
                 <?php if ($_SESSION['user']['acceso'] == 1) {
-                $db->query("SELECT * 
-                            FROM chat 
-                            LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso
-                            WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-                $resp = $db->fetchAll();  //todos los ID de los cursos que pertenece el profesor
+                    $temp_id_user = $_SESSION['user']['id'];
+                $db->query("SELECT chat.id_chat, chat.id_curso FROM chat 
+                            LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso 
+                            WHERE curso_p.id_persona = '$temp_id_user' 
+                            GROUP BY id_chat, chat.id_curso");
+                $resp = $db->fetchAll();  //todos los os cursos donde pertenezca el profesor    
 
+                foreach ($resp as $temp) { 
+                    $vara = $temp['id_curso'];
+                $db->query("SELECT nombre
+                            FROM curso 
+                            WHERE curso.id_curso = '$vara' LIMIT 1");
+                $temp_idcurso = $db->fetch();
+                
+                $vara = $temp['id_chat'];
+                $db->query("SELECT nombre
+                            FROM personas 
+                            WHERE personas.id = '$vara' LIMIT 1");
+                $temp_nombre = $db->fetch();
 
-
-                /////ACA QUEDAMOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-
-                $db->query("SELECT * 
-                            FROM chat 
-                            LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso
-                            WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-                $resp2 = $db->fetchAll();
-
-                foreach ($resp as $temp) { ?>
-                    <button type="button" class="list-group-item" onclick="set(<?= $temp['id_curso']; ?>,<?= $_SESSION['user']['id']; ?>)">
-                        <?= $temp['id']; ?>
+                $vara = $temp['id_chat'];
+                $db->query("SELECT apellido
+                            FROM personas 
+                            WHERE personas.id = '$vara' LIMIT 1");
+                $temp_apellido = $db->fetch();
+                ?>
+                    <button type="button" class="list-group-item" onclick="set(<?= $temp['id_curso']; ?>,<?=$temp['id_chat'];?>)">
+                        <?=$temp_idcurso['nombre'] . " - " . $temp_nombre['nombre'] . " " . $temp_apellido['apellido'];?>
                     </button>
                 <?php }} ?>
                 <!-- Cierre del foreach -->
@@ -112,7 +121,7 @@
             <div id="messages"></div>
             <div class="row">
                 <input type="text" id="message" autocomplete="off" autofocus placeholder="Escriba su mensaje" />
-                <input id="btnSendMsg" type="button" value="Send" onclick="send()" />
+                <input id="btnSendMsg" type="button" value="Send" onclick="send(<?= $_SESSION['user']['acceso']?>)" />
             </div>
         </div>
     </div>
@@ -156,10 +165,14 @@
         return `<div class="msg"><p>${item.nombre}</p>${item.mensaje}<span>${time}</span></div>`;
     }
 
-    function send() {
+    function send(acceso) {
         let course = sessionStorage.getItem("cc");
+        let acc = acceso;
+        let ii = sessionStorage.getItem("ii");
         $.post('chat_send.php', {
             message: $("#message").val(),
+            acc : acc,
+            ii : ii,
             from: <?= $_SESSION['user']['id']; ?>,
             course: course
         });
