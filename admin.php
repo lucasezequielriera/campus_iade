@@ -71,7 +71,7 @@ if (isset($_POST['btnAccion'])) {
 
         case 'newCourse':
             $nombre = $_POST['nombre'];
-            $directoryName = './cursos/' . $nombre;
+            $directoryName = $_SERVER['DOCUMENT_ROOT']. 'cursos/' . $nombre;
             $target_dir = $directoryName . '/';
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
             $uploadOk = 1;
