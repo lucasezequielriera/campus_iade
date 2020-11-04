@@ -112,7 +112,7 @@ if (isset($_POST['btnAccion'])) {
                         $directoryName = './cursos/' . $nombre . '/Modulo ' . ($i + 1);
                         mkdir($directoryName, 0777);
                     }
-                    $dir_exam = $target_dir . "/exams";
+                    $dir_exam = $target_dir . "exams";
                     mkdir($dir_exam,0777);
 
                 }
@@ -125,7 +125,7 @@ if (isset($_POST['btnAccion'])) {
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
                 } else {
-                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $err);
+                    $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $target_file);
                     $_SESSION['msg_status'] = 0;
                     header("Location: courses.php");
                 }
