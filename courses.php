@@ -27,6 +27,14 @@ if ($_SESSION['mensaje'] !="") {
         </div>
       </div>
     </div>
+    <div class="form-row pt-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1"><h4>Breve descripcion del curso</h4></label>
+          <textarea class="form-control" name="descripcion_curso" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
     <div class="form-row">
       <div class="col">
         <div class="text-center">
