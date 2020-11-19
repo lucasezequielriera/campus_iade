@@ -33,49 +33,72 @@ if (!isset($_SESSION['logged'])) {
     }
   </style>
 </head>
+<body> 
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.php"><img src="" alt="logo"> Bienvenido <?= $_SESSION['user']['nombre'];?></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<body>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.php">Mi perfil</a>
+                </li>
+                <ul class="nav nav-list">
+                    <li class="divider"></li>
+                </ul>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.php">Bienvenido <?= $_SESSION['user']['nombre']; ?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+                <?php if ($_SESSION['user']['acceso'] <= 1) { ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mis cursos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php
+                            $db->query("SELECT * FROM curso LEFT JOIN curso_p ON
+                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = " .
+                            $_SESSION['user']['id']); 
+                            $resp = $db->fetchAll(); //CADA CURSO SE CREA CON VALUE = id_curso 
+                            foreach ($resp as $temp) { ?>
+                        <form action="curso.php" method="POST">
+                            <button type="submit" class="dropdown-item">
+                                <?= $temp['nombre']; ?>
+                            </button>
+                            <input type="hidden" value="<?= $temp['id_curso']; ?>" name="curso" />
+                            <div class="dropdown-divider"></div>
+                        </form>
+                        <?php } ?>
+                        <!-- Cierre del foreach -->
+                    </div>
+                </li>
 
-        <?php if ($_SESSION['user']['acceso'] <= 1) { ?>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="curso.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Mis cursos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <?php
-              $db->query("SELECT * 
-                          FROM curso 
-                          LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                          WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
-              $resp = $db->fetchAll();
-              //CADA CURSO SE CREA CON VALUE = id_curso
-              foreach ($resp as $temp) { ?>
-                <form action="curso.php" method="POST">
-                  <button type="submit" class="dropdown-item">
-                    <?= $temp['nombre']; ?>
-                  </button>
-                  <input type="hidden" value="<?= $temp['id_curso']; ?>" name="curso">
-                  <div class="dropdown-divider"></div>
-                </form><?php } ?>
-              <!-- Cierre del foreach -->
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="consultas.php">Consultas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pwd.php">Cambiar contraseña</a>
-          </li>
-        <?php }
-        if ($_SESSION['user']['acceso'] == 2) { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="allcourses.php">Todos los cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="consultas.php">Consultas</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Preguntas frecuentes
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pwd.php">Cambiar contraseña</a>
+                </li>
+                <?php }
+                if ($_SESSION['user']['acceso'] == 2) { ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Menu administrador
@@ -89,12 +112,16 @@ if (!isset($_SESSION['logged'])) {
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="exams.php">Alta/modificacion de examen</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="pwd.php">Cambiar contraseña</a>
+              <a class="dropdown-item" href="pwd.php">Cambiar contraseñas</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="pendientes.php">Pendientes de pago</a>
             </div>
           </li><?php } ?>
-      </ul>
-    </div>
-    <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
-  </nav>
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
+            </form>
+        </div>
+    </nav>
+    </header>

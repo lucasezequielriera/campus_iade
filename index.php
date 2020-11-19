@@ -1,36 +1,62 @@
-<?php 
+<?php
 require "./templates/header.php";
-$_SESSION['mensaje']="";
+$_SESSION['mensaje'] = "";
 ?>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="noticias/slide1.png" alt="First slide">
+<div class="publicidad">
+  <div class="row" style="height: 15vh;">
+    <div class="col-4" style="border: 1px solid blue;">
+        carousel anuncios
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="noticias/slide2.png" alt="Second slide">
+
+    <div class="col-2 align-items-center" style="border: 1px solid red;">
+      <img src="./img/tooeshoplogo.png" alt="tooEshop logo">
+    </div>
+
+    <div class="col-1" style="border: 2px solid pink;">
+      btn1
+    </div>
+    <div class="col-1" style="border: 2px solid pink;">
+      btn2
+    </div>
+
+    <div class="col-4" style="border: 2px solid pink;">
+      banner con publicidad p alumno 
+    </div>
+  </div> <!-- row -->
+</div><!-- container -->
+
+<div class="cuerpoindex" style="border: 1px solid red;">
+  <div class="row" style="border: 1px solid blue; height: 50vh">
+    <div class="col-5" style="border: 1px solid red;">
+      <div class="row" style="height: 15vh; margin-top: 100px">
+        <div class="col-4" style="border: 1px solid green">curos 1</div>
+        <div class="col-4" style="border: 1px solid green">curso 2</div>
+        <div class="col-4" style="border: 1px solid green">curso 3</div>
+      </div>
+      <div class="row" style="height: 15vh;">
+        <div class="col-4" style="border: 1px solid green">curos 4</div>
+        <div class="col-4" style="border: 1px solid green">curso 5</div>
+        <div class="col-4" style="border: 1px solid green">curso 6</div>
+      </div>
+    </div>
+    <div class="col-7" style=" height: 70vh; border: 1px solid red;">
+    <iframe width="100%" height="80%" src="https://www.youtube.com/embed/CFXvfBL4WkU?controls=0" style = "margin-top: 50px" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+  <div>
+    <div class="row">
+      <div class="col-2" style="border: 1px solid orange; height: 20vh;">Titulo ejemplo</div>
+      <div class="col-2" style="border: 1px solid orange; height: 20vh;">Titulo ejemplo 2</div>
+    </div>
+  </div>
 </div>
 
 <script>
-   $('#myCarousel').carousel({
-        interval: 1000,
-        cycle: true
-      });
+  $('#myCarousel').carousel({
+    interval: 1000,
+    cycle: true
+  });
 </script>
 
 <?php
