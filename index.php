@@ -3,60 +3,53 @@ require "./templates/header.php";
 $_SESSION['mensaje'] = "";
 ?>
 
-<div class="publicidad">
-  <div class="row" style="height: 15vh;">
-    <div class="col-4" style="border: 1px solid blue;">
-        carousel anuncios
+<div class="swiper-container" id="swiper-banner">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide">
+    <img src="./img/banner2.png" alt="">
     </div>
-
-    <div class="col-2 align-items-center" style="border: 1px solid red;">
-      <img src="./img/tooeshoplogo.png" alt="tooEshop logo">
+    <div class="swiper-slide">
+    <img src="./img/banner3.png" alt="">
     </div>
-
-    <div class="col-1" style="border: 2px solid pink;">
-      btn1
-    </div>
-    <div class="col-1" style="border: 2px solid pink;">
-      btn2
-    </div>
-
-    <div class="col-4" style="border: 2px solid pink;">
-      banner con publicidad p alumno 
-    </div>
-  </div> <!-- row -->
-</div><!-- container -->
-
-<div class="cuerpoindex" style="border: 1px solid red;">
-  <div class="row" style="border: 1px solid blue; height: 50vh">
-    <div class="col-5" style="border: 1px solid red;">
-      <div class="row" style="height: 15vh; margin-top: 100px">
-        <div class="col-4" style="border: 1px solid green">curos 1</div>
-        <div class="col-4" style="border: 1px solid green">curso 2</div>
-        <div class="col-4" style="border: 1px solid green">curso 3</div>
-      </div>
-      <div class="row" style="height: 15vh;">
-        <div class="col-4" style="border: 1px solid green">curos 4</div>
-        <div class="col-4" style="border: 1px solid green">curso 5</div>
-        <div class="col-4" style="border: 1px solid green">curso 6</div>
-      </div>
-    </div>
-    <div class="col-7" style=" height: 70vh; border: 1px solid red;">
-    <iframe width="100%" height="80%" src="https://www.youtube.com/embed/CFXvfBL4WkU?controls=0" style = "margin-top: 50px" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </div>
-  <div>
-    <div class="row">
-      <div class="col-2" style="border: 1px solid orange; height: 20vh;">Titulo ejemplo</div>
-      <div class="col-2" style="border: 1px solid orange; height: 20vh;">Titulo ejemplo 2</div>
+    <div class="swiper-slide">
+      <img src="./img/banner1.png" alt="">
     </div>
   </div>
 </div>
 
+<div class="row m-0">
+  <div class="col-12 col-md-6">
+    <div class="row">
+    <?php
+    $db->query("SELECT * FROM curso");
+    $listado_cursos = $db->fetchAll();
+    for ($i = 0; $i < 6; $i++) { ?>
+      <div class="col-12 col-lg-4">
+        <div class="card mb-3 card-curso">
+          <img class="card-img-top" src="<?= $listado_cursos[$i]['imagen']; ?>" alt="">
+          <div class="card-body">
+            <h5 class="card-title"><?= $listado_cursos[$i]['nombre']; ?></h5>
+            <p class="card-text"><?= $listado_cursos[$i]['descripcion']; ?></p>
+            <a class="btn btn-info" href="https://wa.me/5401134840208?text=Estoy%20interesado%20en%20el%20curso%20<?= $listado_cursos[$i]['nombre']; ?>%20-%20<?= $_SESSION['user']['nombre'] ?>">Consultar por este curso</a>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
+  </div>
+  </div>
+  
+</div>
+
 <script>
-  $('#myCarousel').carousel({
-    interval: 1000,
-    cycle: true
-  });
+  var mySwiper = new Swiper('#swiper-banner', {
+    // Optional parameters
+    loop: true,
+    autoplay: {
+    delay: 5000,
+  },
+  })
 </script>
 
 <?php

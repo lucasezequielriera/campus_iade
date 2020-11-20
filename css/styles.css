@@ -1,47 +1,40 @@
-.scrollable {
-    height: 80vh;
-    overflow-y: scroll;
-}
-
-.usableOn {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.usableOff {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-.visibleOff {
-    visibility: hidden;
-}
-
-.visibleOn {
-    visibility: visible;
-}
-
-.fill { 
-    min-height: 100%;
-    height: 100%;
-}
-
 html, body {
     height: 100vh;
 }
 
-header {
-    height: 6vh;
-}
-
-.publicidad {
-    height: 15vh;
-}
-
-.cuerpoindex {
-    height: 75vh;
-}
-
 footer {
     height: 4vh;
+}
+
+.card-curso {
+    height: 350px;
+}
+
+.card-curso img{
+    height: 150px;
+}
+
+#swiper-banner {
+    width: 100%;
+    height: 300px;
+}
+
+#swiper-banner img {
+    width: 100%;
+    height: 200px;
+}
+
+.navbar-brand img {
+    height: 30px;
+}
+
+@media (min-width: 768px) {
+    #swiper-banner img {
+        width: 100%;
+        height: 300px;
+    }        
+
+    .navbar-brand img {
+        height: 40px;
+    }
 }
