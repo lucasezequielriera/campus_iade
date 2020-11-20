@@ -17,7 +17,7 @@ $listado_cursos = $db->fetchAll();
                     <div class="card-body">
                         <h5 class="card-title"><?= $curso['nombre'];?></h5>
                         <p class="card-text"><?= $curso['descripcion'];?></p>
-                        <a class="btn btn-info" href="https://wa.me/5401134840208?text=Estoy%20interesado%20en%20el%20curso%20<?= $curso['nombre'];?>">Quiero este curso</a>
+                        <a class="btn btn-info" href="https://wa.me/5401134840208?text=Estoy%20interesado%20en%20el%20curso%20<?= $curso['nombre'];?>%20-%20<?=$_SESSION['user']['nombre']?>">Quiero este curso</a>
                     </div>
                 </div>
             </div>

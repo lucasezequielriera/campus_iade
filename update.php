@@ -9,5 +9,13 @@ $db = Database::getInstance();
         $type = $db->escapeWildcards($db->escape($_POST['type']));
         $dni = $db->escapeWildcards($db->escape($_POST['dni']));
         
-        $db->query("UPDATE personas SET nombre='$nombre',apellido='$apellido',acceso='$type',telefono='$telefono',email='$email' WHERE dni='$dni'");
+        $db->query("UPDATE personas SET 
+                                nombre='$nombre',
+                                apellido='$apellido',
+                                acceso='$type',
+                                telefono='$telefono',
+                                email='$email'
+                                WHERE dni='$dni' 
+                                LIMIT 1");
+        $_SESSION['msg_status'] = 1;
 ?>
