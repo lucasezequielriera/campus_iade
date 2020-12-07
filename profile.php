@@ -10,6 +10,13 @@ $datos_usuario = $db->fetch();
   <form action="">
     <div class="form-row">
       <img src="<?= $datos_usuario['foto']; ?>" alt="profile-photo" id="profile-photo" style="max-height: 200px;">
+      <form method="post" action="fotoperfil.php">
+        <div class="form-group">
+          <label class="btn" for="my-file-selector">
+            <input required type="file" name="file" id="exampleInputFile">
+          </label>      
+        </div>
+      </form>
     </div>
     <div hidden class="form-row mt-4" style="border: 1px solid red">
       <div class="col-md-4 mb-3">

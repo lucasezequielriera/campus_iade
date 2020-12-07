@@ -1,5 +1,5 @@
 <?php
-    require "./globals/database.php";
+    require "./globals/Database.php";
 
     session_start();
 
@@ -39,7 +39,7 @@
 
   </head>
 
-  <body action="user.php" class="text-center">
+  <body action="" class="text-center">
     <form class="form-signin" method="POST">
       <img class="mb-4" src="img//logo.png" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>

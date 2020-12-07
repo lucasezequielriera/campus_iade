@@ -91,9 +91,15 @@ if (!isset($_SESSION['logged'])) {
                                     Preguntas frecuentes
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="./faq.php#1">¿Cómo estudio?</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="./faq.php#2">¿Cómo es el examen?</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="./faq.php#3">¿Cuáles son los certificados? ¿Cómo los tramito?</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="./faq.php#4">¿Cuáles son las Matrículas? ¿Para qué curso son? ¿Cual curso es apto para cada una?</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="./faq.php#5">¿Olvidaste tu contraseña? ¿Quiere cambiarla?</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -121,6 +127,9 @@ if (!isset($_SESSION['logged'])) {
                             </li><?php } ?>
 
                     </ul>
+                    <form class="form-inline my-2 my-lg-0 mr-2">
+                        <a href="report.php" class="btn btn-sm btn-warning" type="button">Reportar un problema</a>
+                    </form>
                     <form class="form-inline my-2 my-lg-0">
                         <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
                     </form>

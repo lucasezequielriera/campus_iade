@@ -24,12 +24,14 @@ if (isset($_POST['btnAccion'])) {
                 $_SESSION['mensaje'] = "La contraseña debe contener almenos 5 caracteres.";
                 $_SESSION['msg_status'] = 0;
                 header("Location: pwd.php");
+                exit();
             } else {
                 if ($pwd_actual == $pwd_db['password']) {
                     if ($pwd_1 !== $pwd_2) {
                         $_SESSION['mensaje'] = "Las contraseñas ingresadas no coinciden.";
                         $_SESSION['msg_status'] = 0;
                         header("Location: pwd.php");
+                        exit();
                     } else {
                         $pwd_2 = sha1($pwd_1);
                         $db->query("UPDATE personas SET `password` = '$pwd_2'
@@ -37,11 +39,13 @@ if (isset($_POST['btnAccion'])) {
                         $_SESSION['mensaje'] = "Contraseña cambiada con exito!";
                         $_SESSION['msg_status'] = 1;
                         header("Location: pwd.php");
+                        exit();
                     }
                 } else {
                     $_SESSION['mensaje'] = "La contraseña es incorrecta.";
                     $_SESSION['msg_status'] = 0;
                     header("Location: pwd.php");
+                    exit();
                 }
             }
             break;
@@ -60,6 +64,7 @@ if (isset($_POST['btnAccion'])) {
                 $_SESSION['mensaje'] = "El usuario ya existe.";
                 $_SESSION['msg_status'] = 0;
                 header("Location: user.php");
+                exit();
             }
 
             $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
@@ -67,6 +72,7 @@ if (isset($_POST['btnAccion'])) {
             $_SESSION['mensaje'] = "Usuario creado!";
             $_SESSION['msg_status'] = 1;
             header("Location: user.php");
+            exit();
             break;
 
         case 'newCourse':
@@ -105,6 +111,7 @@ if (isset($_POST['btnAccion'])) {
                 $_SESSION['mensaje'] = $err;
                 $_SESSION['msg_status'] = 0;                              //Si hubo error se redirige a courses.php
                 header("Location: courses.php");
+                exit();
             } else {
                 //creacion del directorio del curso
                 if (!is_dir($directoryName)) {
@@ -125,10 +132,12 @@ if (isset($_POST['btnAccion'])) {
                     $_SESSION['mensaje'] = "Se ha creado con exito el curso " . $nombre;
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
+                    exit();
                 } else {
                     $_SESSION['mensaje'] = ("Hubo un error al subir el archivo: " . $err);
                     $_SESSION['msg_status'] = 0;
                     header("Location: courses.php");
+                    exit();
                 }
             }
             break;
@@ -144,6 +153,7 @@ if (isset($_POST['btnAccion'])) {
             $_SESSION['mensaje'] = "Curso asignado!";
             $_SESSION['msg_status'] = 1;
             header("Location: assign.php");
+            exit();
             break;
     }
 }
