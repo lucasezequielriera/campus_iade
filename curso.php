@@ -36,32 +36,39 @@ $curso = $db->fetch();
                                   WHERE curso_p.id_curso = $cursoId
                                   LIMIT 1");
               $nivelUsuario = $db->fetch();
-
               $nivelUsuario = ($nivelUsuario['nivel']);
               $archivos = scandir($curso['url_doc']);
               for ($i = 2; $i < $nivelUsuario + 2; $i++) { ?>
                 <tr>
-                  <td><a href=""><?php echo $archivos[$i]; ?></a></td>
-                  <td><a title="Descargar Archivo" href="<?= $curso['url_doc'] . $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                        <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                      </svg></a></td>
-                </tr>               
+                  <td>
+                    <form action="./course_content.php" method="post">
+                      <input type="hidden" value="<?= $curso['id_curso']; ?>" name="course_number">
+                      <input type="hidden" value="<?= $i; ?>" name="module_number">
+                      <button class="btn btn-info"><?= $archivos[$i]; ?></button>
+                    </form>
+                  </td>
+                  <td class="text-center">
+                    <form action="./zipdownload.php" method="post">
+                      <input type="hidden" value="<?= $curso['url_doc'] . $archivos[$i]; ?>" name="course_folder">
+                      <input type="hidden" value="<?= $archivos[$i]; ?>" name="course_name">
+                      <input type="image" src="./img/download.svg">
+                    </form>
+                  </td>
+                </tr>
               <?php
-             } ?>
-
-
-
+              } ?>
             </tbody>
           </table>
+          <tr>
+            <form action="quiz_selector.php" method="post">
+              <button type="submit" class="card-text btn btn-danger">
+                Rendir examen final
+              </button>
+              <input type="hidden" value="<?= $curso['url_doc']; ?>" name="materia">
+            </form>
+          </tr>
         </div>
       </div>
-      <form action="quiz_selector.php" method="post">
-        <button type="submit" class="card-text btn btn-info">
-          Rendir Final
-          <input type="hidden" value="<?= $curso['url_doc']; ?>" name="materia">
-        </button>
-      </form>
     </div>
   </div>
 </div>

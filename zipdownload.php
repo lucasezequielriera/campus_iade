@@ -1,72 +1,37 @@
-<?php 
-// Create ZIP file
-if(isset($_POST['create'])){
-  $zip = new ZipArchive();
-  $filename = "./curso.zip";
+<?php
+if (isset($_POST['course_folder'])) {
+    $dir = $_POST['course_folder'];
+    $zip_file = $_POST['course_name'].'.rar';
 
-  if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
-    exit("cannot open <$filename>\n");
-  }
+    $rootPath = realpath($dir);
 
-  $dir = 'files/';
+    $zip = new ZipArchive();
+    $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
-  // Create zip
-  createZip($zip,$dir);
+    /** @var SplFileInfo[] $files */
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($rootPath),
+        RecursiveIteratorIterator::LEAVES_ONLY
+    );
 
-  $zip->close();
+    foreach ($files as $name => $file) {
+        if (!$file->isDir()) {
+            $filePath = $file->getRealPath();
+            $relativePath = substr($filePath, strlen($rootPath) + 1);
+
+            $zip->addFile($filePath, $relativePath);
+        }
+    }
+    $zip->close();
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($zip_file));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($zip_file));
+    readfile($zip_file);
 }
-
-// Create zip
-function createZip($zip,$dir){
-  if (is_dir($dir)){
-
-    if ($dh = opendir($dir)){
-       while (($file = readdir($dh)) !== false){
- 
-         // If file
-         if (is_file($dir.$file)) {
-            if($file != '' && $file != '.' && $file != '..'){
- 
-               $zip->addFile($dir.$file);
-            }
-         }else{
-            // If directory
-            if(is_dir($dir.$file) ){
-
-              if($file != '' && $file != '.' && $file != '..'){
-
-                // Add empty directory
-                $zip->addEmptyDir($dir.$file);
-
-                $folder = $dir.$file.'/';
- 
-                // Read data of the folder
-                createZip($zip,$folder);
-              }
-            }
- 
-         }
- 
-       }
-       closedir($dh);
-     }
-  }
-}
-
-// Download Created Zip file
-if(isset($_POST['download'])){
- 
-  $filename = "myzipfile.zip";
-
-  if (file_exists($filename)) {
-     header('Content-Type: application/zip');
-     header('Content-Disposition: attachment; filename="'.basename($filename).'"');
-     header('Content-Length: ' . filesize($filename));
-
-     flush();
-     readfile($filename);
-     // delete file
-     unlink($filename);
- 
-   }
-}
+?>

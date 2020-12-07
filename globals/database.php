@@ -1,5 +1,4 @@
 <?php
-
 class Database {
 
     private $cn = false;
@@ -48,5 +47,4 @@ class Database {
         return $str;
     }   
 }
-
 ?>
