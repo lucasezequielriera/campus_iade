@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['course_folder'])) {
     $dir = $_POST['course_folder'];
-    $zip_file = $_POST['course_name'].'.rar';
+    $zip_file = $_POST['course_name'] . ' ' . $_POST['module_number'] . '.rar' ;
 
     $rootPath = realpath($dir);
 

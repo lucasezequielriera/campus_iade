@@ -58,8 +58,8 @@ require "./templates/header.php";
                                 for ($i=2; $i<8; $i++) { ?>
                                     <tr>
                                         <td class="text-left">
-                                            <form action="modal.php" method="post">
-                                                <button href="modal.php" type="submit" class="btn-info btn-sm"><?=$archivos[$i];?></button> 
+                                            <form action="content_modify.php" method="post">
+                                                <button type="submit" class="btn-info btn-sm"><?=$archivos[$i];?></button> 
                                                 <input type="hidden" value="<?=$archivos[$i];?>" name="directorio">
                                                 <input type="hidden" value="<?=$curso['url_doc'];?>" name="raiz">
                                            </form>

@@ -42,15 +42,16 @@ $curso = $db->fetch();
                 <tr>
                   <td>
                     <form action="./course_content.php" method="post">
-                      <input type="hidden" value="<?= $curso['id_curso']; ?>" name="course_number">
-                      <input type="hidden" value="<?= $i; ?>" name="module_number">
+                      <input type="hidden" value="<?= $curso['url_doc'] . $archivos[$i]; ?>" name="module">
+                      <input type="hidden" name="curso" value="<?=$cursoId;?>">
                       <button class="btn btn-info"><?= $archivos[$i]; ?></button>
                     </form>
                   </td>
                   <td class="text-center">
                     <form action="./zipdownload.php" method="post">
                       <input type="hidden" value="<?= $curso['url_doc'] . $archivos[$i]; ?>" name="course_folder">
-                      <input type="hidden" value="<?= $archivos[$i]; ?>" name="course_name">
+                      <input type="hidden" value="<?= $archivos[$i]; ?>" name="module_number">
+                      <input type="hidden" value="<?= $curso['nombre']; ?>" name="course_name">
                       <input type="image" src="./img/download.svg">
                     </form>
                   </td>
