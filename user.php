@@ -60,6 +60,7 @@ if ($_SESSION['mensaje'] != "") {
         var datos = $('#dni_user').val();
         if (datos) {
           $('#dni_user').prop("disabled", true);
+          $("#btnSearch").prop("disabled", true);
           $.ajax({
             type: 'get',
             url: 'search.php',

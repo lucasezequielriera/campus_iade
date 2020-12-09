@@ -6,58 +6,18 @@ $title = "Modulo 1";
 $address = "exams.php";
 $randomizequestions = "yes";
 
-$a = array(
-    1 => array(
-        0 => "Cual es la capital de Finlandia?",
-        1 => "Oslo",
-        2 => "Nurburgring",
-        3 => "Osaka",
-        4 => "Helsinki",
-        6 => 4
-    ),
-    2 => array(
-        0 => "Cuanto es 2 en binario?",
-        1 => "4",
-        2 => "004",
-        3 => "2201 ",
-        4 => "0010",
-        5 => "0100",
-        6 => 4
-    ),
-    3 => array(
-        0 => "La nueva Yamaha R6 2020 cuenta con quick shifter?",
-        1 => "Si",
-        2 => "No",
-        3 => "Las motos son peligrosas",
-        4 => "quick que?",
-        5 => "Honda es mejor",
-        6 => 1
-    ),
-    4 => array(
-        0 => "Pregunta de ejemplo, correcta, value5",
-        1 => "ejemplo respuesta",
-        2 => "ejemplo respuesta",
-        3 => "ejemplo respuesta",
-        4 => "ejemplo respuesta",
-        5 => "Correcta",
-        6 => 5
-    ),
-    5 => array(
-        0 => "Otra de testeo, correcta value=3",
-        1 => "ejemplo respuesta",
-        2 => "ejemplo respuesta",
-        3 => "Correcta",
-        4 => "ejemplo respuesta",
-        5 => "ejemplo respuesta",
-        6 => 3
-    ),
-);
+$ruta_examen = $_POST['examen'] . "exam.json";
 
-$max = 5;
+$strJsonFileContents = file_get_contents($ruta_examen);
+$array = json_decode($strJsonFileContents, true);
+echo $ruta_examen;
+var_dump($array); // print array
+
+$max = 7;
 
 $question = $_POST["question"];
 
-if ($_POST["Randon"] == 0) {
+if ($_POST["Random"] == 0) {
     if ($randomizequestions == "yes") {
         $randval = mt_rand(1, $max);
     } else {
@@ -65,8 +25,8 @@ if ($_POST["Randon"] == 0) {
     }
     $randval2 = $randval;
 } else {
-    $randval = $_POST["Randon"];
-    $randval2 = $_POST["Randon"] + $question;
+    $randval = $_POST["Random"];
+    $randval2 = $_POST["Random"] + $question;
     if ($randval2 > $max) {
         $randval2 = $randval2 - $max;
     }
@@ -111,7 +71,7 @@ if ($question == 0) {
                             <input type=hidden name=response value=0>
                             <input type=hidden name=question value=<?php print $question; ?>>
                             <input type=hidden name=ok value=<?php print $ok; ?>>
-                            <input type=hidden name=Randon value=<?php print $randval; ?>>
+                            <input type=hidden name=Random value=<?php print $randval; ?>>
                             <br><?php print $question + 1; ?> / <?php print $max; ?>
                         </FORM>
                         <HR>
@@ -136,18 +96,17 @@ if ($question == 0) {
                                                                                                         } ?>
                         </FORM>
                     <?php
-                } else {
-                    ?>
+                } else { ?>
                 <TR>
                     <TD ALIGN=Center>
                         El examen ha finalizado.
                         <BR>Porcentaje de respuestas correctas: <?php print $percentaje; ?> %
                         <?php if ($percentaje>60) {
                             $_SESSION[''];
-                            echo "Ha pasado el examen."
-                        } else { ?>
+                            echo "Ha pasado el examen.";
+                        } else { 
                             echo "No ha alcanzado la nota suficiente.";
-                        <?php } ?>
+                        } ?>
                         <p><A HREF="<?php print $address; ?>">Volver</a>
                         <?php } ?>
                     </TD>

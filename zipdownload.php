@@ -15,11 +15,16 @@ if (isset($_POST['course_folder'])) {
     );
 
     foreach ($files as $name => $file) {
-        if (!$file->isDir()) {
-            $filePath = $file->getRealPath();
-            $relativePath = substr($filePath, strlen($rootPath) + 1);
+         //aca poner el skip si el archivo es "videos.txt"
 
-            $zip->addFile($filePath, $relativePath);
+
+         
+        if (!$file->isDir()) {
+            if ($file !== "videos.txt") {
+                $filePath = $file->getRealPath();
+                $relativePath = substr($filePath, strlen($rootPath) + 1);
+                $zip->addFile($filePath, $relativePath);
+            }
         }
     }
     $zip->close();

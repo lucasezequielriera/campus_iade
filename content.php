@@ -3,7 +3,7 @@ require "./templates/header.php";
 ?>
 
 <div class="container my-3"> 
-  <form action="content.php" method="post" name="form_course">
+  <form action="" method="post" name="form_course">
     <div class="row">
       <div class="col-6 p-0 mb-2">
           <select id="course" name="course" class="form-control" required> 
@@ -61,6 +61,7 @@ require "./templates/header.php";
                                             <form action="content_modify.php" method="post">
                                                 <button type="submit" class="btn-info btn-sm"><?=$archivos[$i];?></button> 
                                                 <input type="hidden" value="<?=$archivos[$i];?>" name="directorio">
+                                                <input type="hidden" value="<?=$curso['nombre'];?>" name="materia">
                                                 <input type="hidden" value="<?=$curso['url_doc'];?>" name="raiz">
                                            </form>
                                         </td>

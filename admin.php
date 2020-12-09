@@ -76,9 +76,11 @@ if (isset($_POST['btnAccion'])) {
             break;
 
         case 'newCourse':
+            $categoria = $_POST['categoria'];
             $nombre = $_POST['nombre'];
             $descripcion_curso = $_POST['descripcion_curso'];
             $directoryName = './cursos/' . $nombre;
+            $examDirectory = $directoryName . '/' . 'exams/';
             $target_dir = $directoryName . '/';
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
             $uploadOk = 1;
@@ -127,8 +129,8 @@ if (isset($_POST['btnAccion'])) {
                 //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
                 if (move_uploaded_file($_FILES["file"]["tmp_name"],$target_file)) {
                     $nombre = $_POST['nombre'];
-                    $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`, `descripcion`)
-                                VALUES ('$nombre','$target_dir', '$target_file', '$descripcion_curso')");
+                    $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`, `descripcion`, `exams`, `categoria`)
+                                VALUES ('$nombre','$target_dir', '$target_file', '$descripcion_curso','$examDirectory' , '$categoria')");
                     $_SESSION['mensaje'] = "Se ha creado con exito el curso " . $nombre;
                     $_SESSION['msg_status'] = 1;
                     header("Location: courses.php");
@@ -146,8 +148,7 @@ if (isset($_POST['btnAccion'])) {
             $nombre = $_POST['id_persona']; //id_persona
             $course = $_POST['course']; //id curso
             $pago1 = (isset($_POST['pago']) ? $_POST['pago'] : 0);
-            $cond = 1;
-            if (isset($_POST['cond_libre'])) $cond = 6;
+            $cond = 6;
             $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) 
                             VALUES ('$course','$nombre', '$cond', '$pago1');");
             $_SESSION['mensaje'] = "Curso asignado!";

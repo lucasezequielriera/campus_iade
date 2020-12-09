@@ -1,16 +1,12 @@
-agregar video al archivo video.txt segun curso (en agregar material de curso/videos/modulo)
-        - sacar el archivo video.txt de la carpeta que descarga el usuario
+sacar el archivo video.txt de la carpeta que descarga el usuario
 
-reparar los errores de header.
 modulo para carga de examen
 validador de examen (crea pdf y hablita la descarga)
 
-buscador en "alta de usuario" 
-al crear curso, agregar categoria
-al asignar un curso, quitar los modulos (dejar solo si pago o no)
 foto de perfil (upload)
 
-
+reparar los errores de header.
+validar quien accede (nivel en session_start)
 
 pendientes de pago
 corregir que, al descrgar material, deja una copia en el server

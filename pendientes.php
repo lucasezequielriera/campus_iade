@@ -6,8 +6,6 @@ $db->query("SELECT p.nombre, p.apellido, p.dni, c.id FROM personas p
             WHERE curso_p.pago = 0");
 
 $nopagos = $db->fetchAll();
-
-
 ?>
 
 

@@ -61,11 +61,11 @@ $curso = $db->fetch();
             </tbody>
           </table>
           <tr>
-            <form action="quiz_selector.php" method="post">
+            <form action="quiz.php" method="post">
               <button type="submit" class="card-text btn btn-danger">
                 Rendir examen final
               </button>
-              <input type="hidden" value="<?= $curso['url_doc']; ?>" name="materia">
+              <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
             </form>
           </tr>
         </div>
