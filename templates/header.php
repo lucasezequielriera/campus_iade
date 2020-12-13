@@ -118,7 +118,7 @@ if (!isset($_SESSION['logged'])) {
                                     <a class="dropdown-item" href="courses.php">Alta de curso</a>
                                     <a class="dropdown-item" href="content.php">Modificacion de contenidos</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="exams.php">Alta/modificacion de examen</a>
+                                    <a class="dropdown-item" href="evaluate.php">Alta/modificacion de examen</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="pwd.php">Cambiar contraseñas</a>
                                     <div class="dropdown-divider"></div>

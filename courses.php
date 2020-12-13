@@ -46,7 +46,7 @@ if (isset($_POST['newCourse'])) {
               $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
               mkdir($directoryName, 0777);
           }
-          $dir_exam = $target_dir . "/exams";
+          $dir_exam = $target_dir . "/exams"."/exam.php";
           mkdir($dir_exam,0777);
 
       }

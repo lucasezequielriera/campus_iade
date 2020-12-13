@@ -1,6 +1,9 @@
-modulo para carga de examen
-validador de examen (crea pdf y hablita la descarga)
+certificate.php
+el archivo creado que se importe en "quiz.php" y abajo va pegado el validador, arriba el header y la informacion del link de retorno.
 foto de perfil (upload)
+
+
+revisar inyecciones
 agregar funcion para poder cambiar foto de curso
 
 validar quien accede (nivel en session_start)
@@ -8,6 +11,5 @@ validar quien accede (nivel en session_start)
 pendientes de pago
 corregir que, al descrgar material, deja una copia en el server
 checkear el timeout de deslog
-revisar inyecciones
 mail de "reporte de problema"
 CHEQUEAR LAS CATEGORIAS AL AGREGAR UN CURSO

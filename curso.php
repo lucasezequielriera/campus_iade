@@ -30,7 +30,7 @@ $curso = $db->fetch();
             <tbody>
               <?php
               $userId = $_SESSION['user']['id'];
-              $db->query("SELECT nivel, pago 
+              $db->query("SELECT nivel, pago, nota
                                   FROM curso_p 
                                   LEFT JOIN personas ON curso_p.id_persona = $userId
                                   WHERE curso_p.id_curso = $cursoId
@@ -43,7 +43,7 @@ $curso = $db->fetch();
                   <td>
                     <form action="./course_content.php" method="post">
                       <input type="hidden" value="<?= $curso['url_doc'] . $archivos[$i]; ?>" name="module">
-                      <input type="hidden" name="curso" value="<?=$cursoId;?>">
+                      <input type="hidden" name="curso" value="<?= $cursoId; ?>">
                       <button class="btn btn-info"><?= $archivos[$i]; ?></button>
                     </form>
                   </td>
@@ -60,14 +60,28 @@ $curso = $db->fetch();
               } ?>
             </tbody>
           </table>
-          <tr> 
-            <?php 
-            if ($curso_p['pago'] == 1) { ?>
+          <tr>
+            <?php
+            if ($curso_p['pago'] == 1 && $curso_p['nota'] < 6) { ?>
               <form action="quiz.php" method="post">
-              <button type="submit" class="card-text btn btn-danger">
-              Rendir examen final
-              </button>
-              <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
+                <button type="submit" class="card-text btn btn-danger">
+                  Rendir examen final
+                </button>
+                <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
+              </form>
+            <?php }
+            if ($curso_p['pago'] == 1 && $curso_p['nota'] >= 6) { ?>
+              <form action="certificate.php" method="post">
+                <button type="submit" class="card-text btn btn-warning">
+                  Descargar certificado del curso
+                </button>
+                <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
+
+
+                <!-- ACA VAN LAS VARIABLES QUE NECESITE CERTIFICATE.PHP para funcionar, falta esot " -->
+              
+              
+              
               </form>
             <?php } ?>
           </tr>
