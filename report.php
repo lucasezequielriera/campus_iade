@@ -1,6 +1,21 @@
 <?php
 include './templates/header.php';
-if (isset($_POST['btnSend'])) { ?>
+if (isset($_POST['btnSend'])) { 
+	$destinatario = 'informes@escuelaiade.com';
+	setlocale(LC_ALL, 'es_ES');
+    $fecha = strftime("%A %d/%m/%Y, a las %k:%M:%S");
+
+	$nombre = $_SESSION['user']['nombre'];
+	$asunto = $_POST['category'];
+	$email = $_POST['contact'];
+	$mensaje = $_POST['message'];
+
+	$header = "From: argentina@escuelasiade.com";
+	$mensaje = "\n\nDatos de Contacto:" . "\n\nNombre: " . $nombre . "\nEmail: " . $email . "\nAsunto: " . $asunto . "\nMensaje: " . $mensaje;
+  $asunto = 'De Escuelasiade.com el día ' . $fecha . ' sobre ' . $asunto . ' - ' . $nombre;
+
+	mail($destinatario, utf8_decode($asunto), utf8_decode($mensaje), $header);
+?>
   <div class="container">
     <div class="row">
       <h2>Enviado correctamente! le responderemos a la brevedad.</h2>
@@ -36,9 +51,9 @@ if (isset($_POST['btnSend'])) { ?>
 
               <!-- Email input-->
               <div class="form-group">
-                <label class="col-md-3 control-label" for="email">Medio de contacto:</label>
+                <label class="col-md-3 control-label" for="email">Mail de contacto:</label>
                 <div class="col-md-9">
-                  <input name="contact" required type="text" placeholder="Correo o telefono" class="form-control">
+                  <input name="contact" required type="mail" placeholder="Correo o telefono" class="form-control">
                 </div>
               </div>
 
@@ -62,7 +77,6 @@ if (isset($_POST['btnSend'])) { ?>
       </div>
     </div>
   </div>
-
 
 <?php
 }  //Cierre del else
