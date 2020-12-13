@@ -116,8 +116,11 @@ if (isset($_POST['delete'])) {
   </div>
 </div>
 <div class="row ml-1">
-  <a href="content.php"><button class="btn btn-danger ml-2">Volver a modulos</button></a>
-</div>
+  <form action="content.php" method="post">
+    <input type="hidden" name="course" value="<?=$_POST['course'];?>">
+    <button class="btn btn-danger ml-2">Volver a modulos</button>
+  </form>
+  </div>
 
 <?php
 require "./templates/footer.php";

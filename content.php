@@ -43,13 +43,12 @@ require "./templates/header.php";
                 <h1><?= $curso['nombre'];?></h1>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Material de estudio</h4>
                     </div>
                     <div class="panel-body">    
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th width="80%">Nombre del Archivo</th>
+                                    <th width="80%">Modulo #</th>
                                     <th width="10%">Descargar</th>
                                 </tr>
                             </thead>
@@ -63,6 +62,7 @@ require "./templates/header.php";
                                                 <input type="hidden" value="<?=$archivos[$i];?>" name="directorio">
                                                 <input type="hidden" value="<?=$curso['nombre'];?>" name="materia">
                                                 <input type="hidden" value="<?=$curso['url_doc'];?>" name="raiz">
+                                                <input type="hidden" value="<?=$_POST['course'];?>" name="course">
                                            </form>
                                         </td>
                                         <td class="text-center"><a title="Descargar Archivo" href="<?=$curso['url_doc']; echo $archivos[$i];?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,6 @@ $(document).ready(function() {
      document.forms['form_course'].submit();
   });
 });
-
 </script>
 
 <?php
