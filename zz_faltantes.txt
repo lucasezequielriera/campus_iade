@@ -1,5 +1,3 @@
-sacar el archivo video.txt de la carpeta que descarga el usuario
-
 modulo para carga de examen
 validador de examen (crea pdf y hablita la descarga)
 
