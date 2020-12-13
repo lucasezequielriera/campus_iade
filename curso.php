@@ -30,13 +30,13 @@ $curso = $db->fetch();
             <tbody>
               <?php
               $userId = $_SESSION['user']['id'];
-              $db->query("SELECT nivel 
+              $db->query("SELECT nivel, pago 
                                   FROM curso_p 
                                   LEFT JOIN personas ON curso_p.id_persona = $userId
                                   WHERE curso_p.id_curso = $cursoId
                                   LIMIT 1");
-              $nivelUsuario = $db->fetch();
-              $nivelUsuario = ($nivelUsuario['nivel']);
+              $curso_p = $db->fetch();
+              $nivelUsuario = ($curso_p['nivel']);
               $archivos = scandir($curso['url_doc']);
               for ($i = 2; $i < $nivelUsuario + 2; $i++) { ?>
                 <tr>
@@ -60,13 +60,16 @@ $curso = $db->fetch();
               } ?>
             </tbody>
           </table>
-          <tr>
-            <form action="quiz.php" method="post">
+          <tr> 
+            <?php 
+            if ($curso_p['pago'] == 1) { ?>
+              <form action="quiz.php" method="post">
               <button type="submit" class="card-text btn btn-danger">
-                Rendir examen final
+              Rendir examen final
               </button>
               <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
-            </form>
+              </form>
+            <?php } ?>
           </tr>
         </div>
       </div>
