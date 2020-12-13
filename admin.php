@@ -3,78 +3,7 @@ require "./templates/header.php";
 
 if (isset($_POST['btnAccion'])) {
     switch ($_POST['btnAccion']) {
-        case 'password_change':
-            $user_id = $_SESSION['user']['id']; 
-            $pwd_1 = $_POST['pwd_1'];
-            $pwd_2 = $_POST['pwd_2'];
-            $db->query("SELECT `password` FROM personas WHERE id = '$user_id' LIMIT 1");
-            $pwd_db = $db->fetch();
-
-            if ($_SESSION['user']['acceso'] == 2) {
-                $pwd_actual = $pwd_db['password'];
-                $temp_dni = $_POST['dni'];
-                $db->query("SELECT `id` FROM personas WHERE dni = '$temp_dni' LIMIT 1");
-                $temp_dni = $db->fetch();
-                $user_id = $temp_dni['id'];
-            }else {
-                $pwd_actual = sha1($_POST['pwd_actual']);
-            }
-            
-            if (strlen($pwd_1) < 5) {
-                $_SESSION['mensaje'] = "La contraseña debe contener almenos 5 caracteres.";
-                $_SESSION['msg_status'] = 0;
-                header("Location: pwd.php");
-                exit();
-            } else {
-                if ($pwd_actual == $pwd_db['password']) {
-                    if ($pwd_1 !== $pwd_2) {
-                        $_SESSION['mensaje'] = "Las contraseñas ingresadas no coinciden.";
-                        $_SESSION['msg_status'] = 0;
-                        header("Location: pwd.php");
-                        exit();
-                    } else {
-                        $pwd_2 = sha1($pwd_1);
-                        $db->query("UPDATE personas SET `password` = '$pwd_2'
-                                WHERE id = '$user_id';");
-                        $_SESSION['mensaje'] = "Contraseña cambiada con exito!";
-                        $_SESSION['msg_status'] = 1;
-                        header("Location: pwd.php");
-                        exit();
-                    }
-                } else {
-                    $_SESSION['mensaje'] = "La contraseña es incorrecta.";
-                    $_SESSION['msg_status'] = 0;
-                    header("Location: pwd.php");
-                    exit();
-                }
-            }
-            break;
-
-        case 'newUser':
-            $nombre1 = $_POST['nombre'];
-            $apellido1 = $_POST['apellido'];
-            $dni1 = $_POST['dni'];
-            $pwd1 = sha1($dni1);
-            $acceso = $_POST['userAccess'];
-            $telefono1 = $_POST['tel'];
-            $email1 = $_POST['mail'];
-            $db->query("SELECT * FROM personas WHERE id = '$dni1'");
-            $temp = $db->fetch();
-            if ($temp == NULL) {
-                $_SESSION['mensaje'] = "El usuario ya existe.";
-                $_SESSION['msg_status'] = 0;
-                header("Location: user.php");
-                exit();
-            }
-
-            $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
-                        VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
-            $_SESSION['mensaje'] = "Usuario creado!";
-            $_SESSION['msg_status'] = 1;
-            header("Location: user.php");
-            exit();
-            break;
-
+        
         case 'newCourse':
             $categoria = $_POST['categoria'];
             $nombre = $_POST['nombre'];

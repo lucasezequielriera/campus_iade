@@ -1,6 +1,33 @@
 <?php
 require "./templates/header.php";
 
+if (isset($_POST['newUser'])) {
+  $nombre1 = $_POST['nombre'];
+  $apellido1 = $_POST['apellido'];
+  $dni1 = $_POST['dni'];
+  $pwd1 = sha1($dni1);
+  $acceso = $_POST['userAccess'];
+  $telefono1 = $_POST['tel'];
+  $email1 = $_POST['mail'];
+  $ok = 0;
+
+  $db->query("SELECT * FROM personas WHERE dni = '$dni1' LIMIT 1");
+  $temp = $db->fetch();
+
+  if ($temp == NULL) $ok = 1;
+   
+  if ($ok == 1) {
+    $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
+              VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
+    $_SESSION['mensaje'] = "Usuario creado!";
+    $_SESSION['msg_status'] = 1;
+  }
+  else {
+    $_SESSION['mensaje'] = "El usuario ya existe.";
+    $_SESSION['msg_status'] = 0;
+  }
+}
+
 if ($_SESSION['mensaje'] != "") {
   if ($_SESSION['msg_status'] == 1) { ?>
     <div class="alert alert-success text-center"> <?php } else { ?> <div class="alert alert-danger text-center"> <?php } ?>
@@ -10,7 +37,7 @@ if ($_SESSION['mensaje'] != "") {
   $_SESSION['mensaje'] = ""; ?>
 
     <div class="container">
-      <form id="form_user" action="admin.php" method="post"> <br> <br>
+      <form id="form_user" action="" method="post"> <br> <br>
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">Nombre</label>
@@ -50,7 +77,7 @@ if ($_SESSION['mensaje'] != "") {
             </select>
           </div>
         </div>
-        <button class="btn btn-primary" id="btn_alta" name="btnAccion" value="newUser" type="submit">Dar de alta usuario</button>
+        <button class="btn btn-primary" id="btn_alta" name="newUser" type="submit">Dar de alta usuario</button>
       </form>
       <div class="botones"></div>
     </div>
@@ -69,8 +96,8 @@ if ($_SESSION['mensaje'] != "") {
             },
             success: function(response) {
               var data_alumno = JSON.parse(response);
-              if (data_alumno==null) {
-                alert ("No se encontro usuario.")
+              if (data_alumno == null) {
+                alert("No se encontro usuario.")
                 location.reload();
               }
               $("#nombre").val(data_alumno.nombre);
@@ -122,6 +149,6 @@ if ($_SESSION['mensaje'] != "") {
       }
     </script>
 
-<?php
-require "./templates/footer.php";
-?>
+    <?php
+    require "./templates/footer.php";
+    ?>

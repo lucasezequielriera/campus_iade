@@ -1,6 +1,46 @@
 <?php
 require "./templates/header.php";
 
+if (isset($_POST['password_change'])) {
+  $user_id = $_SESSION['user']['id']; 
+  $pwd_1 = $_POST['pwd_1'];
+  $pwd_2 = $_POST['pwd_2'];
+  $db->query("SELECT `password` FROM personas WHERE id = '$user_id' LIMIT 1");
+  $pwd_db = $db->fetch();
+
+  if ($_SESSION['user']['acceso'] == 2) {
+      $pwd_actual = $pwd_db['password'];
+      $temp_dni = $_POST['dni'];
+      $db->query("SELECT `id` FROM personas WHERE dni = '$temp_dni' LIMIT 1");
+      $temp_dni = $db->fetch();
+      $user_id = $temp_dni['id'];
+  }else {
+      $pwd_actual = sha1($_POST['pwd_actual']);
+  }
+  
+  if (strlen($pwd_1) < 5) {
+      $_SESSION['mensaje'] = "La contraseña debe contener almenos 5 caracteres.";
+      $_SESSION['msg_status'] = 0;
+
+  } else {
+      if ($pwd_actual == $pwd_db['password']) {
+          if ($pwd_1 !== $pwd_2) {
+              $_SESSION['mensaje'] = "Las contraseñas ingresadas no coinciden.";
+              $_SESSION['msg_status'] = 0;
+          } else {
+              $pwd_2 = sha1($pwd_1);
+              $db->query("UPDATE personas SET `password` = '$pwd_2'
+                      WHERE id = '$user_id';");
+              $_SESSION['mensaje'] = "Contraseña cambiada con exito!";
+              $_SESSION['msg_status'] = 1;
+          }
+      } else {
+          $_SESSION['mensaje'] = "La contraseña es incorrecta.";
+          $_SESSION['msg_status'] = 0;
+      }
+  }
+}
+
 if ($_SESSION['mensaje'] != "") {
   if ($_SESSION['msg_status'] == 1) { ?>
     <div class="alert alert-success text-center"> <?php } else { ?> <div class="alert alert-danger text-center"> <?php } ?>
@@ -9,7 +49,7 @@ if ($_SESSION['mensaje'] != "") {
     <?php } $_SESSION['mensaje'] = ""; ?>
 
     <div class="container mt-5">
-      <form action="admin.php" method="post" enctype="multipart/form-data">
+      <form action="" method="post" enctype="multipart/form-data">
         <?php if ($_SESSION['user']['acceso'] == 2) { ?>
           <div class="form-row">
             <div class="col-6">
@@ -52,7 +92,7 @@ if ($_SESSION['mensaje'] != "") {
         <div class="form-row mt-3">
           <div class="col">
             <div class="text-center">
-              <button class="btn btn-primary mt-3" name="btnAccion" value="password_change" type="submit">Cambiar contraseña</button>
+              <button class="btn btn-primary mt-3" name="password_change" type="submit">Cambiar contraseña</button>
             </div>
           </div>
         </div>

@@ -1,9 +1,9 @@
 modulo para carga de examen
 validador de examen (crea pdf y hablita la descarga)
-
 foto de perfil (upload)
-
 reparar los errores de header.
+agregar funcion para poder cambiar foto de curso
+
 validar quien accede (nivel en session_start)
 
 pendientes de pago
@@ -11,4 +11,3 @@ corregir que, al descrgar material, deja una copia en el server
 checkear el timeout de deslog
 revisar inyecciones
 mail de "reporte de problema"
-*cambiar foto de curso
