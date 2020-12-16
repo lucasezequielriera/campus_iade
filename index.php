@@ -4,9 +4,7 @@ $_SESSION['mensaje'] = "";
 ?>
 
 <div class="swiper-container" id="swiper-banner">
-  <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
-    <!-- Slides -->
     <div class="swiper-slide">
       <img src="./img/banner2.png" alt="">
     </div>

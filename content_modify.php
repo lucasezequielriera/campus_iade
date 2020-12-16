@@ -111,6 +111,7 @@ if (isset($_POST['delete'])) {
         <input type="hidden" name="materia" value="<?= $_POST['materia']; ?>">
         <input type="hidden" name="directorio" value="<?= $_POST['directorio']; ?>">
         <input type="hidden" name="direccion" value="<?= $curso . "/videos.txt"; ?>">
+        <input type="hidden" name="course" value="<?=$_POST['course'];?>">
         <button class="mt-2 btn btn-success" type="submit">Guardar</button>
     </form>
   </div>

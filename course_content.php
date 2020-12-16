@@ -42,7 +42,7 @@ include "./templates/header.php";
                                 </div>
                             </div>
                             <div class="col col-lg-6">
-                                <iframe id="frame" src="https://www.youtube.com/embed/l0U7SxXHkPY" style="width:100%;height:500px;"></iframe>
+                                <iframe id="frame" src="" style="width:100%;height:500px;"></iframe>
                             </div>
                         </div>
                     </div>

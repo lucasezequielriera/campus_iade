@@ -128,7 +128,7 @@ function Goahead (number){
 The Quiz has finished
 <BR>Percentaje of correct responses: <?php print $percentaje ; ?> %
 <?php 
-if ($percentaje > 6) {
+if ($percentaje >= 60) {
     echo "Examen aprobado! Ya puede descargar el certificado del mismo";
     $db->query("UPDATE `curso_p` SET `nota`='$percentaje', WHERE `id_curso` = '$curso_id' AND `id_persona` = '$id_persona'");
 } 
