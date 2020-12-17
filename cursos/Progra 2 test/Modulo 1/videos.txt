@@ -1,0 +1,4 @@
+Primera linea -->link del video
+Segunda linea --> descripcion del video
+No dejar espacios al final de cada linea.
+Eliminar COMPLETAMENTE este texto antes de cargar informacion.

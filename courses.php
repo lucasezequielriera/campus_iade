@@ -25,11 +25,6 @@ if (isset($_POST['newCourse'])) {
     } else {
       $uploadOk = 0;
     }
-    //hacer el check por si no es imagen.
-    if (file_exists($target_file)) {
-      $err = "Error, ya existe un archivo con ese nombre";
-      $uploadOk = 0;
-    }
 
     if ($_FILES["file"]["size"] > 512000) {  // MAX 500Kb
       $err = "Error, el archivo supera los 500kb";
@@ -53,7 +48,7 @@ if (isset($_POST['newCourse'])) {
         $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
         mkdir($directoryName, 0777);
         $myfile = fopen($directoryName."/videos.txt", "w");
-        fwrite($myfile, "Primera linea -->link del video\nSegunda linea --> descripcion del video\nNo dejar espacios al final de cada linea.");
+        fwrite($myfile, "Primera linea -->link del video\nSegunda linea --> descripcion del video\nNo dejar espacios al final de cada linea.\nEliminar COMPLETAMENTE este texto antes de cargar informacion.");
         fclose($myfile);
       }
       $dir_exam = $target_dir . "exams";

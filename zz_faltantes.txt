@@ -2,9 +2,12 @@ al cargar el archivo php de examen, guardarlo como exam.php (el nombre)
 certificate.php crea el certificado con el nombre.
 el archivo creado que se importe en "quiz.php" y abajo va pegado el validador, arriba el header y la informacion del link de retorno.
 
-agregar funcion para poder cambiar foto de curso ***
+
+Post-entrega:
+agregar funcion para poder cambiar foto de curso *** (sacar de profile)
 agregar buscador en alta por cada campo
 corregir que, al descrgar material, deja una copia en el server
+checkear que cuando se crean los botones de modulo, si la foto aparece antes alfabeticamente la toma como boton.
 
 Seguridad:
 revisar inyecciones

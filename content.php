@@ -79,9 +79,7 @@ require "./templates/header.php";
         </div> <!--Card -->
     </div> <!--segundo row -->
     <?php } ?>  <!-- If que muestra "Card" con info dle curso -->
-
 </div>  
-
 
 <script>
 $(document).ready(function() {

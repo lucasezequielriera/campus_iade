@@ -17,8 +17,8 @@ if (isset($_POST['newUser'])) {
   if ($temp == NULL) $ok = 1;
    
   if ($ok == 1) {
-    $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`) 
-              VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1');");
+    $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto` ) 
+              VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1', './img/blank.png');");
     $_SESSION['mensaje'] = "Usuario creado!";
     $_SESSION['msg_status'] = 1;
   }
