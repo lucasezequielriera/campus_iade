@@ -14,6 +14,3 @@ pendientes de pago
 corregir que, al descrgar material, deja una copia en el server
 checkear el timeout de deslog
 CHEQUEAR LAS CATEGORIAS AL AGREGAR UN CURSO
-
-
-evitar que se pueda agregar mas de 1 vez el mismo curso.
