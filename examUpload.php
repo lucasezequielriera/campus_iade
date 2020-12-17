@@ -12,7 +12,7 @@ if (isset($_POST['loadFile'])) {
     $doctype = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if ($doctype == "php") {   
         $fichero = $_FILES["file"]["tmp_name"];
-        move_uploaded_file($_FILES["file"]["tmp_name"],$examDirectory.$target_file);
+        move_uploaded_file($_FILES["file"]["tmp_name"],$examDirectory."exam.php");
         $_SESSION['mensaje'] = "Examen cargado con exito!";
         $_SESSION['msg_status'] = 1;     
     } else {

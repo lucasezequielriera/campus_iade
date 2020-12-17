@@ -7,6 +7,9 @@ $db->query("SELECT *
                 WHERE id_curso = $cursoId 
                 LIMIT 1");
 $curso = $db->fetch();
+
+$_SESSION['course_name_exam'] = $curso['nombre'];
+$_SESSION['courseId'] = $cursoId;
 ?>
 
 <div class="col-10 mt-3 offset-1 offset-md-0 col-md-3 col-lg-4">
@@ -67,7 +70,8 @@ $curso = $db->fetch();
                 <button type="submit" class="card-text btn btn-danger">
                   Rendir examen final
                 </button>
-                <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
+                <input type="hidden" value="<?= $_SESSION['course_name_exam']; ?>" name="courseName">
+                <input type="hidden" value="<?= $_SESSION['courseId']; ?>" name="courseName">
               </form>
             <?php }
             if ($curso_p['pago'] == 1 && $curso_p['nota'] >= 6) { ?>
@@ -76,12 +80,6 @@ $curso = $db->fetch();
                   Descargar certificado del curso
                 </button>
                 <input type="hidden" value="<?= $curso['exams']; ?>" name="examen">
-
-
-                <!-- ACA VAN LAS VARIABLES QUE NECESITE CERTIFICATE.PHP para funcionar, falta esot " -->
-              
-              
-              
               </form>
             <?php } ?>
           </tr>
