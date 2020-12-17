@@ -6,6 +6,10 @@ footer {
     height: 4vh;
 }
 
+.image-upload>input {
+    display: none;
+}
+
 .card-curso {
     height: 350px;
 }

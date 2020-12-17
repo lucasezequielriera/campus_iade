@@ -1,16 +1,16 @@
-agregar carpeta exams al crear un curso. !!!!!!!!!!!!!!!
 al cargar el archivo php de examen, guardarlo como exam.php (el nombre)
 certificate.php crea el certificado con el nombre.
 el archivo creado que se importe en "quiz.php" y abajo va pegado el validador, arriba el header y la informacion del link de retorno.
-foto de perfil (upload)
 
-revisar inyecciones
 agregar funcion para poder cambiar foto de curso
 agregar buscador en alta por cada campo
-
-validar quien accede (nivel en session_start)
-
-pendientes de pago
 corregir que, al descrgar material, deja una copia en el server
+
+Seguridad:
+revisar inyecciones
+validar quien accede (nivel en session_start)
 checkear el timeout de deslog
-CHEQUEAR LAS CATEGORIAS AL AGREGAR UN CURSO
+
+Fede:
+chequear categorias para los cursos
+pendientes de pago
