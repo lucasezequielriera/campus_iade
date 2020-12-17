@@ -126,6 +126,24 @@ if (!isset($_SESSION['logged'])) {
                                 </div>
                             </li><?php } ?>
 
+
+                            <!-- ESTO ES UNA NEGRADA, MODIFICAR LUEGO -->
+                                        <!-- PERMISOS PARA VENDEDOR -->
+                        <?php
+                        if ($_SESSION['user']['acceso'] == 3) { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Menu Vendedor
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="user.php">Alta/edicion de usuario</a>
+                                    <a class="dropdown-item" href="assign.php">Asignacion de curso</a>
+                                    <div class="dropdown-divider"></div>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pwd.php">Cambiar contraseña</a>
+                                    </li>
+                                </div>
+                            </li><?php } ?>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 mr-2">
                         <a href="report.php" class="btn btn-sm btn-warning" type="button">Reportar un problema</a>

@@ -1,14 +1,17 @@
 Post-entrega:
 certificate.php crea el certificado con el nombre.
+Agregar boton de actualizacion de pago.
 agregar funcion para poder cambiar foto de curso *** (sacar de profile)
 agregar buscador en alta por cada campo
 corregir que, al descrgar material, deja una copia en el server
 checkear que cuando se crean los botones de modulo, si la foto aparece antes alfabeticamente la toma como boton.
+acomodar los menus en base a los permisos (admin es 2, deberia ser 0)
 
 Seguridad:
 revisar inyecciones
 validar quien accede (nivel en session_start)
 checkear el timeout de deslog
+checkear donde se haga una modificacion a "acceso" (a veces se borra el privilegio de user)
 
 Fede:
 chequear categorias para los cursos

@@ -67,15 +67,21 @@ if ($_SESSION['mensaje'] != "") {
             <label for="validationDefault04">Telefono</label>
             <input type="number" name="tel" class="form-control" id="tel" placeholder="Telefono movil o fijo">
           </div>
+        
           <div class="col-md-3 mb-3">
             <label for="validationDefault04">Tipo de usuario</label>
             <select name="userAccess" class="form-control" id="user_type" required>
-              <option hidden disabled selected value="">-- Seleccione --</option>
+              <option hidden disabled selected value="0">-- Seleccione --</option>
               <option value="0">Alumno</option>
+          <?php
+          if ($_SESSION['user']['acceso'] < 3) { ?>
               <option value="1">Profesor</option>
+              <option value="3">Vendedor</option>
               <option value="2">Administrador</option>
+          <?php } ?>          
             </select>
           </div>
+
         </div>
         <button class="btn btn-primary" id="btn_alta" name="newUser" type="submit">Dar de alta usuario</button>
       </form>
