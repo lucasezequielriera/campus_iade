@@ -1,25 +1,8 @@
 <?php
 error_reporting(0);
-
-// #########################################
-// In this page you will find the code required to create multiple choice exams
-// Copy this code and save it to a file name "whatever.php"
-// The file name must finish with ".php"
-// Save the file to a PHP unable server.
-// Please consider adding a link to this service:
-//      http://www.phptutorial.info/scripts/multiple_choice/
-//
-// A website was created based in this script at which allows
-//   to create and maintain the test online at:
-//      http://www.testak.org
-//
-// #########################################
-//      CONFIGURATION
 $title = "Programacion";
 $address = "index.php";
-$randomizequestions ="yes"; // set up as "no" to show questions without randomization
-//    END CONFIGURATION
-// #########################################
+$randomizequestions ="yes";
 
 $a = array(
 1 => array(
@@ -47,9 +30,7 @@ $a = array(
    6 => 1
 ),
 );
-
 $max=3;
-
 $question=$_POST["question"] ;
 
 if ($_POST["Randon"]==0){
@@ -62,7 +43,7 @@ if ($_POST["Randon"]==0){
                 $randval2=$randval2-$max;
                 }
         }
-        
+
 $ok=$_POST["ok"] ;
 
 if ($question==0){
@@ -77,7 +58,6 @@ if ($question==0){
 <HTML><HEAD><TITLE>Multiple Choice Questions:  <?php print $title; ?></TITLE>
 
 <SCRIPT LANGUAGE='JavaScript'>
-<!-- 
 function Goahead (number){
         if (document.percentaje.response.value==0){
                 if (number==<?php print $a[$randval2][6] ; ?>){
@@ -95,7 +75,6 @@ function Goahead (number){
                 document.question.response.value="Incorrect"
         }
 }
-// -->
 </SCRIPT>
 
 </HEAD>
