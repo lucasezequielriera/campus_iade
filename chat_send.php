@@ -1,6 +1,8 @@
 <?php 
 require "./globals/database.php";
 $db = Database::getInstance();
+if ($_SESSION['user']['acceso'] == 1) exit;
+
 
 $message = isset($_POST['message']) ? $db->escape($_POST['message']) : null;
 $from = isset($_POST['from']) ? $db->escape($_POST['from']) : null;  //from seria id_persona

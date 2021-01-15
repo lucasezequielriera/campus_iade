@@ -9,6 +9,7 @@ if (!isset($_SESSION['logged'])) {
 }
 
 $access = $_SESSION['user']['acceso'];
+$userId = $_SESSION['user']['id'];
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@ $access = $_SESSION['user']['acceso'];
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <?php
                                     $db->query("SELECT * FROM curso LEFT JOIN curso_p ON
-                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = '$acceso'");
+                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = '$userId'");
                                     $resp = $db->fetchAll(); //CADA CURSO SE CREA CON VALUE = id_curso 
                                     foreach ($resp as $temp) { ?>
                                         <form action="curso.php" method="POST">

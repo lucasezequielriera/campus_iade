@@ -1,4 +1,5 @@
 <?php require "./templates/header.php";
+if ($_SESSION['user']['acceso'] > 1) exit;
 
 $db->query("SELECT p.nombre, p.apellido, p.dni, c.id FROM personas p
             LEFT JOIN curso_p c

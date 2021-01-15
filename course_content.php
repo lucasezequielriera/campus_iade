@@ -1,5 +1,6 @@
 <?php
 include "./templates/header.php";
+if ($_SESSION['user']['acceso'] !== 0) exit;
 ?>
 <div class="card-body">
     <div class="panel panel-primary">

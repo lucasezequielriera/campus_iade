@@ -1,5 +1,6 @@
 <?php 
 require "./templates/header.php";
+if ($_SESSION['user']['acceso'] !== 0) exit;
 ?>
 
 <div class="container my-3"> 

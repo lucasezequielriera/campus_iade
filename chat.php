@@ -1,6 +1,7 @@
 <?php 
 require "./globals/database.php";
 $db = Database::getInstance();
+if ($_SESSION['user']['acceso'] == 1) exit;
 
 //Imprimir mensajes
 $course = isset($_GET['course']) ? $db->escape(intval($_GET['course'])) : 0 ;

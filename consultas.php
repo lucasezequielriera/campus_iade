@@ -1,5 +1,6 @@
 <?php require "./templates/header.php"; 
 $userId = $_SESSION['user']['id'];
+if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
 ?>
 
 <head>

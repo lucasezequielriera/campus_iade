@@ -1,5 +1,7 @@
 <?php
 require "./templates/header.php";
+if ($_SESSION['user']['acceso'] !== 0) exit;
+
 if (isset($_POST['form-videos'])) {
   file_put_contents($_POST['direccion'], $_POST['form-videos']);
 }
