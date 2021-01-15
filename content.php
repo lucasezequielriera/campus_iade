@@ -19,7 +19,7 @@ require "./templates/header.php";
     </div>       <!--Primer row -->     
     </form>
         <?php if (isset($_POST['course'])) {
-        $cursoId = $_POST['course'];
+        $cursoId = $db->escape($_POST['course']);
         $db->query("SELECT * 
                     FROM curso 
                     WHERE id_curso = $cursoId 

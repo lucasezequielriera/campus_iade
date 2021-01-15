@@ -2,9 +2,9 @@
 require "./templates/header.php";
 
 if (isset($_POST['courseAssign'])) {
-  $nombre = $_POST['id_persona']; //id_persona
-  $course = $_POST['course']; //id curso
-  $pago1 = (isset($_POST['pago']) ? $_POST['pago'] : 0);
+  $nombre = $db->escape($_POST['id_persona']); //id_persona
+  $course = $db->escape($_POST['course']); //id curso
+  $pago1 = (isset($_POST['pago']) ? $db->escape($_POST['pago']) : 0);
   $cond = 6;
   $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) 
                   VALUES ('$course','$nombre', '$cond', '$pago1');");
@@ -61,6 +61,6 @@ if ($_SESSION['mensaje'] != "") {
     </div>
     </form>
 
-    <?php
-    require "./templates/footer.php";
-    ?>
+<?php
+require "./templates/footer.php";
+?>

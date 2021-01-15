@@ -10,9 +10,7 @@
     if (count($_POST) > 0) {
         $db = Database::getInstance();
         $dni = $db->escape($_POST['dni']);
-        $dni = $db->escapeWildcards($_POST['dni']);
         $pwd = $db->escape($_POST['password']);
-        $pwd = $db->escapeWildcards($_POST['password']);
         $pwd = sha1($pwd);
      
         $db->query("SELECT * 

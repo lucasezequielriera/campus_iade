@@ -1,6 +1,6 @@
 <?php
 require "./templates/header.php";
-$persona_id = $_SESSION['user']['id'];
+$persona_id = $db->escape($_SESSION['user']['id']);
 
 if (isset($_POST['set'])) {
   $file = $_FILES['file'];
@@ -20,9 +20,10 @@ if (isset($_POST['set'])) {
           if ($fileSize < 500000) {
               $fileNameNew =  $persona_id . "." .$fileActualExt;
               $fileDestination = './img/' . $fileNameNew;
+              $fileDestination = $db->escape($fileDestination);
               if (move_uploaded_file($fileTmpName, $fileDestination)) {
                 $db->query("UPDATE `personas` SET `foto`= '$fileDestination' WHERE id = '$persona_id'");
-                $_SESSION['mensaje'] = "Se ha cargado con exito la imagen!";
+                $_SESSION['mensaje'] = "Se ha cargado con exito la imagen!";  
                 $_SESSION['msg_status'] = 1;
               }
               

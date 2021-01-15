@@ -1,4 +1,6 @@
-<?php require "./templates/header.php"; ?>
+<?php require "./templates/header.php"; 
+$userId = $_SESSION['user']['id'];
+?>
 
 <head>
     <style>
@@ -69,11 +71,11 @@
         <div class="col-3">
             <div class="list-group">
                 <!-- CURSOS PARA ALUMNO -->
-                <?php if ($_SESSION['user']['acceso'] == 0) {
+                <?php if ($_SESSION['user']['acceso'] == 3) {
                 $db->query("SELECT * 
                         FROM curso 
                         LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                        WHERE curso_p.id_persona = " . $_SESSION['user']['id']);
+                        WHERE curso_p.id_persona = '$userId'");
                 $resp = $db->fetchAll();
 
                 foreach ($resp as $temp) { ?>
@@ -83,16 +85,15 @@
                 <?php }} ?>
                 <!-- Cierre del foreach -->
                 <!-- CURSOS PARA PROFESOR -->
-                <?php if ($_SESSION['user']['acceso'] == 1) {
-                    $temp_id_user = $_SESSION['user']['id'];
+                <?php if ($_SESSION['user']['acceso'] == 2) {
                 $db->query("SELECT chat.id_chat, chat.id_curso FROM chat 
                             LEFT JOIN curso_p ON chat.id_curso = curso_p.id_curso 
-                            WHERE curso_p.id_persona = '$temp_id_user' 
+                            WHERE curso_p.id_persona = '$userId' 
                             GROUP BY id_chat, chat.id_curso");
                 $resp = $db->fetchAll();  //todos los os cursos donde pertenezca el profesor    
 
                 foreach ($resp as $temp) { 
-                    $vara = $temp['id_curso'];
+                    $vara = $db->escape($temp['id_curso']);
                 $db->query("SELECT nombre
                             FROM curso 
                             WHERE curso.id_curso = '$vara' LIMIT 1");

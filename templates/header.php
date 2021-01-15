@@ -7,6 +7,8 @@ if (!isset($_SESSION['logged'])) {
     header("Location: login.php");
     exit;
 }
+
+$access = $_SESSION['user']['acceso'];
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,7 @@ if (!isset($_SESSION['logged'])) {
                             <li class="divider"></li>
                         </ul>
 
-                        <?php if ($_SESSION['user']['acceso'] <= 1) { ?>
+                        <?php if ($_SESSION['user']['acceso'] > 1) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Mis cursos
@@ -63,8 +65,7 @@ if (!isset($_SESSION['logged'])) {
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <?php
                                     $db->query("SELECT * FROM curso LEFT JOIN curso_p ON
-                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = " .
-                                        $_SESSION['user']['id']);
+                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = '$acceso'");
                                     $resp = $db->fetchAll(); //CADA CURSO SE CREA CON VALUE = id_curso 
                                     foreach ($resp as $temp) { ?>
                                         <form action="curso.php" method="POST">
@@ -106,7 +107,7 @@ if (!isset($_SESSION['logged'])) {
                                 <a class="nav-link" href="allcourses.php">Todos los cursos</a>
                             </li>
                         <?php }
-                        if ($_SESSION['user']['acceso'] == 2) { ?>
+                        if ($_SESSION['user']['acceso'] == 0) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu administrador
@@ -130,7 +131,7 @@ if (!isset($_SESSION['logged'])) {
                             <!-- ESTO ES UNA NEGRADA, MODIFICAR LUEGO -->
                                         <!-- PERMISOS PARA VENDEDOR -->
                         <?php
-                        if ($_SESSION['user']['acceso'] == 3) { ?>
+                        if ($_SESSION['user']['acceso'] == 1) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu Vendedor

@@ -1,7 +1,7 @@
 <?php
 require "./templates/header.php";
 
-$cursoId = $_POST['curso'];
+$cursoId = $db->escape($_POST['curso']);
 $db->query("SELECT * 
                 FROM curso 
                 WHERE id_curso = $cursoId 
@@ -32,7 +32,7 @@ $_SESSION['courseId'] = $cursoId;
             </thead>
             <tbody>
               <?php
-              $userId = $_SESSION['user']['id'];
+              $userId = $db->escape($_SESSION['user']['id']);
               $db->query("SELECT nivel, pago, nota
                                   FROM curso_p 
                                   LEFT JOIN personas ON curso_p.id_persona = $userId

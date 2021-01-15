@@ -2,18 +2,18 @@
 require "./templates/header.php";
 
 if (isset($_POST['password_change'])) {
-  $user_id = $_SESSION['user']['id']; 
-  $pwd_1 = $_POST['pwd_1'];
-  $pwd_2 = $_POST['pwd_2'];
+  $user_id = $db->escape($_SESSION['user']['id']); 
+  $pwd_1 = $db->escape($_POST['pwd_1']);
+  $pwd_2 = $db->escape($_POST['pwd_2']);
   $db->query("SELECT `password` FROM personas WHERE id = '$user_id' LIMIT 1");
   $pwd_db = $db->fetch();
 
-  if ($_SESSION['user']['acceso'] == 2) {
-      $pwd_actual = $pwd_db['password'];
-      $temp_dni = $_POST['dni'];
+  if ($_SESSION['user']['acceso'] == 0) {
+      $pwd_actual = $db->escape($pwd_db['password']);
+      $temp_dni = $db->escape($_POST['dni']);
       $db->query("SELECT `id` FROM personas WHERE dni = '$temp_dni' LIMIT 1");
       $temp_dni = $db->fetch();
-      $user_id = $temp_dni['id'];
+      $user_id = $db->escape($temp_dni['id']);
   }else {
       $pwd_actual = sha1($_POST['pwd_actual']);
   }
@@ -50,7 +50,7 @@ if ($_SESSION['mensaje'] != "") {
 
     <div class="container mt-5">
       <form action="" method="post" enctype="multipart/form-data">
-        <?php if ($_SESSION['user']['acceso'] == 2) { ?>
+        <?php if ($_SESSION['user']['acceso'] == 0) { ?>
           <div class="form-row">
             <div class="col-6">
               <div class="input-group">
@@ -64,7 +64,7 @@ if ($_SESSION['mensaje'] != "") {
         <?php } ?>
 
         <div class="form-row mt-3">
-          <?php if ($_SESSION['user']['acceso'] != 2) { ?>
+          <?php if ($_SESSION['user']['acceso'] != 0) { ?>
             <div class="col">
             <label for="validationDefault01">
               <h5>Contraseña actual</h5>

@@ -2,13 +2,13 @@
 require "./templates/header.php";
 
 if (isset($_POST['newUser'])) {
-  $nombre1 = $_POST['nombre'];
-  $apellido1 = $_POST['apellido'];
-  $dni1 = $_POST['dni'];
+  $nombre1 = $db->escape($_POST['nombre']);
+  $apellido1 = $db->escape($_POST['apellido']);
+  $dni1 = $db->escape($_POST['dni']);
   $pwd1 = sha1($dni1);
-  $acceso = $_POST['userAccess'];
-  $telefono1 = $_POST['tel'];
-  $email1 = $_POST['mail'];
+  $acceso = $db->escape($_POST['userAccess']);
+  $telefono1 = $db->escape($_POST['tel']);
+  $email1 = $db->escape($_POST['mail']);
   $ok = 0;
 
   $db->query("SELECT * FROM personas WHERE dni = '$dni1' LIMIT 1");
@@ -72,12 +72,12 @@ if ($_SESSION['mensaje'] != "") {
             <label for="validationDefault04">Tipo de usuario</label>
             <select name="userAccess" class="form-control" id="user_type" required>
               <option hidden disabled selected value="0">-- Seleccione --</option>
-              <option value="0">Alumno</option>
+              <option value="3">Alumno</option>
           <?php
-          if ($_SESSION['user']['acceso'] < 3) { ?>
-              <option value="1">Profesor</option>
-              <option value="3">Vendedor</option>
-              <option value="2">Administrador</option>
+          if ($_SESSION['user']['acceso'] == 0) { ?>
+              <option value="0">Administrador</option>
+              <option value="1">Vendedor</option>
+              <option value="2">Profesor</option>
           <?php } ?>          
             </select>
           </div>

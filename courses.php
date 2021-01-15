@@ -2,9 +2,9 @@
 require "./templates/header.php";
 
 if (isset($_POST['newCourse'])) {
-  $categoria = $_POST['categoria'];
-  $nombre = $_POST['nombre'];
-  $descripcion_curso = $_POST['descripcion_curso'];
+  $categoria = $db->escape($_POST['categoria']);
+  $nombre = $db->escape($_POST['nombre']);
+  $descripcion_curso = $db->escape($_POST['descripcion_curso']);
   $directoryName = './cursos/' . $nombre;
   $examDirectory = $directoryName . '/' . 'exams/';
   $target_dir = $directoryName . '/';
