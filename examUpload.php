@@ -2,7 +2,7 @@
 require "./templates/header.php";
 $db->query("SELECT * FROM curso");
 $resp = $db->fetchAll();
-if ($_SESSION['user']['acceso'] !== 0) exit;
+if ($_SESSION['user']['acceso'] != 0) exit;
 
 if (isset($_POST['loadFile'])) {
     $courseName = $_POST['course-name'];

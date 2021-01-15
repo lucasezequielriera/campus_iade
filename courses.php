@@ -1,6 +1,6 @@
 <?php
 require "./templates/header.php";
-if ($_SESSION['user']['acceso'] !== 0) exit;
+if ($_SESSION['user']['acceso'] != 0) exit;
 
 if (isset($_POST['newCourse'])) {
   $categoria = $db->escape($_POST['categoria']);
