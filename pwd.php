@@ -48,54 +48,66 @@ if ($_SESSION['mensaje'] != "") {
       </div>
     <?php } $_SESSION['mensaje'] = ""; ?>
 
-    <div class="container mt-5">
-      <form action="" method="post" enctype="multipart/form-data">
-        <?php if ($_SESSION['user']['acceso'] == 0) { ?>
-          <div class="form-row">
-            <div class="col-6">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend2">#</span>
+    <div class="container mt-5 pwd text-center">
+      <div class="row">
+        <div class="col-6 a">
+          <form action="" method="post" enctype="multipart/form-data">
+            <?php if ($_SESSION['user']['acceso'] == 0) { ?>
+              <div class="form-row">
+                <div class="col-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend2">#</span>
+                    </div>
+                    <input type="number" class="form-control" name="dni" id="dni_user" placeholder="Ingrese documento" aria-describedby="inputGroupPrepend2" required>
+                  </div>
                 </div>
-                <input type="number" class="form-control" name="dni" id="dni_user" placeholder="Ingrese documento" aria-describedby="inputGroupPrepend2" required>
+              </div>
+            <?php } ?>
+
+            <div class="form-row mt-3">
+              <?php if ($_SESSION['user']['acceso'] != 0) { ?>
+                <div class="col">
+                <label for="validationDefault01">
+                  <h5>Contraseña actual:</h5>
+                </label>
+                <input type="password" class="form-control" id="pwd_actual" name="pwd_actual" required>
+              </div>
+              <?php } ?>
+            </div>
+            <div class="form-row mt-3">
+              <div class="col">
+                <label for="validationDefault01">
+                  <h5>Nueva contraseña:</h5>
+                </label>
+                <input type="password" class="form-control" id="pwd_1" name="pwd_1" required>
               </div>
             </div>
-          </div>
-        <?php } ?>
-
-        <div class="form-row mt-3">
-          <?php if ($_SESSION['user']['acceso'] != 0) { ?>
-            <div class="col">
-            <label for="validationDefault01">
-              <h5>Contraseña actual</h5>
-            </label>
-            <input type="password" class="form-control" id="pwd_actual" name="pwd_actual" required>
-          </div>
-          <?php } ?>
-        </div>
-        <div class="form-row mt-3">
-          <div class="col">
-            <label for="validationDefault01">
-              <h5>Nueva contraseña</h5>
-            </label>
-            <input type="password" class="form-control" id="pwd_1" name="pwd_1" required>
-          </div>
-        </div>
-        <div class="form-row mt-3">
-          <div class="col">
-            <label for="validationDefault01">
-              <h5>Repita nueva contraseña</h5>
-            </label>
-            <input type="password" class="form-control" id="pwd_2" name="pwd_2" required>
-          </div>
-        </div>
-        <div class="form-row mt-3">
-          <div class="col">
-            <div class="text-center">
-              <button class="btn btn-primary mt-3" name="password_change" type="submit">Cambiar contraseña</button>
+            <div class="form-row mt-3">
+              <div class="col">
+                <label for="validationDefault01">
+                  <h5>Repita nueva contraseña:</h5>
+                </label>
+                <input type="password" class="form-control" id="pwd_2" name="pwd_2" required>
+              </div>
             </div>
+            <div class="form-row mt-3">
+              <div class="col">
+                <div class="text-center">
+                  <button class="btn btn-success mt-3 float-center" name="password_change" type="submit">Cambiar contraseña</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-6 containerdeiade">
+          <div class="imageniade">
+            <img src="./img/logo-iade.png">
           </div>
         </div>
-      </form>
+      </div>
     </div>
-<?php require "./templates/footer.php"; ?>
+
+<div class="footercontentpwd">
+  <?php require "./templates/footer.php"; ?>
+</div>

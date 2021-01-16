@@ -79,7 +79,7 @@ if ($_SESSION['mensaje'] != "") {
               <option value="0">Administrador</option>
               <option value="1">Vendedor</option>
               <option value="2">Profesor</option>
-          <?php } ?>          
+          <?php } ?>              
             </select>
           </div>
 

@@ -30,45 +30,41 @@ if (isset($_POST['btnSend'])) {
 ?>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form class="form-horizontal" action="" method="post">
+      <div class="col-md-12">
+        <div class="well">
+          <form class="form" action="" method="post">
             <fieldset>
-              <legend class="text-center">Reporte de problemas / Consultas</legend>
-
+              <legend class="text-center">Reporte de Problemas / Consultas</legend>
               <!-- Name input-->
               <div class="form-group">
                 <label class="col-md-6 control-label" for="name">Categoria:</label>
-                <div class="col-md-9">
+                <div class="col-md-12">
                   <select name="category" required>
-                    <option value="" selected disabled>-- Seleccione una opcion --</option>
-                    <option value="">¿Como compro un curso nuevo?</option>
-                    <option value="">No puedo rendir tal examen</option>
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="">¿Cómo compro un curso nuevo?</option>
+                    <option value="">No puedo rendir un examen</option>
                     <option value="">Otro</option>
                   </select>
                 </div>
               </div>
-
               <!-- Email input-->
               <div class="form-group">
                 <label class="col-md-3 control-label" for="email">Mail de contacto:</label>
-                <div class="col-md-9">
-                  <input name="contact" required type="mail" placeholder="Correo o telefono" class="form-control">
+                <div class="col-md-12">
+                  <input name="contact" required type="mail" placeholder="Escriba su email" class="form-control">
                 </div>
               </div>
-
               <!-- Message body -->
               <div class="form-group">
                 <label class="col-md-3 control-label" for="message">Detalle del problema:</label>
-                <div class="col-md-9">
-                  <textarea class="form-control" required id="message" name="message" placeholder="Describa aqui su problema" rows="5"></textarea>
+                <div class="col-md-12">
+                  <textarea class="form-control" required id="message" name="message" placeholder="Describa aquí su problema" rows="5"></textarea>
                 </div>
               </div>
-
               <!-- Form actions -->
               <div class="form-group">
-                <div class="col-md-12 text-right">
-                  <button type="submit" name="btnSend" class="btn btn-primary">Enviar!</button>
+                <div class="col-md-12 text-left">
+                  <button type="submit" name="btnSend" class="btn btn-success">Enviar Mensaje</button>
                 </div>
               </div>
             </fieldset>
@@ -78,7 +74,9 @@ if (isset($_POST['btnSend'])) {
     </div>
   </div>
 
+  <div class="footercontentreport">
 <?php
 }  //Cierre del else
 include './templates/footer.php';
 ?>
+  </div>

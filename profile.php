@@ -53,60 +53,55 @@ if ($_SESSION['mensaje'] != "") {
   $_SESSION['mensaje'] = ""; ?>
 
     <div class="container mt-4">
-      <form action="" id="form_photo" method="POST" enctype="multipart/form-data">
-        <div class="row">
-          <div class="image-upload">
-            <label for="file-input">
-              <img src="<?= $datos_usuario['foto']; ?>" alt="profile-photo" id="profile-photo" style="max-height: 200px; border: 3px solid black;" />
-            </label>
-            <input type="hidden" value="1" name="set">
-            <input id="file-input" required type="file" name="file" accept="image/png, image/jpeg, image/jpg" style="display: none;" />
+      <div class="profileform">
+        <form  class="text-center" action="" id="form_photo" method="POST" enctype="multipart/form-data">
+          <div class="row" >
+            <div class="col-12">
+              <div class="image-upload">
+                <label for="file-input">
+                  <img src="<?= $datos_usuario['foto']; ?>" alt="profile-photo" id="profile-photo" style="max-height: 170px; min-height:100px; border: 3px solid black;" /><br>
+                  <font size="2" color="grey" >Clickeá en la foto para cambiar tu foto de perfil</font>
+                </label>
+                <input type="hidden" value="1" name="set">
+                <input id="file-input" required type="file" name="file" accept="image/png, image/jpeg, image/jpg" style="display: none;" />
+              </div>
+            </div>
+          </div>
+        </form>
+        <form action="" method="post" class="formulario text-center">
+          <div class="row mt-4">
+            <div hidden class=" col-12 mb-3">
+              <label for="">Documento</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">#</span>
+                </div>
+                <input type="number" disabled class="form-control" name="dni" id="dni_user" value="<?= $datos_usuario['dni']; ?>" aria-describedby="inputGroupPrepend2" required>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault01">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombre" value="<?= $datos_usuario['nombre']; ?>" name="nombre" required>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault02">Apellido Completo</label>
+              <input type="text" name="apellido" class="form-control" id="apellido" value="<?= $datos_usuario['apellido']; ?>" required>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault03">Email de Contacto</label>
+              <input type="email" name="mail" class="form-control" id="email" value="<?= $datos_usuario['email']; ?>" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationDefault04">Teléfono o Celular</label>
+              <input type="number" name="tel" class="form-control" id="tel" value="<?= $datos_usuario['telefono']; ?>" placeholder="Telefono movil o fijo">
+            </div>
+            <div class="botonesformulario">
+              <button class="btn btn-success" onclick='update();' type="submit">Guardar cambios</button>
+              <a href="index.php" class='btn btn-danger ml-3'>Cancelar</a>
+            </div>
           </div>
         </form>
       </div>
-      <form action="" method="post">
-        <div hidden class="row mt-4"">
-      <div class=" col-md-4 mb-3">
-          <label for="">Documento</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">#</span>
-            </div>
-            <input type="number" disabled class="form-control" name="dni" id="dni_user" value="<?= $datos_usuario['dni']; ?>" aria-describedby="inputGroupPrepend2" required>
-          </div>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col-md-4 mb-3">
-        <label for="validationDefault01">Nombre</label>
-        <input type="text" class="form-control" id="nombre" value="<?= $datos_usuario['nombre']; ?>" name="nombre" required>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <label for="validationDefault02">Apellido</label>
-        <input type="text" name="apellido" class="form-control" id="apellido" value="<?= $datos_usuario['apellido']; ?>" required>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="validationDefault03">Email</label>
-        <input type="email" name="mail" class="form-control" id="email" value="<?= $datos_usuario['email']; ?>" placeholder="correo@ejemplo.com">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <label for="validationDefault04">Telefono</label>
-        <input type="number" name="tel" class="form-control" id="tel" value="<?= $datos_usuario['telefono']; ?>" placeholder="Telefono movil o fijo">
-      </div>
-    </div>
-    <button class="btn btn-success" onclick='update();' type="submit">Guardar cambios</button>
-    <a href="index.php" class='btn btn-danger ml-3'>Cancelar</a>
-    </form>
     </div>
 
     <script>

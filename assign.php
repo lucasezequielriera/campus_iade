@@ -1,6 +1,5 @@
 <?php
 require "./templates/header.php";
-if ($_SESSION['user']['acceso'] == 2 || $_SESSION['user']['acceso'] == 3 ) exit;
 
 if (isset($_POST['courseAssign'])) {
   $nombre = $db->escape($_POST['id_persona']); //id_persona
@@ -62,6 +61,6 @@ if ($_SESSION['mensaje'] != "") {
     </div>
     </form>
 
-<?php
-require "./templates/footer.php";
-?>
+    <?php
+    require "./templates/footer.php";
+    ?>

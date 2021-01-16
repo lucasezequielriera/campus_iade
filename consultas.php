@@ -3,71 +3,7 @@ $userId = $_SESSION['user']['id'];
 if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
 ?>
 
-<head>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-                "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-        }
-
-        #messages {
-            display: flex;
-            flex-direction: column;
-            height: 87vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-            align-items: flex-start;
-            padding: 10px;
-            background: url("img/fondo.jpg") no-repeat;
-            background-size: cover;
-            background-clip: border-box;
-        }
-
-        form {
-            display: flex;
-        }
-
-        input {
-            font-size: 1.2rem;
-            padding: 10px;
-            margin: 10px 5px;
-            appearance: none;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        #message {
-            flex: 2;
-        }
-
-        .self {
-            background-color: #dcf8c6!important;
-            align-self: flex-end;
-        }
-
-        .msg {
-            background-color: #eeddf6;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-bottom: 8px;
-            width: fit-content;
-            height: fit-content;
-        }
-
-        .msg p {
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .msg span {
-            font-size: 0.7rem;
-            margin-left: 15px;
-        }
-    </style>
-</head>
-<div class="container-fluid">
+<div class="container-fluid chat">
     <div class="row">
         <div class="col-3">
             <div class="list-group">
@@ -76,7 +12,7 @@ if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
                 $db->query("SELECT * 
                         FROM curso 
                         LEFT JOIN curso_p ON curso.id_curso = curso_p.id_curso
-                        WHERE curso_p.id_persona = '$userId'");
+                        WHERE curso_p.id_persona = $userId");
                 $resp = $db->fetchAll();
 
                 foreach ($resp as $temp) { ?>
@@ -94,7 +30,7 @@ if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
                 $resp = $db->fetchAll();  //todos los os cursos donde pertenezca el profesor    
 
                 foreach ($resp as $temp) { 
-                    $vara = $db->escape($temp['id_curso']);
+                    $vara = $temp['id_curso'];
                 $db->query("SELECT nombre
                             FROM curso 
                             WHERE curso.id_curso = '$vara' LIMIT 1");
@@ -119,11 +55,11 @@ if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
                 <!-- Cierre del foreach -->
             </div>
         </div>
-        <div class="col-9 p-0">
+        <div class="col-9 p-0 messagepart">
             <div id="messages"></div>
-            <div class="row">
-                <input type="text" id="message" autocomplete="off" autofocus placeholder="Escriba su mensaje" />
-                <input id="btnSendMsg" type="button" value="Send" onclick="send(<?= $_SESSION['user']['acceso']?>)" />
+            <div class="row" style="margin:0px 5px 0px 0px;">
+                <input style="margin-left:2px; border: 1px solid white;" ype="text" id="message" autocomplete="off" autofocus placeholder="Escriba su mensaje" />
+                <input class="buttonsend" style="width:120px; background-color:#2D7DF6; border: 1px solid #0166FF; font-weight: 200; color: white;" id="btnSendMsg" type="button" value="Enviar" onclick="send(<?= $_SESSION['user']['acceso']?>)" />
             </div>
         </div>
     </div>
@@ -191,3 +127,5 @@ if ($_SESSION['user']['acceso'] == 0 || $_SESSION['user']['acceso'] == 1 ) exit;
         }
     });
 </script>
+<script>
+    </script>

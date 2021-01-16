@@ -2,28 +2,31 @@
 include './templates/header.php'
 ?>
 
-<div class="container">
-    <h2 class="mt-2">Preguntas Frecuentes </h2>
-    <h3 id="1">• ¿Cómo estudio?</h3>
+<div class="container faq">
+    <h2 class="mt-2">Preguntas Frecuentes</h2>
+    <h3 id="1">¿Cómo estudio?</h3>
     <p>
         El material de estudio esta ordenado para que avance desde el primer manual y video hasta el ultimo. Ingresa en <strong>CURSOS</strong> y selecciona el curso que desees estudiar; entra en el modulo correspondiente y mira la clase audiovisual, lee el manual. Si surgen dudas contas con la <strong>asistencia de un profesor</strong> en <strong>CONSULTAS</strong>
     </p>
-    <h3 id="2">• ¿Cómo es el examen?</h3>
+    <hr>
+    <h3 id="2">¿Cómo es el examen?</h3>
     <p>
         El examen es un <strong>multiple-choice</strong> (se te hace una pregunta y se te da una serie de opciones en las cuales tiene que seleccionar la respuesta correcta) , lo podrás hacer la cantidad de veces que sea necesario hasta su aprobación. Con un 70% de las respuestas correctas podrás aprobarlo, <strong>al aprobar se te dispone automáticamente el certificado para que puedas descargarlo.</strong>
     </p>
-    <h3 id="3">•¿Cuáles son los certificados? ¿Cómo los tramito?</h3>
+    <hr>
+    <h3 id="3">¿Cuáles son los certificados? ¿Cómo los tramito?</h3>
     <p>
         Además de nuestro Certificado Gratuito de Escuelas IADE que se genera por haber terminado el curso, brindamos dos tipos de certificados profesionales (los cuales se tramitan unavez obtenido el Certificado de Escuelas IADE) , el certificado de Standard Lift, con validez internacional en todo el Mercosur (para ejercer la profesión de forma legal); y el certificado de la Universidad Cristiana Redentora Internacional de Florida [IRCU] con validez en Estados Unidos y Europa (para ejercer la profesión de forma legal)
     </p>
     <br>
-    <img src="#" alt="ejemplo certificado">
+    <img src="./img/certificadoiade.png" alt="ejemplo certificado">
     <br>
     <br>
     <p>
-        Para tramitar los certificados profesionales debe dirigirse al botón de Certificados Profesionales que se genera una vez se le da el de Escuelas IADE
+        <strong><span>Para tramitar los certificados profesionales debe dirigirse al botón de "Certificados Profesionales" que se genera una vez se lo dá el de Escuelas IADE.</span></strong>
     </p>
-    <h3 id="4">• ¿Cuáles son las Matrículas? ¿Para qué curso son? ¿Cual curso es apto para cada una?</h3>
+    <hr>
+    <h3 id="4">¿Cuáles son las Matrículas? ¿Para qué curso son? ¿Cuál curso es apto para cada una?</h3>
     <p>
         Actualmente contamos con 2 tipos de matrícula, la <strong>Matrícula de StandarLift</strong>, es una matrícula privada en la cual estas en un padrón donde te podrán buscar para confirmar tu certificación dentro de Standard Lift
 
@@ -37,7 +40,7 @@ include './templates/header.php'
 
         <strong>ESTA MATRÍCULA ES APLICABLE A CUALQUIERA DE NUESTROS CURSOS</strong>
         <strong>
-            ESTA MATRÍCULA ES PROFESIONAL, NO REEMPLAZA A LA MATRÍCULA OFICIAL, POR EJEMPLO <span style="color: red;">EN INSTALACIONES SANITARIAS Y DE GAS, CONSTRUCCION, INSTALACIONES ELÉCTRICAS DOMICILIARIAS.</span> (En estos casos recomendamos ir con el Certificado Profesional de Standard Lift o de la Universidad Cristiana Redentora Internacional de Florida [IRCU] y preguntarle al ENTE REGULADOR de su zona (Ej: Edesur en Bs. As. , Argentina) si aceptan estos certificados para poder acceder al examen de la matrícula y tramitarla con ellos.
+            ESTA MATRÍCULA ES PROFESIONAL, NO REEMPLAZA A LA MATRÍCULA OFICIAL, POR EJEMPLO <span>EN INSTALACIONES SANITARIAS Y DE GAS, CONSTRUCCION, INSTALACIONES ELÉCTRICAS DOMICILIARIAS.</span> (En estos casos recomendamos ir con el Certificado Profesional de Standard Lift o de la Universidad Cristiana Redentora Internacional de Florida [IRCU] y preguntarle al ENTE REGULADOR de su zona (Ej: Edesur en Bs. As. , Argentina) si aceptan estos certificados para poder acceder al examen de la matrícula y tramitarla con ellos.
         </strong>
         <strong>
             <p>MATRÍCULA DE LA CÁMARA ARGENTINA DE REFRIGERACIÓN</p>
@@ -46,11 +49,17 @@ include './templates/header.php'
         Esta Matrícula sirve para poder reparar e instalar equipos de Aire Acondicionado con garantía sin quitarle la misma, reparar Heladeras con garantía y lo mas importante se puede ejercer la profesión <strong>EN BLANCO. SE TRAMITA DIRECTAMENTE CON LA CÁMARA ARGENTINA DE REFRIGERACIÓN (CONSÚLTELO A SU ASESOR UNA VEZ TENIENDO EL CERTIFICADO DE IADE)</strong>
 
     </p>
-    <h3 id="5">• ¿Olvidaste tu contraseña? ¿Quiere cambiarla?</h3>
+    <hr>
+    <h3 id="5">¿Olvidaste tu contraseña? ¿Quiere cambiarla?</h3>
     <p>
         Por defecto tu contraseña es tu numero de DNI/CÉDULA. Para cambiarla debe dirigirse a su perfil y allí podrá cambiarla.
     </p>
+    
 </div>
+
+<?php
+require "./templates/footer.php";
+?>
 
 
 <script>

@@ -9,7 +9,6 @@ $db->query("SELECT p.nombre, p.apellido, p.dni, c.id FROM personas p
 $nopagos = $db->fetchAll();
 ?>
 
-
 <div class="container">
   <!-- <label for="">Documento</label>
   <div class="input-group mb-2">

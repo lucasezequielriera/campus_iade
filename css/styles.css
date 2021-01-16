@@ -1,14 +1,835 @@
+/* GLOSARY:
+
+-----------------------------
+1)  Fonts Section (19)
+2)  HTML Section (23)
+3)  Header Section (33)
+4)  Footer Section (105)
+5)  Index Section (135)
+6)  Form (286)
+7)  My Courses ()
+7)  Chat (315)
+8)  Pwd (420)
+9)  Faq (465)
+10) All Courses (530)
+11) Other Pages Section (560)
+-----------------------------
+
+*/
+
+/*//////////// Fonts ///////////////////*/
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
+
+/*//////////// HTML Section ////////////*/
+
 html, body {
     height: 100vh;
+    background: white;
+    background: gainsboro;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
 }
+
+/*////////// Header Section ////////////*/
+
+nav {
+    background: rgba(2, 35, 134, 0.932);
+}
+
+nav p {
+    color: rgb(221, 188, 3);
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+button, a, .btn {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+@media (max-width:991px) {
+    nav li {
+        font-size: 20px !important;
+}
+}
+
+nav li .nav-link {
+    color: white !important;
+    font-size: 0.8em;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+nav li .nav-link:hover {
+    color: gold !important;
+    transition: 0.5s;
+}
+
+@media (max-width: 1198px) {
+    nav li .nav-link {
+        font-size: 0.7em;
+    }  
+}
+
+@media (max-width: 1138px) {
+    nav li .nav-link {
+        font-size: 0.6em;
+    }  
+}
+
+@media (max-width: 1079px) {
+    nav li .nav-link {
+        font-size: 0.5em;
+    }  
+}
+
+nav img {
+    width: 100px;
+    height: 40px !important;
+}
+
+.dropdown-menu {
+    background-color: rgba(255,255,255,0.9);
+}
+
+nav .dropdown .dropdown-menu a {
+    font-family: 'Ubuntu', sans-serif !important;
+    font-weight: 200;
+}
+
+@media (max-width:322px) {
+    .saludo .bienvenido {
+        padding-right: 0px !important;
+        font-size: 12px;
+    }
+    .navbar-toggler {
+        padding: 2px;
+        margin-right: 5px;
+    }
+}
+
+@media (max-width:302px) {
+    .navbar-toggler {
+        padding: 0px;
+        margin-right: 0px;
+    }
+    .navbar-toggler-icon {
+        background-size: 60%;
+    }
+}
+
+/*////////// End Header Section ///////////////////*/
+
+/*////////// Footer Section ////////////////////*/
 
 footer {
-    height: 4vh;
+    padding: 10px !important;
+    background-color: rgba(0,0,0,0.4) !important;
+    margin-top: 5px !important;
+    text-align: center;
 }
 
-.image-upload>input {
-    display: none;
+footer a {
+    color: white;
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
 }
+
+footer a:hover {
+    color: goldenrod;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.footercontentprofile {
+    margin-top: 19px;
+}
+
+.footercontentmycourses {
+    margin-top: 100px;
+}
+
+.footercontentpwd {
+    margin-top: 214px;
+}
+
+.footercontentallcourses {
+    margin-top: 120px;
+}
+
+.footercontentreport {
+    margin-top: 99px;
+}
+
+/*///////////// End Footer Section ////////////*/
+
+/*///////////// Index Section /////////////*/
+
+#swiper-banner {
+    width: 100%;
+    height: 250px;
+}
+
+#swiper-banner img {
+    width: 100%;
+    height: 250px;
+}
+
+.navbar-brand img {
+    height: 30px;
+}
+
+@media (max-width: 960px) {
+    .navbar-brand img {
+        height: 40px;
+    }
+}
+
+.contenedor {
+    width: 98%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: minmax(60px, auto) 1fr;
+    grid-gap: 5px;
+}
+
+.contenedor .titulo1 {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    text-align: left;
+    color: rgb(66, 66, 66);
+}
+
+.contenedor .titulo1 h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+}
+
+.contenedor .titulo1 h3::before {
+    content: 'Nuestro Cursos Disponibles:';
+}
+
+.contenedor .titulo2 {
+    grid-column: 3/5;
+    grid-row: 1/2;
+    text-align: left;
+    color: rgb(66, 66, 66); 
+}
+
+.contenedor .titulo2 h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+}
+
+.contenedor .titulo2 h3::before {
+    content: 'Mirá Nuestro Video:';
+}
+
+.contenedor .mainmenu {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
+    grid-template-rows: minmax(100px, auto) 1fr;
+    grid-gap: 10px;
+}
+
+.contenedor .mainmenu a {
+    color: black;
+    text-decoration: none;
+    background-color: rgb(255, 237, 72);
+    transition: all .5s ease;
+    margin: auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
+    margin-top: 0px;
+    border-radius: 10px;
+}
+
+.contenedor .mainmenu img {
+    border-top-left-radius:0px;
+    border-top-right-radius: 10px;
+}
+
+.contenedor .mainmenu a:hover {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.contenedor .videosection {
+    grid-column: 3/5;
+    grid-row: 2/3;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+    grid-auto-rows: 100px 400px;
+    text-align: center;
+}
+
+@media (max-width:1435px) {
+    .contenedor .videosection iframe{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width:1147px) {
+    .contenedor .videosection iframe{
+        width: 90%;
+        height: 90%;
+    }
+    .contenedor .mainmenu img {
+        width: 140px;
+    }
+    .contenedor .mainmenu {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 140px));
+        grid-template-rows: minmax(100px, auto) 1fr;
+        grid-gap: 10px;
+    }
+    .contenedor .mainmenu a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width:960px) {
+    .contenedor {
+        margin-top: 10px;
+    }
+    .contenedor .mainmenu {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 130px));
+    }
+    .contenedor .mainmenu a {
+        width: 100%;
+        
+    }
+    .contenedor .mainmenu img {
+        width: 100%;
+    }
+
+}
+
+@media (max-width:903px) {
+    .contenedor .videosection iframe{
+        width: 90%;
+        height: 70%;
+    }
+}
+
+@media (max-width:655px) {
+    .contenedor {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 1fr 50px 1fr;
+        grid-gap: 10px;
+    }
+    .contenedor .titulo1 {
+        text-align: center;
+    }
+    .contenedor .titulo1 h3 {
+        font-size: 25px;
+    }
+    .contenedor .titulo2 {
+        grid-column: 1/2;
+        grid-row: 3/4;
+        text-align: center;
+    }
+    .contenedor .videosection {
+        grid-column: 1/2;
+        grid-row: 4/5;
+        text-align: center;
+    }
+    .contenedor .videosection iframe {
+        width: 400px;
+        height: 300px;
+    }
+    .contenedor .mainmenu img {
+        width: 120px;
+    }
+    .contenedor .mainmenu {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
+        margin-bottom: 5px;
+        justify-content: center;
+    }
+    .contenedor .mainmenu a {
+        height: 100%;
+    }
+}
+
+@media (max-width:424px) {
+    .contenedor .videosection iframe {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+@media (max-width:317px) {
+    .contenedor .titulo1 h3 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width:301px) {
+    .contenedor .mainmenu {
+        align-content: center;
+        margin: auto;
+    }
+    .contenedor .mainmenu img {
+        width: 150px;
+    }
+    .contenedor .mainmenu {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+    }
+    .contenedor .videosection iframe {
+        width: 250px;
+        height: 150px;
+    }
+}
+
+/*///////////// End Index Section /////////////*/
+
+/*///////////// Form Section //////////////////////*/
+
+.profileform {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 30px !important;
+}
+
+.formulario label {
+    color: rgb(77, 77, 77);
+}
+
+.formulario input {
+    width: 40%;
+}
+
+.formulario .col-md-12 {
+    text-align: -webkit-center;
+}
+
+.formulario .col-md-12 label {
+    text-align: left !important;
+}
+
+.formulario .botonesformulario {
+    width: 100%;
+    margin-left: 15PX;
+    margin-right: 15PX;
+}
+
+.formulario .botonesformulario button {
+    width: 18%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.formulario .botonesformulario a {
+    width: 18%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+@media (max-width:991px) {
+    .formulario .botonesformulario button {
+        width: 155px;
+    }
+    .formulario .botonesformulario a {
+        width: 145px;
+    }
+}
+
+@media (max-width:560px) {
+    .formulario input {
+        width: 250px;
+    }
+}
+
+@media (max-width:408px) {
+    .formulario .botonesformulario a {
+        width: 155px;
+        margin-left: 19px !important;
+    }
+}
+
+/*///////////// End Form Section //////////////////////*/
+
+/*///////////// My Courses Section ////////////////////*/
+
+.mycourses .card .course h1 {
+    color: white;
+    margin: auto;
+    font-size: 50px;
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    text-align: center;
+}
+
+.mycourses .card .course img {
+    filter:brightness(0.4);
+  }
+
+.mycourses .col-md-12 {
+    padding-right: 150px;
+    padding-left: 150px;
+}
+
+.mycourses .card .card-body {
+    padding-left: 70px;
+    padding-right: 70px;
+    z-index: 999;
+}
+
+.mycourses .card .card-body h1 {
+    color: rgb(70, 70, 70);
+    font-size: 45px;
+}
+
+.mycourses .card .panel h3 {
+    color: rgb(70, 70, 70);
+    text-align: center;
+}
+
+.mycourses .card .panel .panel-body button {
+    width: 180px;
+}
+
+@media (max-width:746px) {
+    .mycourses .card .panel .panel-body button {
+        width: 120px;
+    }
+    .mycourses .col-md-12 {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+}
+
+@media (max-width:518px) {
+    .mycourses .card .panel .panel-body button {
+        width: 120px;
+    }
+    .mycourses .col-md-12 {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .mycourses .card .card-body {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width:350px) {
+    .mycourses .card .course h1 {
+        font-size: 30px;
+        top: 100px;
+    }
+}
+
+.mycourses .card .panel .panel-body .optionalbuttons button {
+    width: 100% !important;
+}
+
+/*///////////// End My Courses Section ////////////////*/
+
+/*///////////// Chat Section //////////////////////////*/
+
+.list-group button {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
+}
+
+@media (max-width:625px) {
+    .list-group button {
+        font-size: 12px;
+    }
+    .chat .col-3{
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+}
+@media (max-width:550px) {
+    .list-group button {
+        font-size: 10px;
+        padding: 10px 2px 10px 2px;
+    }
+}
+@media (max-width:400px) {
+    .list-group button {
+        font-size: 8px;
+        padding: 10px 2px 10px 2px;
+        font-weight: 400;
+    }
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    height: 81vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 10px;
+    background: url("../img/fondochat6.png") no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.chat form {
+    display: flex;
+}
+
+.chat input {
+    font-size: 1rem;
+    padding: 7px;
+    margin: 10px 10px;
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-transform: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
+    outline: none;
+}
+
+@media (max-width:426px) {
+    .messagepart .buttonsend{
+        width: 100% !important;
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+}
+
+#message {
+    flex: 2;
+}
+
+.self {
+    background-color: #90ff95!important;
+    align-self: flex-end;
+    border: 1px solid transparent;
+}
+
+.msg {
+    background-color: #eeddf6;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
+}
+
+.msg p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.msg span {
+    font-size: 0.6rem;
+    margin-left: 15px;
+}
+
+/*////////////////// End Chat Section //////////////////////*/
+
+/*////////////////// Pwd Section ///////////////////////////*/
+
+.pwd {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 10px 15px 25px 15px;
+}
+
+.pwd h5 {
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 200;
+}
+
+.pwd form {
+    text-align: -webkit-center;
+}
+
+.pwd input {
+    width: 50%;
+}
+
+.pwd img {
+    width: 350px;
+}
+
+@media (max-width:767px) {
+    .pwd .row{
+        text-align: center;
+        display: grid;
+        grid-row: 12;
+    }
+    .pwd .containerdeiade {
+        display: none;
+    }
+
+    .pwd .row .col-6 {
+        grid-column: 1;
+        grid-row: 1;
+        max-width: 100%;
+    }
+}
+
+/*////////////////// End Pwd Section //////////////////////*/
+
+/*////////////////// Faq Section //////////////////////////*/
+
+.faq {
+    background-color: rgba(0,0,0,0);
+    color: rgb(78, 78, 78);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.faq h2 {
+    padding-top: 10px;
+    margin-bottom: 40px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.faq h3 {
+    margin-bottom: 10px;
+}
+
+.faq img {
+    width: 500px;
+    float: left;
+    margin: 5px 10px 10px 0px;
+}
+
+@media (max-width:991px) {
+    .faq img {
+        float: none;
+        display: block;
+        margin: auto;
+    }
+}
+
+@media (max-width:538px) {
+    .faq img {
+        width: 250px;
+    }
+}
+
+@media (max-width:280px) {
+    .faq img {
+        width: 200px;
+    }
+}
+
+.faq p {
+    margin-bottom: 30px;
+}
+
+.faq span {
+    color: rgb(2, 175, 2);
+}
+
+.faq a {
+    color: rgb(209, 145, 8);
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.faq a:hover {
+    color: rgb(97, 97, 97);
+    transition: 0.5s;
+}
+
+/*////////////////// End Faq Section //////////////////////*/
+
+/*////////////////// All Courses Section //////////////////*/
+
+.allcourses{
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.allcourses .titulo {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 200;
+}
+
+
+.allcourses .card {
+    background-color: rgb(255, 255, 255);
+    color: rgb(70, 70, 70);
+    box-shadow: 15px 20px 20px rgba(0,0,0,0.2);
+}
+
+.allcourses .card img {
+    height: 200px;
+}
+
+.allcourses .card .card-body {
+    min-height: 170px;
+}
+.allcourses .card .card-body
+
+.allcourses a {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+@media (max-width:576px) {
+    .allcourses {
+        padding: 30px;
+        margin-top: 0px;
+    }
+    .allcourses .col-6 {
+        display: contents;
+    }
+}
+
+/*////////////////// End All Courses Section //////////////////////*/
+
+/*////////////////// Report Section //////////////////////*/
+
+.well {
+    margin-top: 20px;
+}
+
+.well legend {
+    color: rgb(59, 59, 59);
+    font-size: 30px;
+}
+
+.well select {
+    padding: 5px;
+}
+
+.well label {
+    color: rgb(70, 70, 70);
+    margin-top: 10px;
+}
+
+/*////////////////// End Report Section //////////////////*/
+
+/*///////////// Other Pages Section ///////////////////////////////*/
 
 .card-curso {
     height: 350px;
@@ -18,27 +839,4 @@ footer {
     height: 150px;
 }
 
-#swiper-banner {
-    width: 100%;
-    height: 300px;
-}
-
-#swiper-banner img {
-    width: 100%;
-    height: 200px;
-}
-
-.navbar-brand img {
-    height: 30px;
-}
-
-@media (min-width: 768px) {
-    #swiper-banner img {
-        width: 100%;
-        height: 300px;
-    }        
-
-    .navbar-brand img {
-        height: 40px;
-    }
-}
+/*///////////// End Other Pages Section ////////////////////////////*/

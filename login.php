@@ -37,19 +37,20 @@
     <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/signin.css">
-    <title>Campus IADE</title>
+    <title>Ingresá al Campus IADE</title>
+
   </head>
 
   <body action="" class="text-center">
     <form class="form-signin" method="POST">
-      <img class="mb-4" src="img//logo.png" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
+      <img class="mb-4" src="img//logo.png" alt="" width="155" height="72">
+      <h1 class="mb-3 font-weight-normal">Inicio de sesión</h1>
       <label for="inputEmail" class="sr-only">DNI</label>
-      <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="DNI" required autofocus>
+      <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="Usuario" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-      <p class="mt-5 mb-3 text-muted">&copy; Nicosrka</p>
+      <p class="mt-5 mb-3 text-muted">&copy; Virtual campus design by Agrowd</p>
     </form>
   </body>
 </html>

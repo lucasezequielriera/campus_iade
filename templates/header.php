@@ -7,9 +7,6 @@ if (!isset($_SESSION['logged'])) {
     header("Location: login.php");
     exit;
 }
-
-$access = $_SESSION['user']['acceso'];
-$userId = $_SESSION['user']['id'];
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +39,7 @@ $userId = $_SESSION['user']['id'];
 <body>
     <header>
         <div class="container-fluid m-0 px-0">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light px-2">
+            <nav class="navbar navbar-expand-lg navbar-light px-2">
                 <a class="navbar-brand" href="index.php"><img src="./img/logo.png" alt="logo"></a>
                 <p class="m-0">Bienvenido <?= $_SESSION['user']['nombre']; ?></p>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +55,7 @@ $userId = $_SESSION['user']['id'];
                             <li class="divider"></li>
                         </ul>
 
-                        <?php if ($_SESSION['user']['acceso'] > 1) { ?>
+                        <?php if ($_SESSION['user']['acceso'] <= 1) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Mis cursos
@@ -66,7 +63,8 @@ $userId = $_SESSION['user']['id'];
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <?php
                                     $db->query("SELECT * FROM curso LEFT JOIN curso_p ON
-                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = '$userId'");
+                            curso.id_curso = curso_p.id_curso WHERE curso_p.id_persona = " .
+                                        $_SESSION['user']['id']);
                                     $resp = $db->fetchAll(); //CADA CURSO SE CREA CON VALUE = id_curso 
                                     foreach ($resp as $temp) { ?>
                                         <form action="curso.php" method="POST">
@@ -108,7 +106,7 @@ $userId = $_SESSION['user']['id'];
                                 <a class="nav-link" href="allcourses.php">Todos los cursos</a>
                             </li>
                         <?php }
-                        if ($_SESSION['user']['acceso'] == 0) { ?>
+                        if ($_SESSION['user']['acceso'] == 2) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu administrador
@@ -132,7 +130,7 @@ $userId = $_SESSION['user']['id'];
                             <!-- ESTO ES UNA NEGRADA, MODIFICAR LUEGO -->
                                         <!-- PERMISOS PARA VENDEDOR -->
                         <?php
-                        if ($_SESSION['user']['acceso'] == 1) { ?>
+                        if ($_SESSION['user']['acceso'] == 3) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu Vendedor
