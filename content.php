@@ -55,12 +55,13 @@ if ($_SESSION['user']['acceso'] != 0) exit;
                             </thead>
                             <tbody id="body_mods">
                                 <?php $archivos = scandir($curso['url_doc']);
-                                for ($i=2; $i<8; $i++) { ?>
+                                for ($i = $curso['cantidad_modulos']; $i > 0 ; $i--) { 
+                                    $max = $curso['cantidad_modulos']; ?>
                                     <tr>
                                         <td class="text-left">
                                             <form action="content_modify.php" method="post">
-                                                <button type="submit" class="btn-info btn-sm"><?=$archivos[$i];?></button> 
-                                                <input type="hidden" value="<?=$archivos[$i];?>" name="directorio">
+                                                <button type="submit" class="btn-info btn-sm"><?=$archivos[$max-$i+2];?></button>
+                                                <input type="hidden" value="<?=$archivos[$max-$i+2];?>" name="directorio">
                                                 <input type="hidden" value="<?=$curso['nombre'];?>" name="materia">
                                                 <input type="hidden" value="<?=$curso['url_doc'];?>" name="raiz">
                                                 <input type="hidden" value="<?=$_POST['course'];?>" name="course">

@@ -3,6 +3,7 @@ require "./templates/header.php";
 if ($_SESSION['user']['acceso'] != 0) exit;
 
 if (isset($_POST['newCourse'])) {
+  $cantidadModulos = $db->escape($_POST['cantidadModulos']);
   $categoria = $db->escape($_POST['categoria']);
   $nombre = $db->escape($_POST['nombre']);
   $descripcion_curso = $db->escape($_POST['descripcion_curso']);
@@ -12,6 +13,7 @@ if (isset($_POST['newCourse'])) {
   $target_file = $target_dir . basename($_FILES["file"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $target_name = $target_dir . $nombre . "." . $imageFileType;
 
   //check si el curso ya existe
   $db->query("SELECT `nombre` FROM `curso` WHERE `nombre` = '$nombre' LIMIT 1");
@@ -45,7 +47,7 @@ if (isset($_POST['newCourse'])) {
     //creacion del directorio del curso
     if (!is_dir($directoryName)) {
       mkdir($directoryName, 0777);
-      for ($i = 0; $i < 6; $i++) {
+      for ($i = 0; $i < $cantidadModulos; $i++) {
         $directoryName = 'cursos/' . $nombre . '/Modulo ' . ($i + 1);
         mkdir($directoryName, 0777);
         $myfile = fopen($directoryName."/videos.txt", "w");
@@ -56,10 +58,10 @@ if (isset($_POST['newCourse'])) {
       mkdir($dir_exam, 0777);
     }
     //volcado de la informacion a la base de datos //carga de la imagen en directorio del curso
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_name)) {
       $nombre = $_POST['nombre'];
-      $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`, `descripcion`, `exams`, `categoria`)
-                          VALUES ('$nombre','$target_dir', '$target_file', '$descripcion_curso','$examDirectory' , '$categoria')");
+      $db->query("INSERT INTO `curso`(`nombre`, `url_doc`, `imagen`, `descripcion`, `exams`, `categoria`, `cantidad_modulos` )
+                          VALUES ('$nombre','$target_dir', '$target_name', '$descripcion_curso','$examDirectory' , '$categoria', '$cantidadModulos')");
       $_SESSION['mensaje'] = "Se ha creado con exito el curso " . $nombre;
       $_SESSION['msg_status'] = 1;
     } else {
@@ -115,12 +117,22 @@ if ($_SESSION['mensaje'] != "") {
               <label for="exampleFormControlTextarea1">
                 <h4>Categoria</h4>
               </label>
-              <select name="categoria">
-                <option hidden selected disabled>-- Seleccione categoria --</option>
+              <select required name="categoria">
+                <option value="" disabled selected>-- Seleccione categoria --</option>
                 <option value="1">Informatica</option>
                 <option value="2">Gastronomia</option>
                 <option value="3">Otro</option>
               </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row pt-2">
+          <div class="col">
+            <div class="form-group">
+              <label for="cantidadModulos">
+                <h4>Cantidad de modulos:</h4>
+              </label>
+              <input required type="number" min="0" max="10" step="1" id="cantidadModulos" name="cantidadModulos">
             </div>
           </div>
         </div>

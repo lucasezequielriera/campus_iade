@@ -55,7 +55,7 @@ if (!isset($_SESSION['logged'])) {
                             <li class="divider"></li>
                         </ul>
 
-                        <?php if ($_SESSION['user']['acceso'] <= 1) { ?>
+                        <?php if ($_SESSION['user']['acceso'] > 1) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Mis cursos
@@ -106,7 +106,7 @@ if (!isset($_SESSION['logged'])) {
                                 <a class="nav-link" href="allcourses.php">Todos los cursos</a>
                             </li>
                         <?php }
-                        if ($_SESSION['user']['acceso'] == 2) { ?>
+                        if ($_SESSION['user']['acceso'] == 0) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu administrador
@@ -130,7 +130,7 @@ if (!isset($_SESSION['logged'])) {
                             <!-- ESTO ES UNA NEGRADA, MODIFICAR LUEGO -->
                                         <!-- PERMISOS PARA VENDEDOR -->
                         <?php
-                        if ($_SESSION['user']['acceso'] == 3) { ?>
+                        if ($_SESSION['user']['acceso'] == 1) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Menu Vendedor
