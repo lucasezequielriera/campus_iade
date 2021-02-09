@@ -1,35 +1,34 @@
 <?php require "./templates/header.php";
 if ($_SESSION['user']['acceso'] > 1) exit;
 
-$db->query("SELECT p.nombre, p.apellido, p.dni, c.id FROM personas p
-            LEFT JOIN curso_p c
-            ON personas.id = curso_p.id_persona
-            WHERE curso_p.pago = 0");
+$db->query("SELECT personas.nombre, personas.apellido, personas.telefono, personas.email, curso.nombre as nombre_curso FROM personas INNER JOIN curso_p ON        personas.id = curso_p.id_persona LEFT JOIN curso ON curso.id_curso = curso_p.id_curso WHERE curso_p.pago = 0");
 
 $nopagos = $db->fetchAll();
 ?>
 
 <div class="container">
-  <!-- <label for="">Documento</label>
-  <div class="input-group mb-2">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroupPrepend2">#</span>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fadein active" id="diario">
+      <div class="list-group">
+      <?php
+      foreach ($nopagos as $temp) {
+          if ($lead['label'] == 7) continue; ?>
+          <form action="./lead.php" method="post">
+            <button class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><?=$temp['nombre']; $temp['apellido'];?></h5>
+                <small><?= $lead['date'] ?></small>
+              </div>
+              <p class="mb-1"><?= $lead['description'] ?></p>
+              <small><?= $lead['email'] . " - " . $lead['phone'] ?></small>
+            </button>
+            <input type="hidden" name="lead" value="<?= $lead['id']; ?>">
+          </form>
+        <?php } ?>
+      </div>
     </div>
-    <input type="number" class="form-control" name="dni" id="dni_user" placeholder="Numero de documento sin puntos" aria-describedby="inputGroupPrepend2" required>
-    <button id="btnSearch" class="btn-sm btn-warning">Buscar</button> 
-  </div> -->
-
-
-
-  <?php foreach ($nopagos as $temp) { ?>
-    <br><div class="row">
-      <label for="nombre"><?=$temp['nombre'] . " " . $temp['apellido'] . " " . $temp['dni']?></label>
-      <button type="button" class="ml-3 btn-sm btn-info" onclick="pago(<?=$temp['dni']?>);">Registrar pago</button>
-    </div>               
-  <?php } ?>
+  </div>
 </div>
-
-
 
 <script>
 
