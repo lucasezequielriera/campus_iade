@@ -1,13 +1,17 @@
 <?php
 require "./templates/header.php";
 
+//OJO CON EL PAGO, ESTA DESHABILITADO MIENTRAS MODIFICO LAS OPCIONES DE MODULO.
+
 if (isset($_POST['courseAssign'])) {
-  $nombre = $db->escape($_POST['id_persona']); //id_persona
-  $course = $db->escape($_POST['course']); //id curso
-  $pago1 = (isset($_POST['pago']) ? $db->escape($_POST['pago']) : 0);
-  $cond = 6;
-  $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) 
-                  VALUES ('$course','$nombre', '$cond', '$pago1');");
+  $userId = $db->escape($_POST['id_persona']);
+  $course = $db->escape($_POST['course']);
+  if ($_POST['pago'] == 1) $cond = 6;  //si pago todo
+
+  //$pago1 = (isset($_POST['pago']) ? $db->escape($_POST['pago']) : 0);
+  //$db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) VALUES ('$course','$userId', '$cond', '$pago1');");
+  $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`) VALUES ('$course','$userId', '$cond');");  // esta linea se va
+
   $_SESSION['mensaje'] = "Curso asignado!";
   $_SESSION['msg_status'] = 1;
 }
@@ -49,8 +53,34 @@ if ($_SESSION['mensaje'] != "") {
       </div>
       <div class="row">
         <div class="form-check mt-2">
-          <input class="form-check-input" name="pago" type="checkbox" value="1" id="invalidCheck2">
-          <label class="form-check-label" for="invalidCheck2">Pago completo</label>
+          <label class="form-check-label" for="invalidCheck2">Pago el curso completo?</label>
+          <div>
+            <label for="">Si</label>
+            <input required type="radio" name="pago" value="1">
+            <label for="">No</label>
+            <input type="radio" name="pago" value="0">
+          </div>
+              <div id="Pago1" class="desc" style="display: none;">
+
+
+                
+
+
+
+                esto es si pago
+              </div>
+
+              <div id="Pago0" class="desc" style="display: none;">
+
+                  //poner cantidad de cuotas y crear una tabla donde actualizarlo? 
+
+
+
+
+
+
+                esto si no pago.
+              </div>
         </div>
       </div>
       <div class="form-row">
@@ -61,6 +91,18 @@ if ($_SESSION['mensaje'] != "") {
     </div>
     </form>
 
+    <script>
+      $(document).ready(function() {
+        $("input[name$='pago']").click(function() {
+          var test = $(this).val();
+
+          $("div.desc").hide();
+          $("#Pago" + test).show();
+        });
+      });
+    </script>
+
     <?php
     require "./templates/footer.php";
     ?>
+    <!-- <input class="form-check-input" name="pago" type="checkbox" value="1" id="invalidCheck2"> -->
