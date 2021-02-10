@@ -1,19 +1,29 @@
 <?php
 require "./templates/header.php";
 
-//OJO CON EL PAGO, ESTA DESHABILITADO MIENTRAS MODIFICO LAS OPCIONES DE MODULO.
-
 if (isset($_POST['courseAssign'])) {
   $userId = $db->escape($_POST['id_persona']);
   $course = $db->escape($_POST['course']);
-  if ($_POST['pago'] == 1) $cond = 6;  //si pago todo
+  $cantidad_cuotas = $db->escape($_POST['cantidad_cuotas']);
+  $valor_cuota = $db->escape($_POST['valor_cuota']);
+  $pago = 1;
+  $cuotas_pagas = 0;
 
-  //$pago1 = (isset($_POST['pago']) ? $db->escape($_POST['pago']) : 0);
-  //$db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago` ) VALUES ('$course','$userId', '$cond', '$pago1');");
-  $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`) VALUES ('$course','$userId', '$cond');");  // esta linea se va
-
-  $_SESSION['mensaje'] = "Curso asignado!";
-  $_SESSION['msg_status'] = 1;
+  $db->query("SELECT * FROM curso_p WHERE id_curso = '$course' AND id_persona = '$userId' LIMIT 1");
+  $validate = $db->fetchAll();
+  if (count($validate) > 0) {
+    $_SESSION['mensaje'] = "El curso ya se encuentra asignado a esa persona!";
+    $_SESSION['msg_status'] = 0;
+  } else {
+    if ($_POST['pago'] == 1) {
+      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`) VALUES ('$course','$userId', '$pago');");
+    } else {
+      $pago = 0;
+      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`) VALUES ('$course','$userId', '$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota');");
+    }
+    $_SESSION['mensaje'] = "Curso asignado!";
+    $_SESSION['msg_status'] = 1;
+  }
 }
 
 if ($_SESSION['mensaje'] != "") {
@@ -51,44 +61,34 @@ if ($_SESSION['mensaje'] != "") {
           </select>
         </div>
       </div>
+
       <div class="row">
         <div class="form-check mt-2">
-          <label class="form-check-label" for="invalidCheck2">Pago el curso completo?</label>
-          <div>
+          <h3 class="form-check-label " for="invalidCheck2">Pago el curso completo?</h3>
+          <div class="mt-3">
             <label for="">Si</label>
             <input required type="radio" name="pago" value="1">
             <label for="">No</label>
             <input type="radio" name="pago" value="0">
           </div>
-              <div id="Pago1" class="desc" style="display: none;">
-
-
-                
-
-
-
-                esto es si pago
-              </div>
-
-              <div id="Pago0" class="desc" style="display: none;">
-
-                  //poner cantidad de cuotas y crear una tabla donde actualizarlo? 
-
-
-
-
-
-
-                esto si no pago.
-              </div>
+          <div id="Pago1" class="desc" style="display: none;">
+          </div>
+          <div id="Pago0" class="desc" style="display: none;">
+            <div>
+              <label for="cuotas">Ingrese cantidad de cuotas: </label>
+              <input type="number" step="1" min="2" max="10" name="cantidad_cuotas">
+            </div>
+            <div>
+              <label for="cuotas">Ingrese valor de la cuota: </label>
+              <input type="number" min="0" placeholder="$$$" name="valor_cuota">
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <button class="btn btn-primary mt-5" name="courseAssign" type="submit">Asignar curso</button>
-        </div>
+        <button class="btn btn-primary mt-5" name="courseAssign" type="submit">Asignar curso</button>
       </div>
-    </div>
     </form>
 
     <script>
