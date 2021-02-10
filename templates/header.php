@@ -122,7 +122,7 @@ if (!isset($_SESSION['logged'])) {
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="pwd.php">Cambiar contraseñas</a>
                                     <div class="dropdown-divider"></div>
-                                    <!-- <a class="dropdown-item" href="pendientes.php">Pendientes de pago</a> -->
+                                    <a class="dropdown-item" href="pendientes.php">Pendientes de pago</a>
                                 </div>
                             </li><?php } ?>
 
