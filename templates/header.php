@@ -125,9 +125,6 @@ if (!isset($_SESSION['logged'])) {
                                     <a class="dropdown-item" href="pendientes.php">Pendientes de pago</a>
                                 </div>
                             </li><?php } ?>
-
-
-                            <!-- ESTO ES UNA NEGRADA, MODIFICAR LUEGO -->
                                         <!-- PERMISOS PARA VENDEDOR -->
                         <?php
                         if ($_SESSION['user']['acceso'] == 1) { ?>
