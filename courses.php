@@ -13,7 +13,7 @@ if (isset($_POST['newCourse'])) {
   $target_file = $target_dir . basename($_FILES["file"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-  $target_name = $target_dir . $nombre . "." . $imageFileType;
+  $target_name = $target_dir . "z_" . $nombre . "." . $imageFileType;
 
   //check si el curso ya existe
   $db->query("SELECT `nombre` FROM `curso` WHERE `nombre` = '$nombre' LIMIT 1");

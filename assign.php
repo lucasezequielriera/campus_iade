@@ -8,6 +8,9 @@ if (isset($_POST['courseAssign'])) {
   $valor_cuota = $db->escape($_POST['valor_cuota']);
   $pago = 1;
   $cuotas_pagas = 0;
+  $db->query("SELECT cantidad_modulos FROM curso WHERE id_curso = '$course' LIMIT 1");
+  $temp = $db->fetch();
+  $nivel = $temp['cantidad_modulos'];
 
   $db->query("SELECT * FROM curso_p WHERE id_curso = '$course' AND id_persona = '$userId' LIMIT 1");
   $validate = $db->fetchAll();
@@ -16,10 +19,10 @@ if (isset($_POST['courseAssign'])) {
     $_SESSION['msg_status'] = 0;
   } else {
     if ($_POST['pago'] == 1) {
-      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`) VALUES ('$course','$userId', '$pago');");
+      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago`) VALUES ('$course','$userId', $nivel, '$pago');");
     } else {
       $pago = 0;
-      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`) VALUES ('$course','$userId', '$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota');");
+      $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`) VALUES ('$course','$userId', $nivel,'$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota');");
     }
     $_SESSION['mensaje'] = "Curso asignado!";
     $_SESSION['msg_status'] = 1;
