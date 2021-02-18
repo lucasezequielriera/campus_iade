@@ -39,6 +39,22 @@ include "./templates/header.php";
                                             </form>
                                         </li>
                                     </ul>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <?php
+                                                $handle = opendir($_POST['module']);
+                                                while (false !== ($entry = readdir($handle))) {
+                                                    if ($entry != "." && $entry != "..") { 
+                                                        if ($entry == "videos.txt") continue; ?>
+                                                            <div>
+                                                                <a href="<?= $_POST['module'] . "/" . $entry?>" download><?=$entry?></a>
+                                                            </div>
+                                                    <?php }
+                                                }
+                                                closedir($handle);
+                                            ?>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col col-lg-6">
@@ -50,7 +66,6 @@ include "./templates/header.php";
             </table>
         </div>
     </div>
-
 
     <script>
         function setURLframe(url) {
