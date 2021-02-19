@@ -41,18 +41,22 @@ include "./templates/header.php";
                                     </ul>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
-                                            <?php
+                                            <div>
+                                                <?php
                                                 $handle = opendir($_POST['module']);
                                                 while (false !== ($entry = readdir($handle))) {
-                                                    if ($entry != "." && $entry != "..") { 
-                                                        if ($entry == "videos.txt") continue; ?>
-                                                            <div>
-                                                                <a href="<?= $_POST['module'] . "/" . $entry?>" download><?=$entry?></a>
-                                                            </div>
-                                                    <?php }
+                                                    if ($entry != "." && $entry !=  "..") {
+                                                        if ($entry == "videos.txt") continue;
+                                                        $ext = pathinfo($entry, PATHINFO_EXTENSION);
+                                                        if ($ext== "pdf") { ?>
+                                                            <a href="<?= $_POST['module'] . "/" . $entry?>" target="_blank"><?=$entry?></a>
+                                                        <?php } else { ?> 
+                                                            <a href="<?= $_POST['module'] . "/" . $entry?>" download><?=$entry?></a>
+                                                    <?php }}
                                                 }
                                                 closedir($handle);
-                                            ?>
+                                                ?>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
