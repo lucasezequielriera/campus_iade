@@ -7,10 +7,20 @@ if (isset($_POST['btnPago'])) {
     $cantidad_cuotas = $_POST['cantidad_cuotas'];
     $course_id = $db->escape($_POST['course_id']);
     $persona_id = $db->escape($_POST['persona_id']);
-    if ($cantidad_cuotas == $cuotas_pagas)
-        $db->query("UPDATE `curso_p` SET `cuotas_pagas` = '$cuotas_pagas', `pago` = '1' WHERE `id_curso` = '$course_id' AND `id_persona` = '$persona_id'");
+    $db->query("SELECT cantidad_modulos FROM curso WHERE id_curso = '$course_id' LIMIT 1");
+    $temp = $db->fetch();
+    $modulos = $temp['cantidad_modulos'];
+
+    $db->query("SELECT `nivel` FROM `curso_p` WHERE `id_curso` = '$course_id' AND `id_persona` = '$persona_id' LIMIT 1");
+    $tempNivel = $db->fetch();
+    $sumaModulos = intval($modulos/$cantidad_cuotas);
+    $nivel = $tempNivel['nivel'] + $sumaModulos;
+    if ($cantidad_cuotas == $cuotas_pagas) {
+        $nivel = $nivel + ($modulos-$nivel);
+        $db->query("UPDATE `curso_p` SET `cuotas_pagas` = '$cuotas_pagas', `nivel` = '$nivel', `pago` = '1' WHERE `id_curso` = '$course_id' AND `id_persona` = '$persona_id'");
+    }
     else
-        $db->query("UPDATE `curso_p` SET `cuotas_pagas` = '$cuotas_pagas' WHERE `id_curso` = '$course_id' AND `id_persona` = '$persona_id'");
+        $db->query("UPDATE `curso_p` SET `cuotas_pagas` = '$cuotas_pagas', `nivel` = '$nivel' WHERE `id_curso` = '$course_id' AND `id_persona` = '$persona_id'");
     ?>
     <h3>Pago registrado!</h3>
     <div><a class="btn btn-success" href="./pendientes.php">Volver</a></div>

@@ -22,6 +22,8 @@ if (isset($_POST['courseAssign'])) {
       $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago`) VALUES ('$course','$userId', $nivel, '$pago');");
     } else {
       $pago = 0;
+      $nivel = intval($temp['cantidad_modulos'] / $cantidad_cuotas);
+      if ($nivel >= 0 && $nivel < 1) $nivel = 1;
       $db->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `nivel`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`) VALUES ('$course','$userId', $nivel,'$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota');");
     }
     $_SESSION['mensaje'] = "Curso asignado!";
