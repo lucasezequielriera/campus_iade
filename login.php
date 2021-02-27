@@ -11,12 +11,9 @@
         $db = Database::getInstance();
         $dni = $db->escape($_POST['dni']);
         $pwd = $db->escape($_POST['password']);
-        //$pwd = sha1($pwd);
+        $pwd = sha1($pwd);
      
-        $db->query("SELECT * 
-                        FROM personas 
-                        WHERE dni = '$dni' AND password = '$pwd'
-                        LIMIT 1");
+        $db->query("SELECT * FROM personas WHERE dni = '$dni' AND password = '$pwd' LIMIT 1");
 
         if ($db->numRows() == 1) {
             $_SESSION['logged'] = true;
@@ -44,11 +41,11 @@
   <body action="" class="text-center">
     <form class="form-signin" method="POST">
       <img class="mb-4" src="img//logo.png" alt="" width="155" height="72">
-      <h1 class="mb-3 font-weight-normal">Inicio de sesión</h1>
+      <h1 class="mb-3 font-weight-normal">Inicio de sesi&oacute;n</h1>
       <label for="inputEmail" class="sr-only">DNI</label>
       <input type="text" id="inputEmail" name="dni" class="form-control" placeholder="Usuario" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contrase&ntilde;a" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       <p class="mt-5 mb-3 text-muted">&copy; Virtual campus design by Agrowd</p>
     </form>
