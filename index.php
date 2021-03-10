@@ -37,9 +37,17 @@ $_SESSION['mensaje'] = "";
     Cerrajería</a>
     <a href="#"><img src="./img/26.jpg" width="180px">
     Electrónica</a>
-    <a href="#"><img src="./img/33.jpg" width="180px">
+    <a class="hiddenimg-1" href="#"><img src="./img/33.jpg" width="180px">
     Motos</a>
-    <a href="#"><img src="./img/35.jpg" width="180px">
+    <a class="hiddenimg0" href="#"><img src="./img/35.jpg" width="180px">
+    Motores de Moto</a>
+    <a class="hiddenimg1" href="#"><img src="./img/35.jpg" width="180px">
+    Motores de Moto</a>
+    <a class="hiddenimg2" href="#"><img src="./img/35.jpg" width="180px">
+    Motores de Moto</a>
+    <a class="hiddenimg3" href="#"><img src="./img/35.jpg" width="180px">
+    Motores de Moto</a>
+    <a class="hiddenimg4" href="#"><img src="./img/35.jpg" width="180px">
     Motores de Moto</a>
   </main>
 

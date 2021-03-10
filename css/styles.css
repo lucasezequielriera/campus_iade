@@ -17,18 +17,18 @@
 
 */
 
-/*//////////// Fonts ///////////////////*/
-
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
-
 /*//////////// HTML Section ////////////*/
 
 html, body {
-    height: 100vh;
+    min-height: 100%;
     background: white;
-    background: gainsboro;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 200;
+    font-family: 'system-ui', sans-serif;
+    font-weight: 300;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 40px;
 }
 
 /*////////// Header Section ////////////*/
@@ -39,13 +39,13 @@ nav {
 
 nav p {
     color: rgb(221, 188, 3);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
 }
 
 button, a, .btn {
-    font-family: 'Ubuntu', sans-serif !important;
+    font-family: 'system-ui', sans-serif !important;
 }
 
 @media (max-width:991px) {
@@ -94,7 +94,7 @@ nav img {
 }
 
 nav .dropdown .dropdown-menu a {
-    font-family: 'Ubuntu', sans-serif !important;
+    font-family: 'system-ui', sans-serif !important;
     font-weight: 200;
 }
 
@@ -128,12 +128,16 @@ footer {
     background-color: rgba(0,0,0,0.4) !important;
     margin-top: 5px !important;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 footer a {
     color: white;
     transition: 0.5s;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
 }
 
 footer a:hover {
@@ -168,7 +172,7 @@ footer a:hover {
 
 #swiper-banner {
     width: 100%;
-    height: 250px;
+    height: auto;
 }
 
 #swiper-banner img {
@@ -180,16 +184,34 @@ footer a:hover {
     height: 30px;
 }
 
+@media (max-width:1035px) {
+    #swiper-banner img {
+        height: 200px;
+    }
+}
+
 @media (max-width: 960px) {
     .navbar-brand img {
         height: 40px;
     }
 }
 
+@media (max-width:695px) {
+    #swiper-banner img {
+        height: 170px;
+    }
+}
+
+@media (max-width:475px) {
+    #swiper-banner img {
+        height: 130px;
+    }
+}
+
 .contenedor {
     width: 98%;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     text-align: center;
     display: grid;
@@ -202,32 +224,34 @@ footer a:hover {
     grid-column: 1/3;
     grid-row: 1/2;
     text-align: left;
-    color: rgb(66, 66, 66);
+    color: rgb(26, 26, 26);
 }
 
 .contenedor .titulo1 h3 {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 400;
+    text-align: center;
 }
 
 .contenedor .titulo1 h3::before {
-    content: 'Nuestro Cursos Disponibles:';
+    content: 'Nuestro Cursos Disponibles';
 }
 
 .contenedor .titulo2 {
     grid-column: 3/5;
     grid-row: 1/2;
     text-align: left;
-    color: rgb(66, 66, 66); 
+    color: rgb(26, 26, 26); 
 }
 
 .contenedor .titulo2 h3 {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 400;
+    text-align: center;
 }
 
 .contenedor .titulo2 h3::before {
-    content: 'Mirá Nuestro Video:';
+    content: 'Mirá Nuestro Video';
 }
 
 .contenedor .mainmenu {
@@ -237,28 +261,24 @@ footer a:hover {
     grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
     grid-template-rows: minmax(100px, auto) 1fr;
     grid-gap: 10px;
+    justify-content: center;
 }
 
 .contenedor .mainmenu a {
     color: black;
     text-decoration: none;
-    background-color: rgb(255, 237, 72);
+    background-color: rgb(255, 255, 255);
     transition: all .5s ease;
     margin: auto;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 200;
     margin-top: 0px;
-    border-radius: 10px;
-}
-
-.contenedor .mainmenu img {
-    border-top-left-radius:0px;
-    border-top-right-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(185, 185, 185);
 }
 
 .contenedor .mainmenu a:hover {
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(26, 35, 165, 0.664);
 }
 
 .contenedor .videosection {
@@ -269,6 +289,18 @@ footer a:hover {
     overflow: hidden;
     grid-auto-rows: 100px 400px;
     text-align: center;
+}
+
+@media (max-width:1923px) {
+    .hiddenimg1, .hiddenimg2 {
+        display: none;
+    }
+}
+
+@media (max-width:1535px) {
+    .hiddenimg3, .hiddenimg4 {
+        display: none;
+    }
 }
 
 @media (max-width:1435px) {
@@ -305,6 +337,7 @@ footer a:hover {
     }
     .contenedor .mainmenu a {
         width: 100%;
+        font-size: 11px;
         
     }
     .contenedor .mainmenu img {
@@ -316,7 +349,7 @@ footer a:hover {
 @media (max-width:903px) {
     .contenedor .videosection iframe{
         width: 90%;
-        height: 70%;
+        height: 80%;
     }
 }
 
@@ -355,15 +388,18 @@ footer a:hover {
         margin-bottom: 5px;
         justify-content: center;
     }
-    .contenedor .mainmenu a {
-        height: 100%;
-    }
 }
 
 @media (max-width:424px) {
     .contenedor .videosection iframe {
         width: 300px;
         height: 200px;
+    }
+}
+
+@media (max-width:387px) {
+    .videosection iframe {
+        height: 80% !important;
     }
 }
 
@@ -445,9 +481,46 @@ footer a:hover {
     }
 }
 
+@media(max-width:841px) {
+    .videosection iframe {
+        height: 70% !important;
+    }
+    .hiddenimg-1, .hiddenimg0 {
+        display: none;
+    }
+}
+
+@media(max-width:655px) {
+    .videosection iframe {
+        height: 100% !important;
+        width: 100% !important;
+        margin-left: 10px;
+    }
+    .contenedor {
+        margin-top: 20px;
+    }
+    .hiddenimg-1, .hiddenimg0, .hiddenimg1, .hiddenimg2 {
+        display: block;
+    }
+}
+
 @media (max-width:560px) {
     .formulario input {
         width: 250px;
+    }
+}
+
+@media (max-width:520px) {
+    .videosection iframe {
+        height: 80% !important;
+        margin-left: 10px;
+    }
+}
+
+@media (max-width:438px) {
+    .videosection iframe {
+        height: 60% !important;
+        margin-left: 10px;
     }
 }
 
@@ -544,7 +617,7 @@ footer a:hover {
 /*///////////// Chat Section //////////////////////////*/
 
 .list-group button {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 200;
 }
 
@@ -598,7 +671,7 @@ footer a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-transform: none;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 200;
     outline: none;
 }
@@ -628,7 +701,7 @@ footer a:hover {
     margin-bottom: 8px;
     width: fit-content;
     height: fit-content;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 200;
 }
 
@@ -636,7 +709,7 @@ footer a:hover {
     margin: 0;
     font-weight: 700;
     font-size: 14px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
 }
 
 .msg span {
@@ -656,7 +729,7 @@ footer a:hover {
 
 .pwd h5 {
     color: white;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'system-ui', sans-serif;
     font-weight: 200;
 }
 

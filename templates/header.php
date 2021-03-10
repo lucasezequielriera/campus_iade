@@ -1,5 +1,5 @@
 <?php
-require "./globals/database.php";
+require "./globals/Database.php";
 session_start();
 
 $db = Database::getInstance();
@@ -39,7 +39,7 @@ if (!isset($_SESSION['logged'])) {
 <body>
     <header>
         <div class="container-fluid m-0 px-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-2">
+            <nav class="navbar navbar-expand-lg navbar-dark px-2">
                 <a class="navbar-brand" href="index.php"><img src="./img/logo.png" alt="logo"></a>
                 <p class="m-0">Bienvenido <?= $_SESSION['user']['nombre']; ?></p>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
