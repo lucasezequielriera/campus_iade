@@ -11,15 +11,15 @@ if (isset($_POST['newUser'])) {
   $telefono1 = $db->escape($_POST['tel']);
   $email1 = $db->escape($_POST['mail']);
   $ok = 0;
-
+  $pais = $db->escape($_POST['pais']);
   $db->query("SELECT * FROM personas WHERE dni = '$dni1' LIMIT 1");
   $temp = $db->fetch();
 
   if ($temp == NULL) $ok = 1;
    
   if ($ok == 1) {
-    $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto` ) 
-              VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1', './img/blank.png');");
+    $db->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto`, `pais`) 
+              VALUES ('$dni1', '$pwd1', '$nombre1', '$apellido1', '$acceso', '$telefono1', '$email1', './img/blank.png' , '$pais');");
     $_SESSION['mensaje'] = "Usuario creado!";
     $_SESSION['msg_status'] = 1;
   }
@@ -40,13 +40,24 @@ if ($_SESSION['mensaje'] != "") {
     <div class="container">
       <form id="form_user" action="" method="post"> <br> <br>
         <div class="form-row">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <label for="validationDefault01">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <label for="validationDefault02">Apellido</label>
             <input type="text" name="apellido" class="form-control" id="apellido" required>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="validationDefault02">Pais</label>
+            <select class="form-control" name="pais" id="pais" required>
+              <option selected disabled>--Seleccione--</option>
+              <option value="argentina">Argentina</option>
+              <option value="chile">Chile</option>
+              <option value="paraguay">Paraguay</option>
+              <option value="eeuu">EEUU</option>
+              <option value="colombia">Colombia</option>
+            </option></select>
           </div>
           <div class="col-md-4 mb-3">
             <label for="">Documento</label>
@@ -54,7 +65,7 @@ if ($_SESSION['mensaje'] != "") {
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend2">#</span>
               </div>
-              <input type="number" class="form-control" name="dni" id="dni_user" placeholder="Numero de documento sin puntos" aria-describedby="inputGroupPrepend2" required>
+              <input type="number" class="form-control" name="dni" id="dni_user" placeholder="Numero de documento" aria-describedby="inputGroupPrepend2" required>
               <button id="btnSearch" type="button" class="btn-sm btn-warning">Buscar</button>
             </div>
           </div>

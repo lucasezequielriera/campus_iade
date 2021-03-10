@@ -146,7 +146,7 @@ if (!isset($_SESSION['logged'])) {
                         <a href="report.php" class="btn btn-sm btn-warning" type="button">Reportar un problema</a>
                     </form>
                     <form class="form-inline my-2 my-lg-0">
-                        <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesion</a>
+                        <a href="logout.php" class="btn btn-sm btn-danger" type="button">Cerrar Sesión</a>
                     </form>
                 </div>
             </nav>

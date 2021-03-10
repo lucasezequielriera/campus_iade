@@ -1,5 +1,5 @@
 <?php
-require "./globals/database.php";
+require "./globals/Database.php";
 $db = Database::getInstance();
 
         $nombre = $db->escapeWildcards($db->escape($_POST['nombre']));
