@@ -11,7 +11,7 @@
         $db = Database::getInstance();
         $dni = $db->escape($_POST['dni']);
         $pwd = $db->escape($_POST['password']);
-        //pwd = sha1($pwd);
+        pwd = sha1($pwd);
      
         $db->query("SELECT * FROM personas WHERE dni = '$dni' AND password = '$pwd' LIMIT 1");
 

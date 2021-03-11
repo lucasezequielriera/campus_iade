@@ -49,14 +49,14 @@ if ($_SESSION['mensaje'] != "") {
       </div>
     </div>
 
-    <form class="container mt-2" action="" method="post">
+    <form class="container mt-2" action="" method="post" onsubmit="checkForm();">
       <div class="row">
         <div class="col-md-4 mb-3">
           <label for="validationDefault01">Datos del alumno</label> <br>
-          <input type="hidden" name="id_persona" id="id_persona" required>
-          <input type="text" name="dni" id="dni" value="" placeholder="Documento" disabled required>
-          <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" disabled required>
-          <input type="text" name="apellido" id="apellido" value="" placeholder="Apellido" disabled required>
+          <input type="hidden" name="id_persona" id="id_persona">
+          <input type="text" name="dni" id="dni" value="" placeholder="Documento" disabled>
+          <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" disabled>
+          <input type="text" name="apellido" id="apellido" value="" placeholder="Apellido" disabled>
           <input type="text" name="email" id="email" value="" placeholder="Email" disabled>
           <input type="text" name="tel" id="tel" value="" placeholder="Teléfono" disabled>
         </div>
@@ -83,20 +83,20 @@ if ($_SESSION['mensaje'] != "") {
             <h5 class="form-check-label" for="invalidCheck2">Pago el curso completo?</h5>
             <div class="mt-1 ml-4">
               <label for="">Si</label>
-              <input required type="radio" name="pago" value="1">
+              <input type="radio" name="pago" value="1" checked>
               <label for="">No</label>
-              <input type="radio" name="pago" value="0">
+              <input type="radio" name="pago" value="0" id="checkForNo">
             </div>
             <div id="Pago1" class="desc" style="display: none;">
             </div>
             <div id="Pago0" class="desc" style="display: none;">
               <div>
                 <label for="cuotas">Cantidad de cuotas:</label>
-                <input type="number" step="1" min="2" max="10" name="cantidad_cuotas" required>
+                <input type="number" step="1" min="2" max="10" id="cantidad_cuotas" name="cantidad_cuotas">
               </div>
               <div>
                 <label for="cuotas">Valor cuota:</label>
-                <input type="number" min="0" placeholder="$$$" name="valor_cuota" required>
+                <input type="number" min="0" placeholder="$$$" id="valor_cuota" name="valor_cuota">
               </div>
             </div>
           </div>
@@ -106,6 +106,25 @@ if ($_SESSION['mensaje'] != "") {
     </form>
 
     <script>
+      function checkForm() {
+        let valorCuota = document.getElementById("valor_cuota").value;
+        let cantidadCuota = document.getElementById("cantidad_cuotas").value;
+        let test = document.getElementById("id_persona").value;
+
+          if (test == "") {
+            event.preventDefault();
+            alert("Debe buscar un alumno primero");
+            return;
+          }
+
+          if (document.getElementById("checkForNo").checked) {
+            if (valorCuota == "" || cantidadCuota == "") {
+              event.preventDefault()
+              alert("Debe completar todos los campos");
+            }
+          }
+      }
+
       $(document).ready(function() {
         $("input[name$='pago']").click(function() {
           var test = $(this).val();
