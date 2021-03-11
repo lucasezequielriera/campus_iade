@@ -38,7 +38,7 @@ if ($_SESSION['mensaje'] != "") {
   $_SESSION['mensaje'] = ""; ?>
 
     <div class="container">
-      <form id="form_user" action="" method="post"> <br> <br>
+      <form id="form_user" action="" method="post" onsubmit="checkForm()"> <br> <br>
         <div class="form-row">
           <div class="col-md-3 mb-3">
             <label for="validationDefault01">Nombre</label>
@@ -82,8 +82,8 @@ if ($_SESSION['mensaje'] != "") {
         
           <div class="col-md-3 mb-3">
             <label for="validationDefault04">Tipo de usuario</label>
-            <select name="userAccess" class="form-control" id="user_type" required>
-              <option hidden disabled selected value="0">-- Seleccione --</option>
+            <select name="userAccess" class="form-control" id="user_type">
+              <option hidden disabled selected value="">-- Seleccione --</option>
               <option value="3">Alumno</option>
           <?php
           if ($_SESSION['user']['acceso'] == 0) { ?>
@@ -101,6 +101,16 @@ if ($_SESSION['mensaje'] != "") {
     </div>
 
     <script>
+
+      function checkForm() {
+        let checkUserType = document.getElementById("user_type").value;
+          if (checkUserType == "") {
+            event.preventDefault();
+            alert("Debe seleccionar el tipo de usuario");
+            return;
+          }
+      }
+
       $("#btnSearch").click(function() {
         var datos = $('#dni_user').val();
         if (datos) {
@@ -130,7 +140,6 @@ if ($_SESSION['mensaje'] != "") {
           });
         }
       });
-
 
       function cancel() {
         $('#dni_user').prop("disabled", false);
