@@ -1,5 +1,5 @@
 <?php
-require "./globals/database.php";
+require "./globals/Database.php";
 $db = Database::getInstance();
         $temp = $db->escape($_GET['dni']);
         $db->query("SELECT * FROM `personas` WHERE dni='$temp'");
