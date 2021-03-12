@@ -1,5 +1,5 @@
 <?php
-require "./globals/Database.php";
+require "./globals/database.php";
 session_start();
 
 $db = Database::getInstance();

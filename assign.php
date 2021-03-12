@@ -40,70 +40,76 @@ if ($_SESSION['mensaje'] != "") {
     <?php  }
   $_SESSION['mensaje'] = ""; ?>
 
-    <div class="container">
-      <div class="col-md-8 my-3 pl-0">
-        <div class="input-group">
-          <input type="text" class="form-control" name="search" id="search" placeholder="Busqueda por documento, email o teléfono" aria-describedby="inputGroupPrepend2">
-          <button id="btnSearch" type="button" class="btn-sm btn-warning">Buscar</button>
-        </div>
-      </div>
-    </div>
-
-    <form class="container mt-2" action="" method="post" onsubmit="checkForm();">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <label for="validationDefault01">Datos del alumno</label> <br>
-          <input type="hidden" name="id_persona" id="id_persona">
-          <input type="text" name="dni" id="dni" value="" placeholder="Documento" disabled>
-          <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" disabled>
-          <input type="text" name="apellido" id="apellido" value="" placeholder="Apellido" disabled>
-          <input type="text" name="email" id="email" value="" placeholder="Email" disabled>
-          <input type="text" name="tel" id="tel" value="" placeholder="Teléfono" disabled>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="validationDefault04">Curso</label>
-          <select name="course" class="form-control" required>
-            <option hidden disabled selected value="">-- Seleccione curso --</option>
-            <?php
-            $db->query("SELECT * FROM curso");
-            $resp = $db->fetchAll();
-            foreach ($resp as $temp) { ?>
-              <option value="<?= $temp['id_curso']; ?>"><?= $temp['nombre']; ?></option>
-            <?php } ?>
-          </select>
-
-          <div class="form-check mt-2 p-0">
-            <h5 class="form-check-label" for="invalidCheck2">Cursa presencial?</h5>
-            <div class="mt-1 ml-4">
-              <label for="">Si</label>
-              <input required type="radio" name="presencial" value="1">
-              <label for="">No</label>
-              <input type="radio" name="presencial" value="0">
-            </div>
-            <h5 class="form-check-label" for="invalidCheck2">Pago el curso completo?</h5>
-            <div class="mt-1 ml-4">
-              <label for="">Si</label>
-              <input type="radio" name="pago" value="1" checked>
-              <label for="">No</label>
-              <input type="radio" name="pago" value="0" id="checkForNo">
-            </div>
-            <div id="Pago1" class="desc" style="display: none;">
-            </div>
-            <div id="Pago0" class="desc" style="display: none;">
-              <div>
-                <label for="cuotas">Cantidad de cuotas:</label>
-                <input type="number" step="1" min="2" max="10" id="cantidad_cuotas" name="cantidad_cuotas">
-              </div>
-              <div>
-                <label for="cuotas">Valor cuota:</label>
-                <input type="number" min="0" placeholder="$$$" id="valor_cuota" name="valor_cuota">
-              </div>
+    <section class="assign">
+      <div class="container">
+        <h1 class="title text-center mt-4 mb-5 fw-4 font-weight-light">Asignación de curso</h1>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+          <p class="mb-1">Buscá por DNI, Email o Teléfono:</p>
+            <div class="input-group">
+              <input type="text" class="form-control" name="search" id="search" placeholder="Busqueda por documento, email o teléfono" aria-describedby="inputGroupPrepend2">
+              <button id="btnSearch" type="button" class="btn-sm btn-primary">Buscar</button>
             </div>
           </div>
         </div>
-      </div>
-      <button class="btn btn-primary" name="courseAssign" type="submit">Asignar curso</button>
-    </form>
+        <form class="mt-2" action="" method="post" onsubmit="checkForm();">
+          <div class="row">
+            <div class="datosalumno col-md-4 mb-3">
+              <label for="validationDefault01">Datos del alumno:</label> <br>
+              <input type="hidden" name="id_persona" id="id_persona">
+              <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" disabled>
+              <input type="text" name="apellido" id="apellido" value="" placeholder="Apellido" disabled>
+              <input type="text" name="dni" id="dni" value="" placeholder="Documento" disabled>
+              <input type="text" name="email" id="email" value="" placeholder="Email" disabled>
+              <input type="text" name="tel" id="tel" value="" placeholder="Teléfono" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault04">Curso</label>
+              <select name="course" class="form-control" required>
+                <option hidden disabled selected value="">Seleccioná el curso a asignar</option>
+                <?php
+                $db->query("SELECT * FROM curso");
+                $resp = $db->fetchAll();
+                foreach ($resp as $temp) { ?>
+                  <option value="<?= $temp['id_curso']; ?>"><?= $temp['nombre']; ?></option>
+                <?php } ?>
+              </select>
+
+              <div class="form-check mt-2 p-0">
+                <h5 class="form-check-label" for="invalidCheck2">Cursa presencialmente?</h5>
+                <div class="mt-1 ml-4">
+                  <label for="">Si</label>
+                  <input required type="radio" name="presencial" value="1">
+                  <label for="">No</label>
+                  <input type="radio" name="presencial" value="0">
+                </div>
+                <h5 class="form-check-label" for="invalidCheck2">Pagó el curso completo?</h5>
+                <div class="mt-1 ml-4">
+                  <label for="">Si</label>
+                  <input type="radio" name="pago" value="1" checked>
+                  <label for="">No</label>
+                  <input type="radio" name="pago" value="0" id="checkForNo">
+                </div>
+                <div id="Pago1" class="desc" style="display: none;">
+                </div>
+                <div id="Pago0" class="desc" style="display: none;">
+                  <div>
+                    <label for="cuotas">Cantidad de cuotas:</label>
+                    <input type="number" step="1" min="2" max="10" id="cantidad_cuotas" name="cantidad_cuotas">
+                  </div>
+                  <div>
+                    <label for="cuotas">Valor cuota:</label>
+                    <input type="number" min="0" placeholder="$" id="valor_cuota" name="valor_cuota">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="assign_button">
+            <button class="btn btn-success" name="courseAssign" type="submit">Asignar curso</button>
+          </div>
+        </form>
+    </section>
 
     <script>
       function checkForm() {

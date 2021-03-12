@@ -830,6 +830,62 @@ footer a:hover {
 
 /*////////////////// End Faq Section //////////////////////*/
 
+/*////////////////// Assign Section //////////////////////////*/
+
+.assign .row {
+    justify-content: center;
+}
+
+.assign .container .btn-sm{
+    width: 15%;
+    font-size: 15px;
+    padding: 0px !important;
+    font-weight: 300;
+    border: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.assign h5 {
+    font-weight: 400;
+}
+
+.assign .datosalumno input {
+    width: 100%;
+}
+
+.assign .assign_button {
+    text-align: center;
+}
+
+.assign .assign_button button {
+    width: 250px;
+    font-weight: 300;
+}
+
+@media (max-width:991px) {
+    .assign #btnSearch{
+    font-size: 13px;
+    }
+}
+
+@media (max-width:767px) {
+    .assign h5:first-child {
+        margin-top: 18px;
+    }
+}
+
+@media (max-width:575px) {
+    .assign h1 {
+        font-size: 30px;
+    }
+    input::placeholder {
+        font-size: 13px;
+    }
+}
+
+/*////////////////// End Assign Section ///////////////////////*/
+
 /*////////////////// All Courses Section //////////////////*/
 
 .allcourses{
